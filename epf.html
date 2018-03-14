@@ -7,13 +7,13 @@
 
 		<meta name="description" content="overview &amp; stats" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
-
+<script type= "text/javascript" src = "assets/js/countries.js"></script>
+<script type= "text/javascript" src = "countries2.js"></script>
 		<!-- bootstrap & fontawesome -->
 		<link rel="stylesheet" href="assets/css/bootstrap.min.css" />
 		<link rel="stylesheet" href="assets/font-awesome/4.5.0/css/font-awesome.min.css" />
 
 		<!-- page specific plugin styles -->
-
 		<!-- text fonts -->
 		<link rel="stylesheet" href="assets/css/fonts.googleapis.com.css" />
 
@@ -82,10 +82,80 @@
   text-align: center;
   color:white;
 }
+
+button.accordion {
+    background-color: #eee;
+    color: #444;
+    cursor: pointer;
+    padding: 18px;
+    width: 100%;
+    border: none;
+    text-align: left;
+    outline: none;
+    font-size: 17px;
+    transition: 0.4s;
+	font-weight:bolder
+}
+
+button.accordion.active, button.accordion:hover {
+    background-color:#ccdbda;
+}
+
+div.panel {
+    padding: 0 18px;
+    background-color: white;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.2s ease-out;
+}
+button {
+    font-family: inherit;
+    font-size: 18px;
+    line-height: inherit;
+    width: 73%;
+    height: 50px;
+	    background-color: #003946;
+}
+a {
+color:white;
+}
+hr {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    border-top: 1px solid #80a9d0;
+}
 .form-group {
     margin-bottom: 15px;
-    padding: 15px;
+    float: left;
+	margin-left:10px;
+	 padding-bottom: 10px;
 }
+#imageUpload
+{
+    display: none;
+}
+
+#profileImage
+{
+    cursor: pointer;
+}
+#profile-container {
+    width: 150px;
+    height: 37px;
+  
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    -ms-border-radius: 50%;
+    -o-border-radius: 50%;
+    border-radius: 50%;
+}
+tbody {
+background-color:white;
+}
+thead {
+background-color:grey;
+}
+
 </style>
 	</head>
 
@@ -108,8 +178,8 @@
 						<span class="glyphicon glyphicon-home" style="font-size: 25px; line-height:0;color:white"></span>
 					</a>
 				</li>
-			
-				<li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown"> <span class="glyphicon glyphicon-bell" style="font-size: 25px; line-height:0;color:white;></span>
+				
+				<li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown"> <span class="glyphicon glyphicon-bell" style="font-size: 25px; line-height:0; color:white;></span>
 					<span class="caret"></span></a>
 					<ul class="dropdown-menu">
 						<li><a href="#">Page 1-1</a></li>
@@ -128,9 +198,9 @@
 </div>
 					
 					
-			<ul class="nav navbar-nav navbar-right" style="margin-top:-48px;">	
+			<ul class="nav navbar-nav navbar-right" style="margin-top:-48px;color:white">	
 				<li>
-					<p style="margin-top:15px;color:white">Admin</p>
+					<p style="margin-top:15px;">Admin</p>
 				</li>
 				<li>
 					<select name="Role" style="margin-top:10px;">
@@ -142,14 +212,15 @@
 						<option value="ba">BA</option>
 					</select>
 				</li>
+					<li><a href="cog.html" style="color:black;">
+						<span class="glyphicon glyphicon-cog" style="font-size: 25px; line-height:0;color:white"></span>
+					</a>
+				</li>
 				<li><a href="password.html" style="color:black;">
 						<span class="glyphicon glyphicon-lock" style="font-size: 25px; line-height:0;color:white"></span>
 					</a>
 				</li>
-				<li><a href="cog.html" style="color:black;">
-						<span class="glyphicon glyphicon-cog" style="font-size: 25px; line-height:0;color:white"></span>
-					</a>
-				</li>
+			
 				<li class="light-blue dropdown-modal" style="margin-top:-6px;">
 					<a data-toggle="dropdown" href="#" class="dropdown-toggle">
 						<img class="nav-user-photo" src="assets/images/avatars/user.jpg" alt="Jason's Photo" />
@@ -166,8 +237,7 @@
 									
 						</li>
 
-					
-
+						
 
 							<li>
 								<a href="#">
@@ -175,6 +245,7 @@
 										Logout
 								</a>
 							</li>
+							
 					</ul>
 				</li>
 			</ul>
@@ -191,8 +262,7 @@
 					try{ace.settings.loadState('sidebar')}catch(e){}
 				</script>
 
-				
-
+		
 				<ul class="nav nav-list">
 					<li class="">
 						<a href="index.html">
@@ -273,7 +343,6 @@
 					</li>
 				</ul><!-- /.nav-list -->
 
-
 				<div class="sidebar-toggle sidebar-collapse" id="sidebar-collapse">
 					<i id="sidebar-toggle-icon" class="ace-icon fa fa-angle-double-left ace-save-state" data-icon1="ace-icon fa fa-angle-double-left" data-icon2="ace-icon fa fa-angle-double-right"></i>
 				</div>
@@ -285,10 +354,15 @@
 						<ul class="breadcrumb">
 							<li>
 								<i class="ace-icon fa fa-home home-icon"></i>
-								<a href="#">Home</a>
+								<a href="cog.html">Settings</a>
 							</li>
-							<li class="active">Dashboard</li>
+
+							<li>
+								<a href="bank.html">Bank Details</a>
+							</li>
+							
 						</ul><!-- /.breadcrumb -->
+
 
 						<div class="nav-search" id="nav-search">
 							<form class="form-search">
@@ -367,49 +441,201 @@
 								</div><!-- /.pull-left -->
 							</div><!-- /.ace-settings-box -->
 						</div><!-- /.ace-settings-container -->
+						</div>
+						<div>
+						<h3>EPF Slab</h3>
+	<div class="row">
+								<div class="form-group">
+										<select class="form-control" id="form-field-select-1">Select Organization<span style="color:red">*</span> </label>
+											  <option>Select Organization</option></select>
+										
+											  
+									</div>
+									<div class="form-group">
+										<select class="form-control" id="form-field-select-1">Select Grade<span style="color:red">*</span> </label>
+											  <option>Select Grade</option></select>
+										
+											  
+									</div>
+									</div>
+						<button  data-toggle="modal" data-target="#myModal" style="width:18%;color:white" >EPF Administration for FY</button>
 
-						<div class="page-header">
-							<h1>
-								Password
-								<small>
-									<i class="ace-icon fa fa-angle-double-right"></i>
-									Set new password
-								</small>
-							</h1>
-						</div><!-- /.page-header -->
-						<div class="row">
-							<div class="col-md-12" style="padding:100px;">
+  <!-- Modal -->
+  <div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog">
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">EPF</h4>
+        </div>
+        <div class="modal-body">
+			<form>
+			<div class="row">
+			
+				<div class="col-md-6">
+				<label for="form-field-select-1" ><b>Employee Provident fund</b></label>
+				<div class="form-group">
+										<label for="form-field-select-1">Employee's Contribution<span style="color:red">*</span> </label>
+
+										
+											<input type="text" class="form-control" id="epfec"  required/>%
+
+									</div>
+									<div class="form-group">
+										<label>Max Limit<span style="color:red">*</span> </label>
+
+										
+											<input type="text" class="form-control" id="epfml"  required/>Rs
+										
+									</div>
+								
+									<div class="form-group">
+										<label for="form-field-select-1">Employer's Contribution<span style="color:red">*</span> </label>
+
+										
+											<input type="text" class="form-control" id="epfecc"  required/>%
+										
+									</div>
+										<div class="form-group">
+										<label>Max Limit<span style="color:red">*</span> </label>
+
+										
+											<input type="text" class="form-control" id="epfmll"  required/>Rs
+										
+									</div>
+									<label for="form-field-select-1" ><b>Employee Pension Scheme</b></label>
+									<div class="form-group">
+										<label for="form-field-select-1">Employer's Contribution<span style="color:red">*</span> </label>
+
+										<input type="text" class="form-control" id="epsec"  required/>%
+											
+										
+									</div>
+									<div class="form-group">
+										<label for="form-field-select-1">Max Limit<span style="color:red">*</span> </label>
+
+										<input type="text" class="form-control" id="epsml"  required/>Rs
+											
+										
+									</div>
+									
+								
+									</div>
+									<div class="col-md-6">
+				<label for="form-field-select-1" ><b>Employee Deposit Linked Insurance</b></label>
+				<div class="form-group">
+										<label for="form-field-select-1">Employee's Contribution<span style="color:red">*</span> </label>
+
+										
+											<input type="text" class="form-control" id="edliec"  required/>%
+
+									</div>
+									<div class="form-group">
+										<label>Max Limit<span style="color:red">*</span> </label>
+
+										
+											<input type="text" class="form-control" id="edliml"  required/>Rs
+										
+									</div>
+								
+									<label for="form-field-select-1" ><b>Admin Charges</b></label>
+									
+									<div class="form-group">
+										<label for="form-field-select-1">EPF Admin Charges(Employer cont.)<span style="color:red">*</span> </label>
+
+										<input type="text" class="form-control" id="acepfadc"  required/>%
+											
+										
+									</div>
+									<div class="form-group">
+										<label for="form-field-select-1">EDLI Admin Charges(Employer cont.)<span style="color:red">*</span> </label>
+
+										<input type="text" class="form-control" id="acedliac"  required/>%
+											
+										
+									</div>
+									<label for="form-field-select-1" ><b>Salary Heads To Be Considered</b></label>
+										<div class="form-group">
+										
+
+										
+											<input type="checkbox" id="up" value="Arrears" />Arrears
+											<input type="checkbox" id="uq" value="Availability Allowance" />Availability Allowance
+											<input type="checkbox" id="ur" value="Banked Leaves" />Banked Leaves
+											<input type="checkbox" id="us" value="Basic"/>Basic
+											<input type="checkbox" id="ut" value="Availability Allowance Arrears" />Availability Allowance Arrears
+									</div>
+									</div>
+											
+<div class="form-group">
+													<button type="submit" id="epf" class="btn btn-sm btn-success" style="    border-width: 4px;
+    font-size: 13px;
+    padding: 4px 9px;
+    line-height: 1.38;
+    width: 83px;
+    height: 37px;display:block;margin:0 auto" >
+																Submit
+																<i class="ace-icon fa fa-arrow-right icon-on-right bigger-110"></i>
+															</button>
+															</div>	
+     </div>
+		</form>
+		
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      
+      
+    </div>
+  </div>
+  </div>
+	</div>					
 							
-															<div class="space-10"></div>
-
-															<div class="form-group" >
-																<label class="col-sm-3 control-label no-padding-right" for="form-field-pass1">New Password</label>
-
-																<div class="col-sm-9">
-																	<input type="password" id="form-field-pass1" />
-																</div>
-															</div>
-
-															<div class="space-4"></div>
-
-															<div class="form-group">
-																<label class="col-sm-3 control-label no-padding-right" for="form-field-pass2">Confirm Password</label>
-
-																<div class="col-sm-9">
-																	<input type="password" id="form-field-pass2" />
-																</div>
-															</div>
-															<div class="form-group">
-																 <button type="submit" class="btn btn-default" style="    margin-left: 220px; margin-top: 35px;">Submit</button>
-																
-															</div>
-															</div>
-															</div>
-															</div>
-															</div>
-															</div>
-															</div>
-														
+							
+							<div class="row" style="padding:20px;
+    height: 200px;
+    overflow: scroll;">
+							<div style="overflow-x:auto;">
+							
+							 <table class="table controls controls-row">
+								<thead>
+									<tr>
+										<th rowspan="2" style="padding-bottom:20px">S.no</th>
+										<th rowspan="2" style="padding-bottom:20px"> FYI</th>
+										<th colspan="4"> EPF</th>
+										<th colspan="2"> EPS</th>
+										<th colspan="2">EDLI</th>
+										<th colspan="2">Admin</th>
+										<th rowspan="2" colspan="2" style="padding-bottom:20px">Salary Heads</th>
+										<th rowspan="2" style="padding-bottom:20px">Action</th>
+									</tr>
+									<tr>
+										<th>Employee(%)</th>
+										<th>Max Limit(Rs)</th>
+										<th>Employer(%)</th>
+										<th>Max Limit(Rs)</th>
+										<th>Employer(%)</th>
+										<th>Max Limit(Rs)</th>
+										<th>Employer(%)</th>
+										<th>Max Limit(Rs)</th>
+										<th>EPF(Employer)(%)</th>
+										<th>EDLI(Employer)(%)</th>
+										
+								</thead>
+								<tbody id="epftb">
+								</tbody>
+							</table>
+							
+							</div>
+							</div>
+							
+								
+			
+									</div>
+									</div>
+									</div>
 						<div class="footer">
 				<div class="footer-inner">
 					<div class="footer-content">
@@ -440,7 +666,14 @@
 				<i class="ace-icon fa fa-angle-double-up icon-only bigger-110"></i>
 			</a>
 		</div><!-- /.main-container -->
-
+		<script language="javascript">
+				populateCountries("country", "state");
+				populateCountries("country1", "state1");
+			</script>
+ <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
+	<script type="text/javascript" src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
 		<!-- basic scripts -->
 
 		<!--[if !IE]> -->
@@ -451,12 +684,14 @@
 		<!--[if IE]>
 <script src="assets/js/jquery-1.11.3.min.js"></script>
 <![endif]-->
+ 
 		<script type="text/javascript">
 			if('ontouchstart' in document.documentElement) document.write("<script src='assets/js/jquery.mobile.custom.min.js'>"+"<"+"/script>");
 		</script>
 		<script src="assets/js/bootstrap.min.js"></script>
 
 		<!-- page specific plugin scripts -->
+
 
 		<!--[if lte IE 8]>
 		  <script src="assets/js/excanvas.min.js"></script>
@@ -718,6 +953,158 @@ var $document = $(document);
 
 
 </script>
+<script>
+var acc = document.getElementsByClassName("accordion");
+var i;
+
+for (i = 0; i < acc.length; i++) {
+  acc[i].onclick = function() {
+    this.classList.toggle("active");
+    var panel = this.nextElementSibling;
+    if (panel.style.maxHeight){
+      panel.style.maxHeight = null;
+    } else {
+      panel.style.maxHeight = panel.scrollHeight + "px";
+    } 
+  }
+}
+</script>
+<script>
+function addLegal() {
+	document.getElementById('demo').innerHTML = 'hjjjbvd'
+	}
+	</script>
+		<script>
+	$("#profileImage").click(function(e) {
+    $("#imageUpload").click();
+});
+
+function fasterPreview( uploader ) {
+    if ( uploader.files && uploader.files[0] ){
+          $('#profileImage').attr('src', 
+             window.URL.createObjectURL(uploader.files[0]) );
+    }
+}
+
+$("#imageUpload").change(function(){
+    fasterPreview( this );
+});
+</script>
+<script>
+
+
+var slno = 0;
+$("#epf").click(function() {
+var inpObj = document.getElementById("epfec");
+var inpObj1 = document.getElementById("epfml");
+var inpObj2 = document.getElementById("epfecc");
+var inpObj3 = document.getElementById("epfmll");
+var inpObj4 = document.getElementById("epsec");
+var inpObj5 = document.getElementById("epsml");
+var inpObj6 = document.getElementById("edliec");
+var inpObj7 = document.getElementById("edliml");
+var inpObj8 = document.getElementById("acepfadc");
+var inpObj9 = document.getElementById("acedliac");
+if(!inpObj.checkValidity()){
+    alert('enter the required fields')
+	}
+	else if(!inpObj1.checkValidity()){
+	
+    alert('enter the required fields')
+	
+	}
+	else if(!inpObj2.checkValidity()){
+	
+    alert('enter the required fields')
+	
+	}
+	else if(!inpObj3.checkValidity()){
+	
+    alert('enter the required fields')
+	
+	}
+	else if(!inpObj4.checkValidity()){
+	
+    alert('enter the required fields')
+	
+	}
+	else if(!inpObj5.checkValidity()){
+	
+    alert('enter the required fields')
+	
+	}
+	else if(!inpObj6.checkValidity()){
+	
+    alert('enter the required fields')
+	
+	}
+	else if(!inpObj7.checkValidity()){
+	
+    alert('enter the required fields')
+	
+	}
+	else if(!inpObj8.checkValidity()){
+	
+    alert('enter the required fields')
+	
+	}
+	
+	else if(!inpObj9.checkValidity()){
+	
+    alert('enter the required fields')
+	
+	}
+	else
+	{
+    var epfec= $("#epfec").val();
+    var epfml = $("#epfml").val();
+	 var epfecc= $("#epfecc").val();
+	 var epfmll= $("#epfmll").val();
+	 var epsec= $("#epsec").val(); 
+	 var epsml= $("#epsml").val(); 
+	 var edliec= $("#edliec").val(); 
+	 var edliml= $("#edliml").val();
+	 var acepfac= $("#acepfadc").val();
+	 var acedliac= $("#acedliac").val(); 
+	  var up = $("#up");
+	if(up.prop("checked") == true){
+		var upp=up.val();
+		}else{ var upp="";}
+	var uq = $("#uq");
+	if(uq.prop("checked") == true){
+		var upq=uq.val();
+		}else{ var upq="";}
+	var ur = $("#ur");
+		if(ur.prop("checked") == true){
+		var upr=ur.val();
+		}else{ var upr="";}
+	var us = $("#us");
+		if(us.prop("checked") == true){
+		var ups=us.val();
+		}else{ var ups="";}
+	var ut = $("#ut");
+		if(ut.prop("checked") == true){
+		var upt=ut.val();
+		}else{ var upt="";}
+    var new_row = "<tr><td>" + ++slno + "</td><td contenteditable='true'></td><td contenteditable='true'>" + epfec + "</td><td contenteditable='true'>" + epfml + "</td><td contenteditable='true'>" + epfecc + "</td><td contenteditable='true'>" + epfmll + "</td><td contenteditable='true'>" + epsec + "</td><td contenteditable='true'>" + epsml + "</td><td contenteditable='true'>" + edliec + "</td><td contenteditable='true'>" + edliml + "</td><td contenteditable='true'>" + acepfac + "</td><td contenteditable='true'>" + acedliac + "</td><td contenteditable='true'>" + upp + upq + upr + ups + upt + "</td><td><i onclick='myFunctionDel()' class='fa fa-trash-o' aria-hidden='true'  style='   width: 25px;  height: 25px;'></i></td></tr>";
+    $("#epftb").append(new_row);
+    return false;
+	}
+});
+function myFunctionDel() {
+    var table = document.getElementById("epftb");
+    var row = table.deleteRow(-1);
+}
+</script>
+<script>
+$(document).ready(function() {
+    $('#example').DataTable( {
+        dom: 'Bfrtip',
+        buttons: [
+            'print'
+        ]
+    } );
+} );
+</script>
 	</body>
-</html>
-								
+</html>		

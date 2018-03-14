@@ -11,6 +11,7 @@
 		<!-- bootstrap & fontawesome -->
 		<link rel="stylesheet" href="assets/css/bootstrap.min.css" />
 		<link rel="stylesheet" href="assets/font-awesome/4.5.0/css/font-awesome.min.css" />
+		<link rel="stylesheet" href="assets/css/tree.css" />
 
 		<!-- page specific plugin styles -->
 
@@ -29,7 +30,8 @@
 		<!--[if lte IE 9]>
 		  <link rel="stylesheet" href="assets/css/ace-ie.min.css" />
 		<![endif]-->
-
+ 
+	<link rel="stylesheet" href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css">
 		<!-- inline styles related to this page -->
 
 		<!-- ace settings handler -->
@@ -41,11 +43,47 @@
 		<script src="assets/js/html5shiv.min.js"></script>
 		<script src="assets/js/respond.min.js"></script>
 		<![endif]-->
-		<link rel="stylesheet" href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css">
+		<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.10.16/rg-1.0.2/sl-1.2.3/datatables.min.css"/>
+ 
+<script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.10.16/rg-1.0.2/sl-1.2.3/datatables.min.js"></script>
 		<style>
 		.btn-primary, .btn-primary.focus, .btn-primary:focus {
     background-color: #1962a0!important;
     border-color: #428BCA;
+}
+									* {
+  box-sizing: border-box;
+}
+
+#myInput {
+  background-image: url('/css/searchicon.png');
+  background-position: 10px 10px;
+  background-repeat: no-repeat;
+  width: 11%;
+  font-size: 16px;
+  padding: 12px 20px 12px 40px;
+  border: 1px solid #ddd;
+  margin-bottom: 12px;
+}
+
+#myTable {
+  border-collapse: collapse;
+  width: 100%;
+  border: 1px solid #ddd;
+  font-size: 13px;
+}
+
+#myTable th, #myTable td {
+  text-align: left;
+  padding: 12px;
+}
+
+#myTable tr {
+  border-bottom: 1px solid #ddd;
+}
+
+#myTable tr.header, #myTable tr:hover {
+  background-color: #f1f1f1;
 }
 .clock {
   top:30%;
@@ -64,12 +102,14 @@
   color:white;
 }
 button {
-    width: 25%;
+    width: 16%;
     height: 70px;
-    background-color: #003946;
-	    font-size: 18px;
-    font-weight: bolder;
+    background-color:#003846;
+	font-size:18px;
+	font-weight:bolder;
+	color:white
 }
+
 	div.tab {
     overflow: hidden;
     border: 1px solid #ccc;
@@ -86,24 +126,25 @@ div.tab button {
     padding: 14px 16px;
     transition: 0.3s;
     font-size: 17px;
+	color:black
 }
 
 /* Change background color of buttons on hover */
 div.tab button:hover {
-    background-color:#ccdbda
+    background-color: #ccd8da
 }
 
 /* Create an active/current tablink class */
 div.tab button.active {
-    background-color: #ccdbda;
+    background-color:#ccd8da
 }
 .tabcontent {
     display: none;
     padding: 6px 12px;
     border: 1px solid #ccc;
     border-top: none;
-	}
-	table {
+}
+table {
     font-family: arial, sans-serif;
     border-collapse: collapse;
     width: 100%;
@@ -115,21 +156,16 @@ td, th {
     padding: 8px;
 }
 
-.header {
-	background-color:#ddd;
-	}
-	tr {
-	background-color:white;
-	}
+
 </style>
 	</head>
 
 	<body class="no-skin">
 	
-		<nav class="navbar navbar-default" style=" background-color:#003946;">
+		<nav class="navbar navbar-default" style=" background-color:#003846;">
 		<div class="container-fluid">
 			<ul class="nav navbar-nav">
-			<ul class="navbar-header">
+				<ul class="navbar-header">
 					<button type="button" class="navbar-toggle menu-toggler pull-left" id="menu-toggler" data-target="#sidebar">
 						<span class="sr-only">Toggle sidebar</span>
 
@@ -154,7 +190,7 @@ td, th {
 					</ul>
 				</li>
 			</ul>	
-					<div class="clock">
+				<div class="clock">
       <div class="hours"></div><!--
    --><div class="minutes"></div><!--
     --><div class="seconds"></div><!--
@@ -174,12 +210,12 @@ td, th {
 						<option value="ba">BA</option>
 					</select>
 				</li>
-					<li><a href="cog.html" style="color:black;">
-						<span class="glyphicon glyphicon-cog" style="font-size: 25px; line-height:0;color:white"></span>
+					<li><a href="cog.html" style="color:white;">
+						<span class="glyphicon glyphicon-cog" style="font-size: 25px; line-height:0;"></span>
 					</a>
 				</li>
-				<li><a href="password.html" style="color:black;">
-						<span class="glyphicon glyphicon-lock" style="font-size: 25px; line-height:0;color:white"></span>
+				<li><a href="password.html" style="color:white;">
+						<span class="glyphicon glyphicon-lock" style="font-size: 25px; line-height:0;"></span>
 					</a>
 				</li>
 				<li class="light-blue dropdown-modal" style="margin-top:-6px;">
@@ -198,7 +234,7 @@ td, th {
 									
 						</li>
 
-				
+					
 
 							<li>
 								<a href="login.html">
@@ -206,6 +242,10 @@ td, th {
 										Logout
 								</a>
 							</li>
+							<li><a href="index.html" style="color:black;">
+						<img src="assets/images/ebs_logo-1.png">
+					</a>
+				</li>
 					</ul>
 				</li>
 			</ul>
@@ -221,9 +261,10 @@ td, th {
 				<script type="text/javascript">
 					try{ace.settings.loadState('sidebar')}catch(e){}
 				</script>
-
+					
 			
-				<ul class="nav nav-list">
+
+			<ul class="nav nav-list">
 					<li class="">
 						<a href="index.html">
 							<i class="menu-icon fa fa-tachometer"></i>
@@ -307,16 +348,15 @@ td, th {
 					<i id="sidebar-toggle-icon" class="ace-icon fa fa-angle-double-left ace-save-state" data-icon1="ace-icon fa fa-angle-double-left" data-icon2="ace-icon fa fa-angle-double-right"></i>
 				</div>
 			</div>
-
 			<div class="main-content">
-				<div class="main-content-inner">
+				<div class="main-inner-content">
 					<div class="breadcrumbs ace-save-state" id="breadcrumbs">
 						<ul class="breadcrumb">
 							<li>
 								<i class="ace-icon fa fa-home home-icon"></i>
 								<a href="#">Home</a>
 							</li>
-							<li class="active">Travel</li>
+							<li class="active">My Pay</li>
 						</ul><!-- /.breadcrumb -->
 
 						<div class="nav-search" id="nav-search">
@@ -328,33 +368,157 @@ td, th {
 							</form>
 						</div><!-- /.nav-search -->
 					</div>
-					<div class="row">
+					<div class="page-header">
+							<h1>
+								Employee
+								<small>
+									<i class="ace-icon fa fa-angle-double-right"></i>
+									Stats & Info
+								</small>
+							</h1>
+						</div><!-- /.page-header -->
+						<div class="row">
 							<div class="col-md-12">
 								<div class="tab"> 
 									
-									<button  class="tablinks" onclick="openButton(event, 'Leave Calender')" id="defaultOpen">Leave Calender</button>
-									
-									
-									<button class="tablinks" onclick="openButton(event, 'Approve Leave')">Approve Leave</button>
-									
-								
-									<button class="tablinks" onclick="openButton(event, 'Approve Travel')">Approve Travel</button>
-									
-										<button class="tablinks" onclick="openButton(event, 'Regularise Leave')">Regularise leave</button>
+									<button  class="tablinks" onclick="openButton(event, 'Dashboard')" id="defaultOpen">DashBoard</button>
+									<button class="tablinks" onclick="openButton(event, 'Employee DB')">Employee DB</button>
+									<button class="tablinks" onclick="openButton(event, 'Ex Employee')">Ex Employee</button>
+									<button class="tablinks" onclick="openButton(event, 'User')">User</button>
+									<button class="tablinks" onclick="openButton(event, 'Employee Activity')">Employee Activity</button>
+									<button class="tablinks" onclick="openButton(event, 'Organization Structure')">Organization Structure</button>
 								</div>
 								
 							</div>
 						</div>	
-						<div id="Leave Calender" class="tabcontent" style="margin-top: 60px;">
+					<div id="Dashboard" class="tabcontent" style="margin-top: 60px;">						
 						<div class="row">
 							<div class="col-md-12">
-								<button style="width:13%;color:white" disabled>Leave Calender</button>
+								<h3>Employee Status Wise</h3>
 							</div>
 						</div>
-													<div class="row" style="padding:15px;">
-								<div class="col-md-12">
-							
-								<form style="border:1px solid #ccc;padding:15px">
+						<div class="row">
+							<div class="col-md-12">
+								<button disabled>Probation</button>
+								<button disabled>Permanent</button>
+								<button disabled>Temporary</button>
+								<button disabled>Resigned</button>
+							</div>
+						</div>
+				
+					<div class="row">
+						<div class="col-md-12" style="padding:100px;">
+						<div style="overflow-x:auto;">	
+							<table>
+								<tr style="background-color:#ddd">
+									<th rowspan="2">Organization Name</th>
+									<th colspan="3">Employee<th>
+								</tr>
+								<tr style="background-color:#ddd">
+									<th>Probation</th>
+									<th>Permanent</th>
+									<th>Temporary</th>
+									<th>Resigned</th>
+								</tr>
+								<tr style="background-color:white">
+									<td>Org-1</td>
+									<td>100</td>
+									<td>100</td>
+									<td>10</td>
+									<td>100</td>
+								</tr>
+								<tr style="background-color:white">
+									<td>Org-2</td>
+									<td>10</td>
+									<td>10</td>
+									<td>100</td>
+									<td>100</td>
+								</tr>
+								<tr style="background-color:white">
+									<td>Total</td>
+									<td>110</td>
+									<td>110</td>
+									<td>110</td>
+									<td>200</td>
+								</tr>	
+							</table>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-12" >
+							<h3>Employee Type Wise</h3>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-12">
+							<button disabled>Full Time</button>
+							<button disabled>Part Time</button>
+							<button disabled>Contractual</button>
+							<button disabled>Consultant</button>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-12" style="padding:100px;">
+						<div style="overflow-x:auto;">	
+							<table>
+								<tr style="background-color:#ddd">
+									<th>Organization Name</th>
+									<th>Probation</th>
+									<th>Permanent</th>
+									<th>Temporary</th>
+									<th>Resigned</th>
+								</tr>
+								<tr style="background-color:white">
+									<td>Org-1</td>
+									<td>15</td>
+									<td>200</td>
+									<td>110</td>
+									<td>10</td>
+								</tr>
+							</table>
+							</div>
+						</div>
+					</div>	
+					<div class="row">
+						<div class="col-md-12">
+							<h3>Employee Gender Wise</h3>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-12">
+							<button disabled>Male</button>
+							<button disabled>Female</button>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-12" style="padding:100px;">
+						<div style="overflow-x:auto;">	
+							<table>
+								<tr style="background-color:#ddd">
+									<th>Organization Name</th>
+									<th>Male</th>
+									<th>Female</th>
+								</tr>
+								<tr style="background-color:white">
+									<td>Org-1</td>
+									<td>30</td>
+									<td>33</td>
+								</tr>
+							</table>
+							</div>
+						</div>
+					</div>		
+				</div>	
+				<div id="Employee DB" class="tabcontent" style="margin-top: 60px;">	
+					<div class="row">
+						<div class="col-md-12">
+							<button disabled>Employee DataBase</button>
+						</div>
+					</div>
+					<div class="row" style="padding:15px;">
+						<div class="col-md-10">
+							<form style="border:1px solid #ccc;padding:15px">
 														<div class="col-md-2">
 															<label for="form-field-select-1">Organization</label>
 															
@@ -394,35 +558,27 @@ td, th {
 															</select>
 														</div>
 													<div class="col-md-2">
-															<label for="form-field-select-1">Financial Year</label>
+															<label for="form-field-select-1">Status</label>
 														
 															<select class="form-control" id="form-field-select-1">
 																<option value=""></option>
-																<option>2015</option>
-																<option>2016</option>
-																<option>2017</option>
-																<option>2018</option>
+																<option>Probation</option>
+																<option>Permanent</option>
+																<option>Temporary</option>
+																<option>Resigned</option>
 																
 														
 															</select>
 														</div>
 														<div class="col-md-2">
-															<label for="form-field-select-1">Month</label>
+															<label for="form-field-select-1">Employment Type</label>
 														
 															<select class="form-control" id="form-field-select-1">
 																<option value=""></option>
-																<option>January</option>
-												<option>February</option>
-												<option>March</option>
-												<option>April</option>
-												<option>May</option>
-												<option>June</option>
-												<option>July</option>
-												<option>August</option>
-												<option>September</option>
-												<option>October</option>
-												<option>November</option>
-												<option>December</option>
+																<option>Full Time</option>
+																<option>Part Time</option>
+																<option>Comtractual</option>
+																<option>Consultant</option>
 																
 														
 															</select>
@@ -449,460 +605,203 @@ td, th {
     width: 83px;
     height: 37px;
     margin-top: 10px;">
-																Search
+																Submit
 																<i class="ace-icon fa fa-arrow-right icon-on-right bigger-110"></i>
 															</button>	
 														
 														</form>
-								</div>
-							</div>
-							<div class="row">
-								<div class="col-md-12" >
-								<div style="overflow-x:auto;">	
-									<table id="myTableOne">
-										<tr class="header">
-											<th class="center">
-												<label class="pos-rel">
-													<input type="checkbox" id="checkAll" class="ace" />
-													<span class="lbl"></span>
-												</label>
-											</th>
-											<th >Emp Code</th>
-											<th >Emp Name</th>
-											<th>1</th>
-											<th>2</th>
-											<th>3</th>
-											<th>4</th>
-											<th>5</th>
-											<th>5</th>
-											<th>6</th>
-											<th>7</th>
-											<th>8</th>
-											<th>9</th>
-											<th>10</th>
-											<th>11</th>
-											<th>12</th>
-											<th>13</th>
-											<th>14</th>
-											<th>15</th>
-											<th>16</th>
-											<th>17</th>
-											<th>18</th>
-											<th>19</th>
-											<th>20</th>
-											<th>21</th>
-											<th>22</th>
-											<th>23</th>
-											<th>24</th>
-											<th>25</th>
-											<th>26</th>
-											<th>27</th>
-											<th>28</th>
-											<th>29</th>
-											<th>30</th>
-										</tr>
-										<tr>
-											<td class="center">
-												<label class="pos-rel">
-													<input type="checkbox" class="ace" />
-													<span class="lbl"></span>
-												</label>
-											</td>
-											<td>1122</td>
-											<td>Veena</td>
-											<th>p</th>
-											<th>p</th>
-											<th>p</th>
-											<th>p</th>
-											<th>p</th>
-											<th>w/o</th>
-											<th>el</th>
-											<th>cl</th>
-											<th>p</th>
-											<th>p</th>
-											<th>p</th>
-											<th>p</th>
-											<th>p</th>
-											<th>p</th>
-											<th>p</th>
-											<th>p</th>
-											<th>p</th>
-											<th>w/o</th>
-											<th>p</th>
-											<th>p</th>
-											<th>p</th>
-											<th>p</th>
-											<th>p</th>
-											<th>p</th>
-											<th>p</th>
-											<th>w/o</th>
-											<th>p</th>
-											<th>p</th>
-											<th>p</th>
-											<th>p</th>
-											<th>p</th>
-										</tr>
-										<tr>
-											<td class="center">
-												<label class="pos-rel">
-													<input type="checkbox" class="ace" />
-													<span class="lbl"></span>
-												</label>
-											</td>
-											<td>2000</td>
-											<td>Monika</td>
-											<th>p</th>
-											<th>p</th>
-											<th>p</th>
-											<th>p</th>
-											<th>p</th>
-											<th>w/o</th>
-											<th>el</th>
-											<th>cl</th>
-											<th>p</th>
-											<th>p</th>
-											<th>p</th>
-											<th>p</th>
-											<th>p</th>
-											<th>p</th>
-											<th>p</th>
-											<th>p</th>
-											<th>p</th>
-											<th>w/o</th>
-											<th>p</th>
-											<th>p</th>
-											<th>p</th>
-											<th>p</th>
-											<th>p</th>
-											<th>p</th>
-											<th>p</th>
-											<th>w/o</th>
-											<th>p</th>
-											<th>p</th>
-											<th>p</th>
-											<th>p</th>
-											<th>p</th>
-										</tr>
-									</table>
-									</div>
-								</div>	
-							</div>
-							</div>
-								<div id="Approve Leave" class="tabcontent" style="margin-top: 60px;">
-								<div class="row" style="padding:15px;">
-									<div class="col-md-12">
-										<button style="width:13%;color:white" disabled>Approve leave</button>
-									</div>
-								</div>
-								<div class="row" style="padding:15px;">
-								<div class="col-md-12" style="border:1px solid #ccc;padding:15px;">
-									
-									<form >
-														<div class="col-md-2">
-															<label for="form-field-select-1">Status</label>
-															
-															<select class="form-control" id="form-field-select-1">
-																<option value=""></option>
-																<option value="AL">Approved</option>
-																<option value="AK">Pending</option>
-																
-																
-														
-															</select>
-														</div>
-														<div class="col-md-2">
-															<label for="form-field-select-1">Organization</label>
-															
-															<select class="form-control" id="form-field-select-1">
-																<option value=""></option>
-																<option value="AL">Org-1</option>
-																<option value="AK">Org-2</option>
-																
-																
-														
-															</select>
-														</div>
-														<div class="col-md-2">
-															<label for="form-field-select-1">Location</label>
-														
-															<select class="form-control" id="form-field-select-1">
-																<option value=""></option>
-																<option value="AL">Singasandra</option>
-																<option value="AK">RR Nagar</option>
-																<option value="AZ">Abu Dhabi</option>
-																<option value="AR">Oman</option>
-																
-														
-															</select>
 													</div>
-														<div class="col-md-2">
-															<label for="form-field-select-1">Department</label>
-														
-															<select class="form-control" id="form-field-select-1">
-																<option value=""></option>
-																<option value="AL">Singasandra</option>
-																<option value="AK">RR Nagar</option>
-																<option value="AZ">Abu Dhabi</option>
-																<option value="AR">Oman</option>
-																
-														
-															</select>
-														</div>
-												
-													
-														
-																<div class="col-md-2">
-															<label for="id-date-picker-1">From Date</label>
-
-														<div class="row">
-															<div class="col-xs-8 col-sm-11">
-																<div class="input-group">
-																	<input class="form-control date-picker" id="id-date-picker-1" type="text" data-date-format="dd-mm-yyyy" />
-																	<span class="input-group-addon">
-																		<i class="fa fa-calendar bigger-110"></i>
-																	</span>
-																</div>
-															</div>
-														</div>
-															</div>
-															<div class="col-md-2">
-															<label for="id-date-picker-1">To Date</label>
-
-														<div class="row">
-															<div class="col-xs-8 col-sm-11">
-																<div class="input-group">
-																	<input class="form-control date-picker" id="id-date-picker-1" type="text" data-date-format="dd-mm-yyyy" />
-																	<span class="input-group-addon">
-																		<i class="fa fa-calendar bigger-110"></i>
-																	</span>
-																</div>
-															</div>
-														</div>
-															</div>
-														
-	
-														<button type="button" class="btn btn-sm btn-success" style="    border-width: 4px;
-    font-size: 13px;
-    padding: 4px 9px;
-    line-height: 1.38;
-    width: 83px;
-    height: 37px;
-    margin-top: 24px;">
-																Search
-																<i class="ace-icon fa fa-arrow-right icon-on-right bigger-110"></i>
-															</button>	
-														
-														</form>
-								</div>
-							</div>
-							<div class="row">
-								<div class="col-md-12" style="padding:100px;">
-								<div style="overflow-x:auto;">	
-									<table id="myTableOne">
-										<tr class="header">
-											<th class="center">
-												<label class="pos-rel">
-													<input type="checkbox" id="checkAlm" class="ace" />
-													<span class="lbl"></span>
-												</label>
-											</th>
-											<th>Emp Id</th>
-											<th >Emp-Name</th>
-											<th >Leave Type</th>
-											<th>Applied Date</th>
-											<th>From</th>
-											<th>To</th>
-											<th>No Of Days</th>
-											<th>Reason</th>
-											<th>Status</th>
-											<th>Approving</th>
-											<th>Action</th>
-											<th>Leave Balance</th>
-											</tr>
-										<tr>
-											<td class="center">
-												<label class="pos-rel">
-													<input type="checkbox" class="ace" />
-													<span class="lbl"></span>
-												</label>
-											</td>
-											<td>11</td>
-												<td>Veena Saju</td>
-											<td>CL</td>
-											<td>1/10/2017</td>
-											<td>31/12/2017</td>
-											<td>21/12/2020</td>
-											<td>1095</td>
-											<td>Personal</td>
-											<td>Pending</td>
-											<td>XYZ</td>
-											<td>Pending</td>
-											<td>3</td>
-										</tr>
-									
-									
-									</table>
-									</div>
-								</div>	
-							</div>	
-							</div>
-								<div id="Approve Travel" class="tabcontent" style="margin-top: 60px;">
-								<div class="row" style="padding:15px;">
-									<div class="col-md-12">
-										<button style="width:13%;color:white" disabled>Approve Travel</button>
-									</div>
-								</div>
-																<div class="row" style="padding">
-								<div class="col-md-12" style="border:1px solid #ccc;padding:15px">
-									
-									<form >
-														
-														<div class="col-md-2">
-															<label for="form-field-select-1">Organization</label>
-															
-															<select class="form-control" id="form-field-select-1">
-																<option value=""></option>
-																<option value="AL">Org-1</option>
-																<option value="AK">Org-2</option>
-																
-																
-														
-															</select>
-														</div>
-														<div class="col-md-2">
-															<label for="form-field-select-1">Location</label>
-														
-															<select class="form-control" id="form-field-select-1">
-																<option value=""></option>
-																<option value="AL">Singasandra</option>
-																<option value="AK">RR Nagar</option>
-																<option value="AZ">Abu Dhabi</option>
-																<option value="AR">Oman</option>
-																
-														
-															</select>
-													</div>
-														
-												
-													
-														
-																<div class="col-md-2">
-															<label for="id-date-picker-1">From Date</label>
-
-														<div class="row">
-															<div class="col-xs-8 col-sm-11">
-																<div class="input-group">
-																	<input class="form-control date-picker" id="id-date-picker-1" type="text" data-date-format="dd-mm-yyyy" />
-																	<span class="input-group-addon">
-																		<i class="fa fa-calendar bigger-110"></i>
-																	</span>
-																</div>
-															</div>
-														</div>
-															</div>
-															<div class="col-md-2">
-															<label for="id-date-picker-1">To Date</label>
-
-														<div class="row">
-															<div class="col-xs-8 col-sm-11">
-																<div class="input-group">
-																	<input class="form-control date-picker" id="id-date-picker-1" type="text" data-date-format="dd-mm-yyyy" />
-																	<span class="input-group-addon">
-																		<i class="fa fa-calendar bigger-110"></i>
-																	</span>
-																</div>
-															</div>
-														</div>
-															</div>
-														<div class="col-md-2">
-															<label for="form-field-select-1">Status</label>
-															
-															<select class="form-control" id="form-field-select-1">
-																<option value=""></option>
-																<option value="AL">Approved</option>
-																<option value="AK">Pending</option>
-																
-																
-														
-															</select>
-														</div>
-	
-														<button type="button" class="btn btn-sm btn-success" style="    border-width: 4px;
-    font-size: 13px;
-    padding: 4px 9px;
-    line-height: 1.38;
-    width: 83px;
-    height: 37px;
-    margin-top: 24px;">
-																Search
-																<i class="ace-icon fa fa-arrow-right icon-on-right bigger-110"></i>
-															</button>	
-														
-														</form>
-								</div>
-							</div>
-							<div class="row">
-								<div class="col-md-12" style="padding:100px;">
-								<div style="overflow-x:auto;">	
-									<table id="myTableOne">
-										<tr class="header">
-											<th class="center">
-												<label class="pos-rel">
-													<input type="checkbox"id="checkAln" class="ace" />
-													<span class="lbl"></span>
-												</label>
-											</th>
-											<th>Emp Id</th>
-											<th >Emp-Name</th>
 											
-											<th>Applied Date</th>
-											<th>From</th>
-											<th>To</th>
-											<th>No Of Days</th>
-											<th>Reason</th>
-											<th>Status</th>
-											<th>Approving</th>
-											<th>Action</th>
 											
-											</tr>
-										<tr>
-											<td class="center">
-												<label class="pos-rel">
-													<input type="checkbox" class="ace" />
-													<span class="lbl"></span>
-												</label>
-											</td>
-											<td>11</td>
-												<td>Veena Saju</td>
-											
-											<td>1/10/2017</td>
-											<td>31/12/2017</td>
-											<td>21/12/2020</td>
-											<td>1095</td>
-											<td>Personal</td>
-											<td>Pending</td>
-											<td>XYZ</td>
-											<td>Pending</td>
+							
+							<div class="col-md-2">
 										
-										</tr>
-									
-									
-									</table>
-									<div style="overflow-x:auto;">	
-								</div>	
-							</div>	
-								</div>
-								</div>
-								</div>
-								<div id="Regularise Leave" class="tabcontent" style="margin-top: 60px;">
-									<div class="row">
-										<div class="col-md-12">
-											<button style="width:13%;color:white" disabled>Regularise Leave</button>
-										</div>
-									</div>
-									<div class="row" style="padding:15px;">
-								<div class="col-md-12" style="border:1px solid #ccc;padding:15px">
-									<form >
+									<a href="import.html" <button type="button" class="btn btn-sm btn-success" style="    border-width: 4px;
+    font-size: 13px;
+    padding: 4px 9px;
+    line-height: 1.38;
+    width: 150px;
+    height: 37px;">
+																Import Employee
+																<i class="ace-icon fa fa-arrow-left icon-on-right bigger-110"></i>
+															</button></a>
+										</div>	
+							
+							</div>
+					
+					<div class="row">
+						<div class="col-md-12">
+						
+					<!--<input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for names.." title="Type in a name">
+						<table id="myTable">
+							<tr class="header">
+								<th class="center">
+									<label class="pos-rel">
+										<input type="checkbox" class="ace" />
+										<span class="lbl"></span>
+									</label>
+								</th>																						
+								<th>Emp-id</th>
+								<th>First Name</th>
+								<th>Last Name</th>
+								<th>Joining Date</th>
+								<th>Designation</th>
+								<th>Department</th>
+								<th>Status</th>
+								<th>Employment Type</th>
+								<th>View</th>
+							</tr>
+							<tr>
+								<td class="center">
+									<label class="pos-rel">
+										<input type="checkbox" class="ace" />
+										<span class="lbl"></span>
+									</label>
+								</td>	
+								<td>1984</td>
+								<td>Veena</td>
+								<td>Saju</td>
+								<td>25/10/2017</td>
+								<td>Business Analyst</td>
+								<td>Project Management</td>
+								<td>Probation</td>
+								<td>Full Time</td>
+								<td></td>
+							</tr>
+							<tr>
+								<td class="center">
+									<label class="pos-rel">
+										<input type="checkbox" class="ace" />
+										<span class="lbl"></span>
+									</label>
+								</td>	
+								<td>2002</td>
+								<td>Monika</td>
+								<td>S</td>
+								<td>03/11/2016</td>
+								<td>Project Co-ordination</td>
+								<td>Project management</td>
+								<td>Permanent</td>
+								<td>Full Time</td>
+								<td></td>
+							</tr>
+							<tr>
+								<td class="center">
+									<label class="pos-rel">
+										<input type="checkbox" class="ace" />
+											<span class="lbl"></span>
+									</label>
+								</td>	
+								<td>1113</td>
+								<td>Kavitha</td>
+								<td>M</td>
+								<td>05/06/2017</td>
+								<td>IT-Developer</td>
+								<td>IT</td>
+								<td>Permanent</td>
+								<td>Full Time</td>
+								<td></td>
+							</tr>
+ 
+					</table>-->
+					<div style="overflow-x:auto;">	
+<table id="myTable">
+		<thead style="background-color:#ccc">
+			<th class="center">
+									<label class="pos-rel">
+										<input type="checkbox"id="checkAll"class="ace" />
+										<span class="lbl"></span>
+									</label>
+								</th>																						
+								<th>Emp-id</th>
+								<th>First Name</th>
+								<th>Last Name</th>
+								<th>Joining Date</th>
+								<th>Designation</th>
+								<th>Department</th>
+								<th>Status</th>
+								<th>Employment Type</th>
+								<th>View</th>
+		</thead>
+		<tbody>
+			<tr>
+								<td class="center">
+									<label class="pos-rel">
+										<input type="checkbox" class="ace" />
+										<span class="lbl"></span>
+									</label>
+								</td>	
+								<td>1984</td>
+								<td>Veena</td>
+								<td>Saju</td>
+								<td>25/10/2017</td>
+								<td>Business Analyst</td>
+								<td>Project Management</td>
+								<td>Probation</td>
+								<td>Full Time</td>
+								<td>	<a href="pro.html" style="color:black;">
+						<span class="glyphicon glyphicon-book" style="font-size: 25px; line-height:0;"></span>
+					</a>
+				</td>
+							</tr>
+							<tr>
+								<td class="center">
+									<label class="pos-rel">
+										<input type="checkbox" class="ace" />
+										<span class="lbl"></span>
+									</label>
+								</td>	
+								<td>2002</td>
+								<td>Monika</td>
+								<td>S</td>
+								<td>03/11/2016</td>
+								<td>Project Co-ordination</td>
+								<td>Project management</td>
+								<td>Permanent</td>
+								<td>Full Time</td>
+								<td>	<a href="pro.html" style="color:black;">
+						<span class="glyphicon glyphicon-book" style="font-size: 25px; line-height:0;"></span>
+					</a>
+				</td>
+							</tr>
+							<tr>
+								<td class="center">
+									<label class="pos-rel">
+										<input type="checkbox" class="ace" />
+											<span class="lbl"></span>
+									</label>
+								</td>	
+								<td>1113</td>
+								<td>Kavitha</td>
+								<td>M</td>
+								<td>05/06/2017</td>
+								<td>IT-Developer</td>
+								<td>IT</td>
+								<td>Permanent</td>
+								<td>Full Time</td>
+								<td>	<a href="pro.html" style="color:black;">
+						<span class="glyphicon glyphicon-book" style="font-size: 25px; line-height:0;"></span>
+					</a>
+				</td>
+							</tr>
+		</tbody>	
+	</table>
+</div>	
+				</div>
+			</div>
+		</div>		
+				<div id="Ex Employee" class="tabcontent" style="margin-top: 60px;">			
+					<div class="row">
+						<div class="col-md-12">
+							<button disabled>Ex Employee</button>
+						</div>
+					</div>
+					<div class="row" style="padding:15px;">
+						<div class="col-md-12"     style="border: 1px solid #ccc;
+    padding: 10px;">
+							
+							
+								<form >
 														<div class="col-md-2">
 															<label for="form-field-select-1">Organization</label>
 															
@@ -942,56 +841,230 @@ td, th {
 															</select>
 														</div>
 												
-													
+														<div class="col-md-2">
+															<label for="form-field-select-1">Employment Type</label>
 														
+															<select class="form-control" id="form-field-select-1">
+																<option value=""></option>
+																<option>Full Time</option>
+																<option>Part Time</option>
+																<option>Comtractual</option>
+																<option>Consultant</option>
+																
+														
+															</select>
+														</div>
+														<div class="col-md-2">
+															<label for="form-field-select-1">Grade</label>
+														
+															<select class="form-control" id="form-field-select-1">
+																<option value=""></option>
+																<option>Full Time</option>
+																<option>Part Time</option>
+																<option>Comtractual</option>
+																<option>Consultant</option>
+																
+														
+															</select>
+														</div>
+												
 	
 														<button type="button" class="btn btn-sm btn-success" style="    border-width: 4px;
     font-size: 13px;
     padding: 4px 9px;
     line-height: 1.38;
-    width: 81px;
+    width: 83px;
     height: 37px;
     margin-top: 24px;">
-																Search
+																Submit
 																<i class="ace-icon fa fa-arrow-right icon-on-right bigger-110"></i>
 															</button>	
 														
 														</form>
-								</div>
-							</div>	
-							<div class="row" style="padding:15px">
-								<div class="col-md-12" style="border:1px solid #ccc;padding:15px">
-									<form>
-											<div class="col-md-2">
-															<label for="id-date-picker-1">From Date</label>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-md-12">
+								
+									<div style="overflow-x:auto;">	
+									<table id="example1">
+		<thead style="background-color:#ccc"><tr>
+<th class="center">
+									<label class="pos-rel">
+										<input type="checkbox" id="checkAlm"class="ace" />
+										<span class="lbl"></span>
+									</label>
+								</th>																						
+								<th>Emp-id</th>
+								<th>First Name</th>
+								<th>Last Name</th>
+								<th>Joining Date</th>
+								<th>Last Working Day</th>
+								<th>Facts</th>
+								
+		</thead>
+		<tbody>
+		<tr>
+								<td class="center">
+									<label class="pos-rel">
+										<input type="checkbox" class="ace" />
+										<span class="lbl"></span>
+									</label>
+								</td>	
+								<td>1984</td>
+								<td>Veena</td>
+								<td>Saju</td>
+								<td>25/10/2017</td>
+								<td>25/10/2017</td>
+								<td>	<a href="Pro.html" style="color:black;">
+						<span class="glyphicon glyphicon-book" style="font-size: 25px; line-height:0;"></span>
+					</a>
+				</td>
+							</tr>
+							<tr>
+								<td class="center">
+									<label class="pos-rel">
+										<input type="checkbox" class="ace" />
+										<span class="lbl"></span>
+									</label>
+								</td>	
+								<td>2002</td>
+								<td>Monika</td>
+								<td>S</td>
+								<td>03/11/2016</td>
+								<td>03/11/2016</td>
+								
+								<td>	<a href="Pro.html" style="color:black;">
+						<span class="glyphicon glyphicon-book" style="font-size: 25px; line-height:0;"></span>
+					</a>
+				</td>
+							</tr>
+							<tr>
+								<td class="center">
+									<label class="pos-rel">
+										<input type="checkbox" class="ace" />
+											<span class="lbl"></span>
+									</label>
+								</td>	
+								<td>1113</td>
+								<td>Kavitha</td>
+								<td>M</td>
+								<td>05/06/2017</td>
+								<td>05/06/2017</td>
+								<td>	<a href="Pro.html" style="color:black;">
+						<span class="glyphicon glyphicon-book" style="font-size: 25px; line-height:0;"></span>
+					</a>
+				</td>
+							</tr>
+		</tbody>	
+	</table>
+	</div>
+							</div>
+						</div>
 
-														<div class="row">
-															<div class="col-xs-8 col-sm-11">
-																<div class="input-group">
-																	<input class="form-control date-picker" id="id-date-picker-1" type="text" data-date-format="dd-mm-yyyy" />
-																	<span class="input-group-addon">
-																		<i class="fa fa-calendar bigger-110"></i>
-																	</span>
-																</div>
-															</div>
+				</div>
+				<div id="User" class="tabcontent" style="margin-top: 60px;">	
+					<div class="row">
+						<div class="col-md-12">
+							<button disabled>User</button>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-12" style="padding:15px">
+							<div class="row" style="padding:15px;">
+								<div class="col-md-12">
+											<form style="border:1px solid #ccc;padding:15px">
+														<div class="col-md-3">
+															<label for="form-field-select-1">Organization</label>
+															
+															<select class="form-control" id="form-field-select-1">
+																<option value=""></option>
+																<option value="AL">Org-1</option>
+																<option value="AK">Org-2</option>
+																
+																
+														
+															</select>
 														</div>
-															</div>
-															<button type="button" class="btn btn-sm btn-success" style="    border-width: 4px;
+														<div class="col-md-3">
+															<label for="form-field-select-1">Location</label>
+														
+															<select class="form-control" id="form-field-select-1">
+																<option value=""></option>
+																<option value="AL">Singasandra</option>
+																<option value="AK">RR Nagar</option>
+																<option value="AZ">Abu Dhabi</option>
+																<option value="AR">Oman</option>
+																
+														
+															</select>
+													</div>
+														<div class="col-md-3">
+															<label for="form-field-select-1">Department</label>
+														
+															<select class="form-control" id="form-field-select-1">
+																<option value=""></option>
+																<option value="AL">Singasandra</option>
+																<option value="AK">RR Nagar</option>
+																<option value="AZ">Abu Dhabi</option>
+																<option value="AR">Oman</option>
+																
+														
+															</select>
+														</div>
+													
+													
+														<div class="col-md-3">
+															<label for="form-field-select-1">Grade</label>
+														
+															<select class="form-control" id="form-field-select-1">
+																<option value=""></option>
+																<option>Full Time</option>
+																<option>Part Time</option>
+																<option>Comtractual</option>
+																<option>Consultant</option>
+																
+														
+															</select>
+														</div>
+												
+	
+														<button type="button" class="btn btn-sm btn-success" style="    border-width: 4px;
     font-size: 13px;
     padding: 4px 9px;
     line-height: 1.38;
-    width: 81px;
+    width: 83px;
     height: 37px;
-    margin-top: 24px;">
-																Update
+    margin-top: 10px;">
+																Submit
+																<i class="ace-icon fa fa-arrow-right icon-on-right bigger-110"></i>
+															</button>	
+														
+														</form>
+													</div>
+							
+									
+								</div>
+							</div>
+						</div>
+					<div class="row">
+						<div class="col-md-12">
+								<button type="button" class="btn btn-sm btn-success" style="    border-width: 4px;
+    font-size: 13px;
+    padding: 4px 9px;
+    line-height: 1.38;
+    width:151px;
+    height: 37px;
+    margin-top: 10px;">
+																Send Login Details
 																<i class="ace-icon fa fa-arrow-right icon-on-right bigger-110"></i>
 															</button>
-															</form>
-											</div>
-											</div>
-											<div class="row">
-								<div class="col-md-12" style="padding:100px;">
-									<!--<table id="myTableOne">
+															</div>
+															</div>
+					<div class="row">
+						<div class="col-md-12" style="padding:15px">
+							<!--<input type="text" id="myInputTwo" onkeyup="myFunctionTwo()" placeholder="Search for names.." title="Type in a name">
+									<table id="myTableTwo">
 										<tr class="header">
 											<th class="center">
 												<label class="pos-rel">
@@ -999,28 +1072,15 @@ td, th {
 													<span class="lbl"></span>
 												</label>
 											</th>
-											<th>Emp Code</th>
-											<th >Emp-Name</th>
+											<th >Emp-id</th>
+											<th >Emp Name</th>
+											<th>User Name</th>
+											<th>Password</th>
+											<th>User Role</th>
+											<th>Status</th>
+											<th>Reset</th>
+											<th>Action</th>
 											
-											<th>Leave Type</th>
-											<th>Leave Balance</th>
-											
-											
-											</tr>
-										<tr>
-											<td class="center">
-												<label class="pos-rel">
-													<input type="checkbox" class="ace" />
-													<span class="lbl"></span>
-												</label>
-											</td>
-											<td>11</td>
-												<td>Veena Saju</td>
-											
-											<td>CL</td>
-											<td>3</td>
-										
-										
 										</tr>
 										<tr>
 											<td class="center">
@@ -1029,32 +1089,66 @@ td, th {
 													<span class="lbl"></span>
 												</label>
 											</td>
-											<td>11</td>
-												<td>Veena Saju</td>
-											
-											<td>EL</td>
-											<td>3</td>
-										
-										
+											<td>198</td>
+											<td>Veena Saju</td>
+											<td>veena.saju</td>
+											<td>1234</td>
+											<td>Self</td>
+											<td>Active</td>
+											<td>Reset Password</td>
+											<td>Change Role Type</td>
 										</tr>
-									
+										<tr>
+											<td class="center">
+												<label class="pos-rel">
+													<input type="checkbox" class="ace" />
+													<span class="lbl"></span>
+												</label>
+											</td>
+											<td>2002</td>
+											<td>Monika S</td>
+											<td>monika.s</td>
+											<td>1234</td>
+											<td>Self</td>
+											<td>Active</td>
+											<td>Reset Password</td>
+											<td>Change Role Type</td>
+											</td>
+										</tr>
+										<tr>
+											<td class="center">
+												<label class="pos-rel">
+													<input type="checkbox" class="ace" />
+													<span class="lbl"></span>
+												</label>
+											</td>
+											<td>1113</td>
+											<td>Anju</td>
+											<td>anju</td>
+											<td>1234</td>
+											<td>HR</td>
+											<td>Active</td>
+											<td>Reset Password</td>
+											<td>Change Role Type</td>
+										</tr>	
 									</table>-->
 									<div style="overflow-x:auto;">	
 									<table id="example">
-		<thead style="background-color:#ddd">
-		<tr class="header">
+		<thead style="background-color:#ccc">
 			<th class="center">
 												<label class="pos-rel">
-													<input type="checkbox" id="checkAlo" class="ace" />
+													<input type="checkbox" id="checkAln"class="ace" />
 													<span class="lbl"></span>
 												</label>
 											</th>
-											<th>Emp Code</th>
-											<th >Emp-Name</th>
-											
-											<th>Leave Type</th>
-											<th>Leave Balance</th>
-											</tr>
+											<th >Emp-id</th>
+											<th >Emp Name</th>
+											<th>User Name</th>
+											<th>Password</th>
+											<th>User Role</th>
+											<th>Status</th>
+											<th>Reset</th>
+											<th>Action</th>
 		</thead>
 		<tbody>
 			<tr>
@@ -1064,13 +1158,14 @@ td, th {
 													<span class="lbl"></span>
 												</label>
 											</td>
-											<td>11</td>
-												<td>Veena Saju</td>
-											
-											<td>CL</td>
-											<td>3</td>
-										
-										
+											<td>198</td>
+											<td>Veena Saju</td>
+											<td>veena.saju</td>
+											<td>1234</td>
+											<td>Self</td>
+											<td>Active</td>
+											<td>Reset Password</td>
+											<td>Change Role Type</td>
 										</tr>
 										<tr>
 											<td class="center">
@@ -1079,27 +1174,367 @@ td, th {
 													<span class="lbl"></span>
 												</label>
 											</td>
-											<td>11</td>
-												<td>Veena Saju</td>
-											
-											<td>EL</td>
-											<td>3</td>
-										
-										
+											<td>2002</td>
+											<td>Monika S</td>
+											<td>monika.s</td>
+											<td>1234</td>
+											<td>Self</td>
+											<td>Active</td>
+											<td>Reset Password</td>
+											<td>Change Role Type</td>
+											</td>
 										</tr>
+										<tr>
+											<td class="center">
+												<label class="pos-rel">
+													<input type="checkbox" class="ace" />
+													<span class="lbl"></span>
+												</label>
+											</td>
+											<td>1113</td>
+											<td>Anju</td>
+											<td>anju</td>
+											<td>1234</td>
+											<td>HR</td>
+											<td>Active</td>
+											<td>Reset Password</td>
+											<td>Change Role Type</td>
+										</tr>	
 		</tbody>	
 	</table>
 	</div>
-								</div>	
-							</div>	
 							</div>
-									
-		<div class="footer">
+						</div>
+				</div>
+				<div id="Employee Activity" class="tabcontent" style="margin-top: 60px;">
+					<div class="row">
+						<div class="col-md-12">
+							<button disabled>Employee Activity</button>
+						</div>
+					</div>
+					<div class="row" style="padding:15px;">	
+						<div class="col-md-12" style="border:1px solid #ccc;padding:10px">
+							<form >
+														<div class="col-md-2">
+															<label for="form-field-select-1">Organization</label>
+															
+															<select class="form-control" id="form-field-select-1">
+																<option value=""></option>
+																<option value="AL">Org-1</option>
+																<option value="AK">Org-2</option>
+																
+																
+														
+															</select>
+														</div>
+														<div class="col-md-2">
+															<label for="form-field-select-1">Location</label>
+														
+															<select class="form-control" id="form-field-select-1">
+																<option value=""></option>
+																<option value="AL">Singasandra</option>
+																<option value="AK">RR Nagar</option>
+																<option value="AZ">Abu Dhabi</option>
+																<option value="AR">Oman</option>
+																
+														
+															</select>
+													</div>
+														<div class="col-md-2">
+															<label for="form-field-select-1">Department</label>
+														
+															<select class="form-control" id="form-field-select-1">
+																<option value=""></option>
+																<option value="AL">Singasandra</option>
+																<option value="AK">RR Nagar</option>
+																<option value="AZ">Abu Dhabi</option>
+																<option value="AR">Oman</option>
+																
+														
+															</select>
+														</div>
+													
+													
+														<div class="col-md-2">
+															<label for="form-field-select-1">Grade</label>
+														
+															<select class="form-control" id="form-field-select-1">
+																<option value=""></option>
+																<option>Full Time</option>
+																<option>Part Time</option>
+																<option>Comtractual</option>
+																<option>Consultant</option>
+																
+														
+															</select>
+														</div>
+													<div class="col-md-2">
+															<label for="form-field-select-1">Employee</label>
+														
+															<select class="form-control" id="form-field-select-1">
+																<option value=""></option>
+																<option>Full Time</option>
+																<option>Part Time</option>
+																<option>Comtractual</option>
+																<option>Consultant</option>
+																
+														
+															</select>
+														</div>
+	
+														<button type="button" class="btn btn-sm btn-success" style="    border-width: 4px;
+    font-size: 13px;
+    padding: 4px 9px;
+    line-height: 1.38;
+    width: 83px;
+    height: 37px;
+    margin-top: 24px;">
+																Submit
+																<i class="ace-icon fa fa-arrow-right icon-on-right bigger-110"></i>
+															</button>	
+														
+														</form>
+													
+							
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-12">
+							<h3 style="background-color:#013845; color:white;">Information</h3>
+							<div id="user-profile-1" class="user-profile row">
+										<div class="col-xs-12 col-sm-3 center">
+											<div>
+												<span class="profile-picture">
+													<img id="avatar" class="editable img-responsive" alt="Alex's Avatar" src="assets/images/avatars/profile-pic.jpg" />
+												</span>
+
+												<div class="space-4"></div>
+
+												<div class="width-80 label label-info label-xlg arrowed-in arrowed-in-right">
+													<div class="inline position-relative">
+														<a href="#" class="user-title-label dropdown-toggle" data-toggle="dropdown">
+														
+															&nbsp;
+															<span class="white">Alex M. Doe</span>
+														</a>
+
+													
+													</div>
+												</div>
+											</div>
+
+											<div class="space-6"></div>
+
+											
+
+
+											<div class="hr hr16 dotted"></div>
+										</div>
+
+										<div class="col-xs-12 col-sm-9">
+											
+											<div class="space-12"></div>
+
+											<div class="col-xs-12 col-sm-9">
+											
+											<div class="space-12"></div>
+
+											<div class="profile-user-info profile-user-info-striped">
+												<div class="profile-info-row">
+													<div class="profile-info-name"> Name </div>
+
+													<div class="profile-info-value">
+														<span class="editable" id="username">alexdoe</span>
+													</div>
+												</div>
+												<div class="profile-info-row">
+													<div class="profile-info-name"> Designation </div>
+
+													<div class="profile-info-value">
+														<span class="editable" id="designation">Developer</span>
+													</div>
+												</div>
+										<div class="profile-info-row">
+													<div class="profile-info-name"> Level </div>
+
+													<div class="profile-info-value">
+														<span class="editable" id="username">bm2</span>
+													</div>
+												</div>
+												<div class="profile-info-row">
+													<div class="profile-info-name"> Department </div>
+
+													<div class="profile-info-value">
+														<span class="editable" id="username">IT</span>
+													</div>
+												</div>
+												<div class="profile-info-row">
+													<div class="profile-info-name"> Location </div>
+
+													<div class="profile-info-value">
+														<i class="fa fa-map-marker light-orange bigger-110"></i>
+														<span class="editable" id="country">India</span>
+														<span class="editable" id="city">Bangalore</span>
+													</div>
+												</div>
+
+												<div class="profile-info-row">
+													<div class="profile-info-name"> Organization</div>
+
+													<div class="profile-info-value">
+														<span class="editable" id="age">EBS</span>
+													</div>
+												</div>
+
+												<div class="profile-info-row">
+													<div class="profile-info-name"> Reporting Manager</div>
+
+													<div class="profile-info-value">
+														<span class="editable" id="signup">......</span>
+													</div>
+												</div>
+
+											
+											</div>
+
+											<div class="space-20"></div>
+
+											
+
+										
+
+											<div class="space-6"></div>
+
+											
+										</div>
+									</div>
+										</div>
+							</div>	
+							<div class="row">
+								<div class="col-md-12" style="padding:24px">
+									<h3 style="background-color:#013845;color:white;">Activity</h3>
+									<form action="">
+										<div class="col-md-4">
+										Choose Activity<select>
+															<option>Select</option>
+														</select>
+										</div>
+										<div class="col-md-4">
+														Effective Date<input type="date">
+														</div>
+														<div class="row">
+														<div class="col-md-12" style="padding:23px;">
+										Remarks<input type="textarea" name="remarks" rows="5" cols="5">
+										</div>
+										</div>
+											<button type="button" class="btn btn-sm btn-success" style="    border-width: 4px;
+    font-size: 13px;
+    padding: 4px 9px;
+    line-height: 1.38;
+    width: 83px;
+    height: 37px;">
+																Update
+																<i class="ace-icon fa fa-arrow-right icon-on-right bigger-110"></i>
+															</button>
+									</form>	
+							
+						</div>
+						</div>
+						</div>
+						</div>
+						<div style="overflow-x:auto;">	
+						<div id="Organization Structure" class="tabcontent" style="margin-top: 60px;">
+							<div class="row">
+								<div class="col-md-12">
+									<div class="tree">
+										<ul style="    margin: 0px 0 -8px -46px;">
+											<li>
+												<a href="#"><img src="http://placehold.it/110x110" alt="CEO">
+												CEO</a>
+												<ul>
+													<li><a href="#"><img src="http://placehold.it/110x110" alt="CFO">CFO</a>
+														<ul>
+															<li><a href="#"><img src="http://placehold.it/25x25" alt="">Employee</img></a>
+															</li>
+															<li><a href="#"><img src="http://placehold.it/25x25" alt="">Employee</img></a></li>
+															<li><a href="#"><img src="http://placehold.it/25x25" alt="">Employee</img></a></li>
+															<li><a href="#"><img src="http://placehold.it/25x25" alt="">Employee</img></a></li>
+															<li><a href="#"><img src="http://placehold.it/25x25" alt="">Employee</img></a></li>
+														</ul>
+													</li>
+													<li><a href="#"><img src="http://placehold.it/110x110" alt="">VP Bus Dev</a>
+														<ul>
+															<li><a href="#"><img src="http://placehold.it/25x25" alt="">Employee</img></a></li>
+															<li><a href="#"><img src="http://placehold.it/25x25" alt="">Employee</img></a></li>
+															<li><a href="#"><img src="http://placehold.it/25x25" alt="">Employee</img></a></li>
+															<li><a href="#"><img src="http://placehold.it/25x25" alt="">Employee</img></a></li>
+															<li><a href="#"><img src="http://placehold.it/25x25" alt="">Employee</img></a></li>
+															<li><a href="#"><img src="http://placehold.it/25x25" alt="">Employee</img></a></li>
+															<li><a href="#"><img src="http://placehold.it/25x25" alt="">Employee</img></a></li>
+															<li><a href="#"><img src="http://placehold.it/25x25" alt="">Employee</img></a></li>
+															<li><a href="#"><img src="http://placehold.it/25x25" alt="">Employee</img></a></li>
+															<li><a href="#"><img src="http://placehold.it/25x25" alt="">Employee</img></a></li>
+														</ul>
+													</li>
+													<li><a href="#"><img src="http://placehold.it/110x110" alt="" />VP Div A</a>
+														<ul>
+															<li><a href="#"><img src="http://placehold.it/25x25" alt="">Employee</img></a></li>
+															<li><a href="#"><img src="http://placehold.it/25x25" alt="">Employee</img></a></li>
+															<li><a href="#"><img src="http://placehold.it/25x25" alt="">Employee</img></a></li>
+															<li><a href="#"><img src="http://placehold.it/25x25" alt="">Employee</img></a></li>
+															<li><a href="#"><img src="http://placehold.it/25x25" alt="">Employee</img></a></li>
+															<li><a href="#"><img src="http://placehold.it/25x25" alt="">Employee</img></a></li>
+															<li><a href="#"><img src="http://placehold.it/25x25" alt="">Employee</img></a></li>
+															<li><a href="#"><img src="http://placehold.it/25x25" alt="">Employee</img></a></li>
+															<li><a href="#"><img src="http://placehold.it/25x25" alt="">Employee</img></a></li>
+															<li><a href="#"><img src="http://placehold.it/25x25" alt="">Employee</img></a></li>
+															<li><a href="#"><img src="http://placehold.it/25x25" alt="">Employee</img></a></li>
+															<li><a href="#"><img src="http://placehold.it/25x25" alt="">Employee</img></a></li>
+														</ul>
+													</li>
+													<li><a href="#"><img src="http://placehold.it/110x110" alt="" />VP Div B</a>
+														<ul>
+															<li><a href="#"><img src="http://placehold.it/25x25" alt="">Employee</img></a></li>
+															<li><a href="#"><img src="http://placehold.it/25x25" alt="">Employee</img></a></li>
+															<li><a href="#"><img src="http://placehold.it/25x25" alt="">Employee</img></a></li>
+															<li><a href="#"><img src="http://placehold.it/25x25" alt="">Employee</img></a></li>
+															<li><a href="#"><img src="http://placehold.it/25x25" alt="">Employee</img></a></li>
+															<li><a href="#"><img src="http://placehold.it/25x25" alt="">Employee</img></a></li>
+															<li><a href="#"><img src="http://placehold.it/25x25" alt="">Employee</img></a></li>
+														</ul>
+													</li>
+													<li><a href="#"><img src="http://placehold.it/110x110" alt="">VP Div C</a>
+														<ul>
+															<li><a href="#"><img src="http://placehold.it/25x25" alt="">Employee</img></a></li>
+															<li><a href="#"><img src="http://placehold.it/25x25" alt="">Employee</img></a></li>
+															<li><a href="#"><img src="http://placehold.it/25x25" alt="">Employee</img></a></li>
+															<li><a href="#"><img src="http://placehold.it/25x25" alt="">Employee</img></a></li>
+															<li><a href="#"><img src="http://placehold.it/25x25" alt="">Employee</img></a></li>
+														</ul>
+													</li>
+													<li><a href="#"><img src="http://placehold.it/110x110" alt="VP HR">VP HR</a>
+														<ul>
+															<li><a href="#"><img src="http://placehold.it/25x25" alt="">Employee</img></a></li>
+															<li><a href="#"><img src="http://placehold.it/25x25" alt="">Employee</img></a></li>
+															<li><a href="#"><img src="http://placehold.it/25x25" alt="">Employee</img></a></li>
+															<li><a href="#"><img src="http://placehold.it/25x25" alt="">Employee</img></a></li>
+															<li><a href="#"><img src="http://placehold.it/25x25" alt="">Employee</img></a></li>
+														</ul>
+													</li>
+												</ul>
+											</li>
+										</ul>
+									</div>
+								</div>
+							</div>	
+						</div>		
+						</div>
+<div class="footer">
 				<div class="footer-inner">
 					<div class="footer-content">
 						<span class="bigger-120">
 							<span class="blue bolder">ExcelbizSolutions</span>
-							&copy; 2017
+							 &copy; 2017
 						</span>
 
 						&nbsp; &nbsp;
@@ -1119,7 +1554,16 @@ td, th {
 					</div>
 				</div>
 			</div>
-			<script src="assets/js/jquery-2.1.4.min.js"></script>
+
+			<a href="#" id="btn-scroll-up" class="btn-scroll-up btn btn-sm btn-inverse">
+				<i class="ace-icon fa fa-angle-double-up icon-only bigger-110"></i>
+			</a>
+		</div><!-- /.main-container -->
+
+		<!-- basic scripts -->
+
+		<!--[if !IE]> -->
+	<script src="assets/js/jquery-2.1.4.min.js"></script>
 
 		<!-- <![endif]-->
 
@@ -1132,7 +1576,12 @@ td, th {
 		<script src="assets/js/bootstrap.min.js"></script>
 
 		<!-- page specific plugin scripts -->
-
+ <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+   <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
+	<script type="text/javascript" src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
 		<!--[if lte IE 8]>
 		  <script src="assets/js/excanvas.min.js"></script>
 		<![endif]-->
@@ -1155,12 +1604,7 @@ td, th {
 		<!-- ace scripts -->
 		<script src="assets/js/ace-elements.min.js"></script>
 		<script src="assets/js/ace.min.js"></script>
- <!-- Optional JavaScript -->
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-   <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
-    <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
-	<script type="text/javascript" src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+
 		<!-- inline scripts related to this page -->
 		<script type="text/javascript">
 			jQuery(function($) {
@@ -1630,6 +2074,8 @@ var $document = $(document);
   };
   clock();
 })();
+
+
 </script>
 <script>
 function openButton(evt, cityName) {
@@ -1648,10 +2094,21 @@ function openButton(evt, cityName) {
 }
 document.getElementById("defaultOpen").click();
 </script>
+<script>
+	$(document).ready(function() {
+    $('#myTable').DataTable();
+} );
+		</script>
 		<script>
 	$(document).ready(function() {
     $('#example').DataTable();
 } );
+		</script>
+				<script>
+	$(document).ready(function() {
+    $('#example1').DataTable();
+} );
+
 		</script>
 		<script>
 		$('#checkAll').change(function () {
@@ -1665,11 +2122,6 @@ document.getElementById("defaultOpen").click();
 </script>
 <script>
 		$('#checkAln').change(function () {
-    $('tbody tr td input[type="checkbox"]').prop('checked', $(this).prop('checked'));
-});
-</script>
-<script>
-		$('#checkAlo').change(function () {
     $('tbody tr td input[type="checkbox"]').prop('checked', $(this).prop('checked'));
 });
 </script>
@@ -2140,5 +2592,4 @@ document.getElementById("defaultOpen").click();
 			});
 		</script>
 	</body>
-</html>				
-								
+</html>

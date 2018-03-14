@@ -93,12 +93,11 @@
 button {
     width: 50%;
     height: 70px;
-    background-color: #438eb9;
-	color:black;
+    background-color:#003946;
+
+	    font-size: 18px;
+    font-weight: bolder;
 }
-button:hover {
-	background-color:#e4e4e4;
-	}
 	div.tab {
     overflow: hidden;
     border: 1px solid #ccc;
@@ -119,12 +118,12 @@ div.tab button {
 
 /* Change background color of buttons on hover */
 div.tab button:hover {
-    background-color: #ddd;
+    background-color: #ccdbda
 }
 
 /* Create an active/current tablink class */
 div.tab button.active {
-    background-color: #ccc;
+    background-color: #ccdbda
 }
 .tabcontent {
     display: none;
@@ -144,14 +143,17 @@ td, th {
     padding: 8px;
 }
 
-tr:nth-child(even) {
-    background-color: #dddddd;
-}
+.header {
+	background-color:#ddd;
+	}
+	tr {
+	background-color:white;
+	}
 </style>
 	</head>
 
 	<body class="no-skin">
-	<nav class="navbar navbar-default" style=" background-color:#438EB9;">
+	<nav class="navbar navbar-default" style=" background-color:#003946;">
 		<div class="container-fluid">
 			<ul class="nav navbar-nav">
 				<ul class="navbar-header">
@@ -166,14 +168,11 @@ tr:nth-child(even) {
 					</button>
 				</ul>
 				<li><a href="index.html" style="color:black;">
-						<span class="glyphicon glyphicon-home" style="font-size: 25px; line-height:0;"></span>
+						<span class="glyphicon glyphicon-home" style="font-size: 25px; line-height:0;color:white"></span>
 					</a>
 				</li>
-				<li><a href="index.html" style="color:black;">
-						<span class="glyphicon glyphicon-book" style="font-size: 25px; line-height:0;"></span>
-					</a>
-				</li>
-				<li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown"> <span class="glyphicon glyphicon-bell" style="font-size: 25px; line-height:0;></span>
+				
+				<li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown"> <span class="glyphicon glyphicon-bell" style="font-size: 25px; line-height:0;color:white;></span>
 					<span class="caret"></span></a>
 					<ul class="dropdown-menu">
 						<li><a href="#">Page 1-1</a></li>
@@ -191,10 +190,11 @@ tr:nth-child(even) {
 					
 			<ul class="nav navbar-nav navbar-right" style="margin-top:-48px;">	
 				<li>
-					<p style="margin-top:15px;">Admin</p>
+					<p style="margin-top:15px;color:white">Admin</p>
 				</li>
 				<li>
 					<select name="Role" style="margin-top:10px;">
+					<option value="Role">Role</option>
 						<option value="finance">FINANCE</option>
 						<option value="redmine">Redmine</option>
 						<option value="java">Java Developer</option>
@@ -202,15 +202,19 @@ tr:nth-child(even) {
 						<option value="ba">BA</option>
 					</select>
 				</li>
-				<li><a href="index.html" style="color:black;">
-						<span class="glyphicon glyphicon-lock" style="font-size: 25px; line-height:0;"></span>
+				<li><a href="cog.html" style="color:black;">
+						<span class="glyphicon glyphicon-cog" style="font-size: 25px; line-height:0;color:white"></span>
 					</a>
 				</li>
-				<li class="light-blue dropdown-modal" style="margin-top:-8px;">
+				<li><a href="password.html" style="color:black;">
+						<span class="glyphicon glyphicon-lock" style="font-size: 25px; line-height:0;color:white"></span>
+					</a>
+				</li>
+				<li class="light-blue dropdown-modal" style="margin-top:-6px;">
 					<a data-toggle="dropdown" href="#" class="dropdown-toggle">
 						<img class="nav-user-photo" src="assets/images/avatars/user.jpg" alt="Jason's Photo" />
 						<span class="user-info">
-							<small style=color:black;">Welcome,
+							<small style=color:white;">Welcome,
 									Jason</small>
 						</span>
 
@@ -222,17 +226,10 @@ tr:nth-child(even) {
 									
 						</li>
 
-						<li>
-							<a href="profile.html">
-								<i class="ace-icon fa fa-user"></i>
-									Profile
-							</a>
-						</li>
-
-						<li class="divider"></li>
+					
 
 							<li>
-								<a href="#">
+								<a href="login.html">
 									<i class="ace-icon fa fa-power-off"></i>
 										Logout
 								</a>
@@ -253,35 +250,7 @@ tr:nth-child(even) {
 					try{ace.settings.loadState('sidebar')}catch(e){}
 				</script>
 
-				<div class="sidebar-shortcuts" id="sidebar-shortcuts">
-					<div class="sidebar-shortcuts-large" id="sidebar-shortcuts-large">
-						<button class="btn btn-success">
-							<i class="ace-icon fa fa-signal"></i>
-						</button>
-
-						<button class="btn btn-info">
-							<i class="ace-icon fa fa-pencil"></i>
-						</button>
-
-						<button class="btn btn-warning">
-							<i class="ace-icon fa fa-users"></i>
-						</button>
-
-						<button class="btn btn-danger">
-							<i class="ace-icon fa fa-cogs"></i>
-						</button>
-					</div>
-
-					<div class="sidebar-shortcuts-mini" id="sidebar-shortcuts-mini">
-						<span class="btn btn-success"></span>
-
-						<span class="btn btn-info"></span>
-
-						<span class="btn btn-warning"></span>
-
-						<span class="btn btn-danger"></span>
-					</div>
-				</div><!-- /.sidebar-shortcuts -->
+				
 
 				<ul class="nav nav-list">
 					<li class="">
@@ -293,14 +262,14 @@ tr:nth-child(even) {
 						<b class="arrow"></b>
 					</li>
 					<li class="">
-						<a href="calendar.html">
-							<i class="menu-icon fa fa-calendar"></i>
+						<a href="report.html">
+							<i class="menu-icon fa fa-line-chart"></i>
 
 							<span class="menu-text">
-								Calendar
+								Reports
 
 								<span class="badge badge-transparent tooltip-error" title="2 Important Events">
-								
+									
 								</span>
 							</span>
 						</a>
@@ -308,10 +277,10 @@ tr:nth-child(even) {
 						<b class="arrow"></b>
 					</li>
 					<li class="">
-						<a href="my pay.html">
-							<i class="menu-icon fa fa-money" aria-hidden="true"></i>
+						<a href="employee.html">
+							<i class="menu-icon fa fa-users" aria-hidden="true"></i>
 							<span class="menu-text">
-								My Pay
+								Employee
 
 								
 							</span>
@@ -320,10 +289,10 @@ tr:nth-child(even) {
 						<b class="arrow"></b>
 					</li>
 					<li class="">
-						<a href="leave.html">
-							<i class="menu-icon fa fa-money" aria-hidden="true"></i>
+						<a href="time.html">
+							<i class="menu-icon fa fa-calendar" aria-hidden="true"></i>
 							<span class="menu-text">
-								Leave
+								Time & Attendence
 
 								
 							</span>
@@ -335,7 +304,7 @@ tr:nth-child(even) {
 						<a href="travel.html">
 							<i class="menu-icon fa fa-plane" aria-hidden="true"></i>
 							<span class="menu-text">
-								Travel
+								Leave
 
 								
 							</span>
@@ -343,11 +312,11 @@ tr:nth-child(even) {
 
 						<b class="arrow"></b>
 					</li>
-					<li class="">
-						<a href="reimbruisment.html">
-							<i class="menu-icon fa fa-plane" aria-hidden="true"></i>
+						<li class="">
+						<a href="pay.html">
+							<i class="menu-icon fa fa-money" aria-hidden="true"></i>
 							<span class="menu-text">
-								Reimbursement
+								Pay
 
 								
 							</span>
@@ -355,8 +324,10 @@ tr:nth-child(even) {
 
 						<b class="arrow"></b>
 					</li>
-
-					
+					<li><a href="index.html" style="color:black;">
+						<img src="assets/images/ebs_logo-1.png">
+					</a>
+				</li>
 						</ul>
 					</li>
 				</ul><!-- /.nav-list -->
@@ -406,58 +377,93 @@ tr:nth-child(even) {
 						<div id="Pay" class="tabcontent" style="margin-top: 60px;">
 							<div class="row">
 								<div class="col-md-12">
-									<button style="width:13%">Salary</button>
+									<button style="width:13%;color:white" disabled>Salary</button>
 								</div>
 							</div>
 							
-									<div class="row">
-								<div class="col-md-12">
+									<div class="row" style="padding:15px;">
+								<div class="col-md-12" style="border:1px solid #ccc;padding:15px">
 							
-									<form style="  border: 1px solid #aaa; padding:15px;">
-										
-											<div class="col-md-2" >
-												<p>Organization<select>
-												<option>Org-1</option>
-												<option>Org-2</option>
-												</select></p>
-											</div>
-											<div class="col-md-2">								
-												<p>Location<select>
-												<option>Singasandra</option>
-												<option>RR Nagar</option>
-												<option>Oman</option>
-												<option>Adu Dhabi</option>
-												</select></p>
-											</div>
-											<div class="col-md-2">
-												<p>Pay Cycle<select>
-												<option>Finance</option>
-												<option>Java</option>
-												<option>UI</option>
-												<option>BA</option>
-												<option>Redmine</option>
-												</select></p>
-											</div>
-											<div class="col-md-2" >
-												<p>Choose Bank<select>
-												<option>2015</option>
-												<option>2016</option>
-												<option>2017</option>
-												<option>2018</option>
-												</select></p>
-											</div>	
+								<form >
+														<div class="col-md-2">
+															<label for="form-field-select-1">Organization</label>
+															
+															<select class="form-control" id="form-field-select-1">
+																<option value=""></option>
+																<option value="AL">Org-1</option>
+																<option value="AK">Org-2</option>
+																
+																
+														
+															</select>
+														</div>
+														<div class="col-md-2">
+															<label for="form-field-select-1">Location</label>
+														
+															<select class="form-control" id="form-field-select-1">
+																<option value=""></option>
+																<option value="AL">Singasandra</option>
+																<option value="AK">RR Nagar</option>
+																<option value="AZ">Abu Dhabi</option>
+																<option value="AR">Oman</option>
+																
+														
+															</select>
+													</div>
+														<div class="col-md-2">
+															<label for="form-field-select-1">PayCycle</label>
+														
+															<select class="form-control" id="form-field-select-1">
+																<option value=""></option>
+																<option value="AL">Singasandra</option>
+																<option value="AK">RR Nagar</option>
+																<option value="AZ">Abu Dhabi</option>
+																<option value="AR">Oman</option>
+																
+														
+															</select>
+														</div>
+												
 													
-											<input type="button" name="submit" value="Pay">	
-									</form>	
+														<div class="col-md-2">
+															<label for="form-field-select-1">Choose Bank</label>
+														
+															<select class="form-control" id="form-field-select-1">
+																<option value=""></option>
+																<option>Full Time</option>
+																<option>Part Time</option>
+																<option>Comtractual</option>
+																<option>Consultant</option>
+																
+														
+															</select>
+														</div>
+																
+															
+														
+	
+														<button type="button" class="btn btn-sm btn-success" style="    border-width: 4px;
+    font-size: 13px;
+    padding: 4px 9px;
+    line-height: 1.38;
+    width: 83px;
+    height: 37px;
+    margin-top: 24px;">
+																Pay
+																
+															</button>	
+														
+														</form>
 								</div>
 							</div>
 							<div class="row">
 								<div class="col-md-12" style="padding:100px;">
+								<div style="overflow-x:auto;">	
 									<table id="myTableOne">
 										<tr class="header">
 											<th class="center">
 												<label class="pos-rel">
-													<input type="checkbox" class="ace" />
+													<input type="checkbox" id="checkAll" class="ace" />
 													<span class="lbl"></span>
 												</label>
 											</th>
@@ -497,71 +503,113 @@ tr:nth-child(even) {
 									
 									
 									</table>
+									</div>
 								</div>	
 							</div>	
 						</div>
 						<div id="TDS & Variables" class="tabcontent" style="margin-top: 60px;">
 							<div class="row">
 								<div class="col-md-12">
-									<button style="width:13%;">TDS & Variable</button>
+									<button style="width:13%;color:white" disabled>TDS & Variable</button>
 								</div>
 							</div>	
-							<div class="row">
-								<div class="col-md-12">
+							<div class="row" style="padding:15px;">
+								<div class="col-md-12" style="border:1px solid #ccc;padding:15px">
 							
-									<form style="  border: 1px solid #aaa; padding:15px;">
-										
-											<div class="col-md-2" >
-												<p>Organization<select>
-												<option>Org-1</option>
-												<option>Org-2</option>
-												</select></p>
-											</div>
-											<div class="col-md-2">								
-												<p>Location<select>
-												<option>Singasandra</option>
-												<option>RR Nagar</option>
-												<option>Oman</option>
-												<option>Adu Dhabi</option>
-												</select></p>
-											</div>
-											<div class="col-md-2">
-												<p>Pay Cycle<select>
-												<option>Finance</option>
-												<option>Java</option>
-												<option>UI</option>
-												<option>BA</option>
-												<option>Redmine</option>
-												</select></p>
-											</div>
-											<div class="col-md-2" >
-												<p>Grade<select>
-												<option>Singasandra</option>
-												<option>RR Nagar</option>
-												<option>Oman</option>
-												<option>Adu Dhabi</option>
-												</select></p>
-											</div>
-											<div class="col-md-2" >
-												<p>Select Salary Head<select>
-												<option>Singasandra</option>
-												<option>RR Nagar</option>
-												<option>Oman</option>
-												<option>Adu Dhabi</option>
-												</select></p>
-											</div>
+									<form >
+														<div class="col-md-2">
+															<label for="form-field-select-1">Organization</label>
+															
+															<select class="form-control" id="form-field-select-1">
+																<option value=""></option>
+																<option value="AL">Org-1</option>
+																<option value="AK">Org-2</option>
+																
+																
+														
+															</select>
+														</div>
+														<div class="col-md-2">
+															<label for="form-field-select-1">Location</label>
+														
+															<select class="form-control" id="form-field-select-1">
+																<option value=""></option>
+																<option value="AL">Singasandra</option>
+																<option value="AK">RR Nagar</option>
+																<option value="AZ">Abu Dhabi</option>
+																<option value="AR">Oman</option>
+																
+														
+															</select>
+													</div>
+														<div class="col-md-2">
+															<label for="form-field-select-1">Pay Cycle</label>
+														
+															<select class="form-control" id="form-field-select-1">
+																<option value=""></option>
+																<option value="AL">Singasandra</option>
+																<option value="AK">RR Nagar</option>
+																<option value="AZ">Abu Dhabi</option>
+																<option value="AR">Oman</option>
+																
+														
+															</select>
+														</div>
+												
 													
-											<input type="button" name="submit" value="Submit">	
-									</form>	
+														<div class="col-md-2">
+															<label for="form-field-select-1">Grade</label>
+														
+															<select class="form-control" id="form-field-select-1">
+																<option value=""></option>
+																<option>Full Time</option>
+																<option>Part Time</option>
+																<option>Comtractual</option>
+																<option>Consultant</option>
+																
+														
+															</select>
+														</div>
+																
+														<div class="col-md-2">
+															<label for="form-field-select-1">Select Salary Head</label>
+														
+															<select class="form-control" id="form-field-select-1">
+																<option value=""></option>
+																<option>Full Time</option>
+																<option>Part Time</option>
+																<option>Comtractual</option>
+																<option>Consultant</option>
+																
+														
+															</select>
+														</div>
+															
+														
+														
+	
+														<button type="button" class="btn btn-sm btn-success" style="    border-width: 4px;
+    font-size: 13px;
+    padding: 4px 9px;
+    line-height: 1.38;
+    width: 81px;
+    height: 37px;
+    margin-top: 24px;">
+																Submit
+																<i class="ace-icon fa fa-arrow-right icon-on-right bigger-110"></i>
+															</button>	
+														
+														</form>
 								</div>
 							</div>	
 							<div class="row">
 								<div class="col-md-12" style="padding:100px;">
+								<div style="overflow-x:auto;">	
 									<table id="myTableOne">
 										<tr class="header">
 											<th class="center">
 												<label class="pos-rel">
-													<input type="checkbox" class="ace" />
+													<input type="checkbox" id="checkAlm" class="ace" />
 													<span class="lbl"></span>
 												</label>
 											</th>
@@ -589,14 +637,24 @@ tr:nth-child(even) {
 									
 									
 									</table>
+									</div>
 								</div>	
 							</div>	
 							<div class="row">
 								<div class="col-md-12">
-								<div style="float:right; border:1px solid #ccc; padding:15px;">
-									<h3 style="background-color:#ccc">Bulk Upload</h3>
+								<div style="float:right; border:1px solid #ccc; padding:20px;">
+									<h3 style="background-color:#ccc; margin-top:-6px" >Bulk Upload</h3>
 									<input type="file" id="myFile">
-									<input type="button" name="submit" value="submit">
+										<button type="button" class="btn btn-sm btn-success" style="    border-width: 4px;
+    font-size: 13px;
+    padding: 4px 9px;
+    line-height: 1.38;
+    width: 83px;
+    height: 37px;
+	margin-top:10px;">
+																Submit
+																<i class="ace-icon fa fa-arrow-right icon-on-right bigger-110"></i>
+															</button>
 								</div>	
 							</div>
 						</div>
@@ -1153,6 +1211,16 @@ function openButton(evt, cityName) {
 	
 }
 document.getElementById("defaultOpen").click();
+</script>
+<script>
+		$('#checkAll').change(function () {
+    $('tbody tr td input[type="checkbox"]').prop('checked', $(this).prop('checked'));
+});
+</script>
+<script>
+		$('#checkAlm').change(function () {
+    $('tbody tr td input[type="checkbox"]').prop('checked', $(this).prop('checked'));
+});
 </script>
 	</body>
 </html>

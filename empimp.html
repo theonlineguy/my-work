@@ -1,0 +1,1989 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+		<meta charset="utf-8" />
+		<title>Dashboard</title>
+
+		<meta name="description" content="overview &amp; stats" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+
+		<!-- bootstrap & fontawesome -->
+		<link rel="stylesheet" href="assets/css/bootstrap.min.css" />
+		<link rel="stylesheet" href="assets/font-awesome/4.5.0/css/font-awesome.min.css" />
+		<link rel="stylesheet" href="assets/css/tree.css" />
+
+		<!-- page specific plugin styles -->
+
+		<!-- text fonts -->
+		<link rel="stylesheet" href="assets/css/fonts.googleapis.com.css" />
+
+		<!-- ace styles -->
+		<link rel="stylesheet" href="assets/css/ace.min.css" class="ace-main-stylesheet" id="main-ace-style" />
+
+		<!--[if lte IE 9]>
+			<link rel="stylesheet" href="assets/css/ace-part2.min.css" class="ace-main-stylesheet" />
+		<![endif]-->
+		<link rel="stylesheet" href="assets/css/ace-skins.min.css" />
+		<link rel="stylesheet" href="assets/css/ace-rtl.min.css" />
+
+		<!--[if lte IE 9]>
+		  <link rel="stylesheet" href="assets/css/ace-ie.min.css" />
+		<![endif]-->
+ 
+	<link rel="stylesheet" href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css">
+		<!-- inline styles related to this page -->
+
+		<!-- ace settings handler -->
+		<script src="assets/js/ace-extra.min.js"></script>
+
+		<!-- HTML5shiv and Respond.js for IE8 to support HTML5 elements and media queries -->
+
+		<!--[if lte IE 8]>
+		<script src="assets/js/html5shiv.min.js"></script>
+		<script src="assets/js/respond.min.js"></script>
+		<![endif]-->
+		<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.10.16/rg-1.0.2/sl-1.2.3/datatables.min.css"/>
+ 
+<script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.10.16/rg-1.0.2/sl-1.2.3/datatables.min.js"></script>
+		<style>
+		.btn-primary, .btn-primary.focus, .btn-primary:focus {
+    background-color: #1962a0!important;
+    border-color: #428BCA;
+}
+									* {
+  box-sizing: border-box;
+}
+
+#myInput {
+  background-image: url('/css/searchicon.png');
+  background-position: 10px 10px;
+  background-repeat: no-repeat;
+  width: 11%;
+  font-size: 16px;
+  padding: 12px 20px 12px 40px;
+  border: 1px solid #ddd;
+  margin-bottom: 12px;
+}
+
+#myTable {
+  border-collapse: collapse;
+  width: 100%;
+  border: 1px solid #ddd;
+  font-size: 13px;
+}
+
+#myTable th, #myTable td {
+  text-align: left;
+  padding: 12px;
+}
+
+#myTable tr {
+  border-bottom: 1px solid #ddd;
+}
+
+#myTable tr.header, #myTable tr:hover {
+  background-color: #f1f1f1;
+}
+.clock {
+  top:30%;
+  background-color: #3c434c;
+  width:210px;
+  height:50px;
+  margin:auto;
+  padding:15px;
+}
+.clock div {
+  display:inline-block;
+  background-color: #202731;
+  width:25%;
+  height: 100%;
+  text-align: center;
+  color:white;
+}
+button {
+    width: 14%;
+    height: 70px;
+    background-color: #003946;
+	font-size:12px;
+	font-weight:bolder;
+	color:white
+}
+
+	div.tab {
+    overflow: hidden;
+    border: 1px solid #ccc;
+    background-color: #f1f1f1;
+}
+
+/* Style the buttons inside the tab */
+div.tab button {
+    background-color: inherit;
+    float: left;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    padding: 14px 16px;
+    transition: 0.3s;
+    font-size: 17px;
+	color:black
+}
+
+/* Change background color of buttons on hover */
+div.tab button:hover {
+    background-color: #ccdbda
+}
+
+/* Create an active/current tablink class */
+div.tab button.active {
+    background-color: #ccdbda
+}
+.tabcontent {
+    display: none;
+    padding: 6px 12px;
+    border: 1px solid #ccc;
+    border-top: none;
+}
+table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+td, th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+}
+
+tr:nth-child(even) {
+    background-color: #dddddd;
+}
+.title {
+	height:30px;
+	width:50%;
+	    background-color: #80a9d0;
+		font-size:14px;
+	
+	}
+	input[type=file] {
+    display: block;
+    margin-top: 10px;
+}
+</style>
+	</head>
+
+	<body class="no-skin">
+	
+		<nav class="navbar navbar-default" style=" background-color:#003946;">
+		<div class="container-fluid">
+			<ul class="nav navbar-nav">
+				<ul class="navbar-header">
+					<button type="button" class="navbar-toggle menu-toggler pull-left" id="menu-toggler" data-target="#sidebar">
+						<span class="sr-only">Toggle sidebar</span>
+
+						<span class="icon-bar"></span>
+
+						<span class="icon-bar"></span>
+
+						<span class="icon-bar"></span>
+					</button>
+				</ul>
+				<li><a href="index.html" style="color:white;">
+						<span class="glyphicon glyphicon-home" style="font-size: 25px; line-height:0;"></span>
+					</a>
+				</li>
+				
+				<li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown"> <span class="glyphicon glyphicon-bell" style="font-size: 25px; line-height:0;color:white;></span>
+					<span class="caret"></span></a>
+					<ul class="dropdown-menu">
+						<li><a href="#">Page 1-1</a></li>
+						<li><a href="#">Page 1-2</a></li>
+						<li><a href="#">Page 1-3</a></li>
+					</ul>
+				</li>
+			</ul>	
+				<div class="clock">
+      <div class="hours"></div><!--
+   --><div class="minutes"></div><!--
+    --><div class="seconds"></div><!--
+    --><div class="twelvehr"></div>
+</div>
+			<ul class="nav navbar-nav navbar-right" style="margin-top:-48px;">	
+				<li>
+					<p style="margin-top:15px;color:white">Admin</p>
+				</li>
+				<li>
+					<select name="Role" style="margin-top:10px;">
+					<option value="Role">Role</option>
+						<option value="finance">FINANCE</option>
+						<option value="redmine">Redmine</option>
+						<option value="java">Java Developer</option>
+						<option value="ui">UI Developer</option>
+						<option value="ba">BA</option>
+					</select>
+				</li>
+					<li><a href="cog.html" style="color:black;">
+						<span class="glyphicon glyphicon-cog" style="font-size: 25px; line-height:0;color:white"></span>
+					</a>
+				</li>
+				<li><a href="password.html" style="color:black;">
+						<span class="glyphicon glyphicon-lock" style="font-size: 25px; line-height:0;color:white"></span>
+					</a>
+				</li>
+				<li class="light-blue dropdown-modal" style="margin-top:-6px;">
+					<a data-toggle="dropdown" href="#" class="dropdown-toggle">
+						<img class="nav-user-photo" src="assets/images/avatars/user.jpg" alt="Jason's Photo" />
+						<span class="user-info">
+							<small style=color:white;">Welcome,
+									Jason</small>
+						</span>
+
+						<i class="ace-icon fa fa-caret-down"></i>
+					</a>
+
+					<ul class="user-menu dropdown-menu-right dropdown-menu dropdown-yellow dropdown-caret dropdown-close">
+						<li>
+									
+						</li>
+
+					
+
+							<li>
+								<a href="login.html">
+									<i class="ace-icon fa fa-power-off"></i>
+										Logout
+								</a>
+							</li>
+					</ul>
+				</li>
+			</ul>
+		</div>
+	</nav>
+
+		<div class="main-container ace-save-state" id="main-container">
+			<script type="text/javascript">
+				try{ace.settings.loadState('main-container')}catch(e){}
+			</script>
+
+			<div id="sidebar" class="sidebar      h-sidebar                navbar-collapse collapse          ace-save-state">
+				<script type="text/javascript">
+					try{ace.settings.loadState('sidebar')}catch(e){}
+				</script>
+					
+			
+
+			<ul class="nav nav-list">
+					<li class="">
+						<a href="index.html">
+							<i class="menu-icon fa fa-tachometer"></i>
+							<span class="menu-text"> Dashboard </span>
+						</a>
+
+						<b class="arrow"></b>
+					</li>
+					<li class="">
+						<a href="report.html">
+							<i class="menu-icon fa fa-line-chart"></i>
+
+							<span class="menu-text">
+								Reports
+
+								<span class="badge badge-transparent tooltip-error" title="2 Important Events">
+									
+								</span>
+							</span>
+						</a>
+
+						<b class="arrow"></b>
+					</li>
+					<li class="">
+						<a href="employee.html">
+							<i class="menu-icon fa fa-users" aria-hidden="true"></i>
+							<span class="menu-text">
+								Employee
+
+								
+							</span>
+						</a>
+
+						<b class="arrow"></b>
+					</li>
+					<li class="">
+						<a href="time.html">
+							<i class="menu-icon fa fa-calendar" aria-hidden="true"></i>
+							<span class="menu-text">
+								Time & Attendence
+
+								
+							</span>
+						</a>
+
+						<b class="arrow"></b>
+					</li>
+					<li class="">
+						<a href="travel.html">
+							<i class="menu-icon fa fa-plane" aria-hidden="true"></i>
+							<span class="menu-text">
+								Leave
+
+								
+							</span>
+						</a>
+
+						<b class="arrow"></b>
+					</li>
+						<li class="">
+						<a href="pay.html">
+							<i class="menu-icon fa fa-money" aria-hidden="true"></i>
+							<span class="menu-text">
+								Pay
+
+								
+							</span>
+						</a>
+
+						<b class="arrow"></b>
+					</li>
+					<li><a href="index.html" style="color:black;">
+						<img src="assets/images/ebs_logo-1.png">
+					</a>
+				</li>
+						</ul>
+					</li>
+				</ul><!-- /.nav-list -->
+
+				<div class="sidebar-toggle sidebar-collapse" id="sidebar-collapse">
+					<i id="sidebar-toggle-icon" class="ace-icon fa fa-angle-double-left ace-save-state" data-icon1="ace-icon fa fa-angle-double-left" data-icon2="ace-icon fa fa-angle-double-right"></i>
+				</div>
+			</div>
+			<div class="main-content">
+				<div class="main-inner-content">
+					<div class="breadcrumbs ace-save-state" id="breadcrumbs">
+						<ul class="breadcrumb">
+							<li>
+								<i class="ace-icon fa fa-home home-icon"></i>
+								<a href="#">Import</a>
+							</li>
+							<li class="active">Employee</li>
+						</ul><!-- /.breadcrumb -->
+
+						<div class="nav-search" id="nav-search">
+							<form class="form-search">
+								<span class="input-icon">
+									<input type="text" placeholder="Search ..." class="nav-search-input" id="nav-search-input" autocomplete="off" />
+									<i class="ace-icon fa fa-search nav-search-icon"></i>
+								</span>
+							</form>
+						</div><!-- /.nav-search -->
+					</div>
+					<div class="page-header">
+							<h1>
+								Employee
+								<small>
+									<i class="ace-icon fa fa-angle-double-right"></i>
+									Stats & Info
+								</small>
+							</h1>
+						</div><!-- /.page-header -->
+						<div class="row">
+							<div class="col-md-12">
+								<div class="tab"> 
+									
+									<button  class="tablinks" onclick="openButton(event, 'Employee Information')" id="defaultOpen">Employee Information</button>
+									<button class="tablinks" onclick="openButton(event, 'Background Information')">Background Information</button>
+									<button class="tablinks" onclick="openButton(event, 'Previous Employment')">Previous Employment</button>
+									<button class="tablinks" onclick="openButton(event, 'Family Information')">Family Information</button>
+									<button class="tablinks" onclick="openButton(event, 'Attach Documents')">Attach Documents</button>
+									<button class="tablinks" onclick="openButton(event, 'Official Information')">Official Information</button>
+									<button class="tablinks" onclick="openButton(event, 'Organization Structure')">Salary Structure Page</button>
+								</div>
+								
+							</div>
+						</div>	
+					<div id="Employee Information" class="tabcontent" style="margin-top: 60px;">	
+<div class="container">					
+					<h3>Employee Information</h3>
+					<form>
+						<div class="row">
+						
+							<div class="col-md-12">
+								<div class="col-md-6">
+								<div class="row">
+									<button style="width:90%;height:35px;color:white" disabled>PERSONAL INFORMATION</button>
+									
+									<div class="row" style="padding:20px;">
+								
+									<button class="title" disabled>Salutation</button>
+								
+									<select class="form-control" style="    width: 32%;
+   
+    float: right;
+    margin-right: 89px;" >
+																<option value=""></option>
+																<option value="AL">Mr</option>
+																<option value="AK">Mrs</option>
+																
+																
+														
+															</select>
+														
+									</div>
+									<div class="row" style="padding:20px;">
+										<button class="title" disabled>First Name</button>
+										<input type="text" style="margin-left:10px;">
+									</div>	
+									<div class="row" style="padding:20px;">
+										<button class="title" disabled>Last Name</button>
+										<input type="text" style="margin-left:10px;">
+									</div>		
+									</div>
+									<div class="row" style="margin-top:40px;">
+									<button style="width:90%;height:35px;color:white" disabled>CURRENT ADDRESS</button>
+									
+									<div class="row" style="padding:20px;">
+									<button class="title" disabled>Address</button>
+									<textarea id="current-address-line-1" name="message" rows="2" cols="20" style="margin-left:10px; margin-bottom:-20px;">
+									</textarea>
+									</div>
+									
+									<div class="row" style="padding:20px;">
+										<button class="title" disabled>City</button>
+										<input type="text" style="margin-left:10px;">
+									</div>	
+									<div class="row" style="padding:20px;">
+										<button class="title" disabled>Country</button>
+										<input type="text" style="margin-left:10px;">
+									</div>		
+									<div class="row" style="padding:20px;">
+										<button class="title" disabled>State</button>
+										<input type="text" style="margin-left:10px;">
+									</div>
+										<div class="row" style="padding:20px;">
+										<button class="title" disabled>Post Code</button>
+										<input type="text" style="margin-left:10px;">
+									</div>
+									</div>
+										<div class="row">
+									<button style="width:90%;height:35px;color:white" disabled>OTHER PERSONAL INFORMATION</button>
+									
+									<div class="row" style="padding:20px;">
+									<button class="title" disabled>Pan No</button>
+									<input type="text" style="margin-left:10px;">
+									</div>
+									<div class="row" style="padding:20px;">
+										<button class="title" disabled>Uan No</button>
+										<input type="text" style="margin-left:10px;">
+									</div>	
+									<div class="row" style="padding:20px;">
+										<button class="title" disabled>Uid No</button>
+										<input type="text" style="margin-left:10px;">
+									</div>		
+									<div class="row" style="padding:20px;">
+										<button class="title" disabled>Passport No</button>
+										<input type="text" style="margin-left:10px;">
+									</div>
+									</div>
+									
+						</div>
+						<div class="col-md-6">
+								<div class="row">
+									<button style="width:90%;height:35px;color:white" disabled>EMERGENCY INFORMATION</button>
+									
+									<div class="row" style="padding:20px;">
+									<button class="title" disabled>Emergency Contact Name</button>
+									<input type="text" style="margin-left:10px;">
+									</div>
+									<div class="row" style="padding:20px;">
+										<button class="title" disabled>Relation</button>
+										<input type="text" style="margin-left:10px;">
+									</div>	
+									<div class="row" style="padding:20px;">
+										<button class="title" disabled>Contact Number</button>
+										<input type="text" style="margin-left:10px;">
+									</div>		
+									</div>
+									<div class="row">
+										<input type="checkbox" id="make-same">Same as Current Address
+									</div>	
+									<div class="row" style="margin-top:13px;">
+									<button id=""style="width:90%;height:35px;color:white" disabled>PERMANENT ADDRESS</button>
+									
+									<div class="row" style="padding:20px;">
+									<button class="title" disabled>Address</button>
+									<textarea id="permanent-address-line-1"name="message" rows="2" cols="20" style="margin-left:10px; margin-bottom:-20px;">
+									</textarea>
+									
+									</div>
+									<div class="row" style="padding:20px;">
+										<button class="title" disabled>City</button>
+										<input type="text" style="margin-left:10px;">
+									</div>	
+									<div class="row" style="padding:20px;">
+										<button class="title" disabled>Country</button>
+										<input type="text" style="margin-left:10px;">
+									</div>		
+									<div class="row" style="padding:20px;">
+										<button class="title" disabled>State</button>
+										<input type="text" style="margin-left:10px;">
+									</div>
+										<div class="row" style="padding:20px;">
+										<button class="title" disabled>Post Code</button>
+										<input type="text" style="margin-left:10px;">
+									</div>
+										</div>
+										<div class="row">
+									<button style="width:90%;height:35px;color:white" disabled>UPLOAD IMAGE</button>
+									</div>
+									<div class="row" style="padding:20px;">
+									<span class="profile-picture">
+													<img id="avatar" class="editable img-responsive" alt="Alex's Avatar" src="assets/images/avatars/profile-pic.jpg" />
+												</span>
+									</div>
+									<div class="row" style="padding:20%">
+									<button type="submit" class="btn btn-sm btn-success" style="    border-width: 4px;
+    font-size: 13px;
+    padding: 4px 9px;
+    line-height: 1.38;
+    width: 83px;
+    height: 37px;" >
+																Submit
+																<i class="ace-icon fa fa-arrow-right icon-on-right bigger-110"></i>
+															</button>
+									</div>
+									
+						</div>
+						</div>
+						</div>
+						</form>
+						</div>
+						</div>
+						<div id="Background Information" class="tabcontent" style="margin-top: 60px;">
+						<div class="container">
+						<form>
+						<h3>Background Information</h3> 
+						<div class="row">
+					
+						<button style="width:50%;height:35px;color:white" disabled>EMPLOYEE EDUCATION DETAILS</button>
+						</div>
+						
+							<div class="row">
+						<div class="col-md-8" style="padding:100px;">
+						<div style="overflow-x:auto;">	
+							<table id="myTable">
+								<tr id="non">
+									<th><button style="width:100%;height:35px;background-color:#fbefcc;color:black" disabled>Academic Degree</button></th>
+									<th><button style="width:100%;height:35px;background-color:#fbefcc;color:black" disabled>Institution</button></th>
+									<th><button style="width:100%;height:35px;background-color:#fbefcc;color:black" disabled>From-Year</button></th>
+									<th><button style="width:100%;height:35px;background-color:#fbefcc;color:black" disabled>To Year</button></th>
+									<th><button style="width:100%;height:35px;background-color:#fbefcc;color:black" disabled>Grade/Percentage</button></th>
+								</tr>
+								<tr>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+								</tr>
+							</table>
+							</div>
+						</div>
+					<div class="col-md-4" style="padding:100px;">
+					<i onclick="myFunction()" class="fa fa-plus" aria-hidden="true"  style="    width: 25px;
+    height: 25px;"></i>
+	<i onclick="myFunctionDel()" class="fa fa-trash-o" aria-hidden="true"  style="    width: 25px;
+    height: 25px;"></i>
+							</div>
+							</div>
+							<div class="row">
+							<button style="width:50%;height:35px;color:white" disabled>LANGUAGE DETAILS</button>
+								<div class="col-md-8" style="padding:100px;">
+						<div style="overflow-x:auto;">	
+							<table id="table">
+								<tr >
+									<th>	<button style="width:100%;height:35px;background-color:#fbefcc;color:black" disabled>Language Name</button></th>
+									<th><button style="width:100%;height:35px;background-color:#fbefcc;color:black" disabled>Read</button></th>
+									<th><button style="width:100%;height:35px;background-color:#fbefcc;color:black" disabled>Write</button></th>
+									<th><button style="width:100%;height:35px;background-color:#fbefcc;color:black" disabled>Speak</button></th>
+									
+								</tr>
+								<tr>
+									<td><input type="text" style="display: block;margin: 0 auto;"></td>
+									<td><input type="checkbox" style="display: block;margin: 0 auto;"></td>
+									<td><input type="checkbox" style="display: block;margin: 0 auto;"></td>
+									<td><input type="checkbox" style="display: block;margin: 0 auto;"></td>
+									
+								</tr>
+							</table>
+							</div>
+						</div>
+						<div class="col-md-2">
+									
+									
+									<i onclick="addRow('table')"class="fa fa-plus" aria-hidden="true" style="margin-top:120px"></i>
+										<i onclick="myFunctionDele()"class="fa fa-trash-o" aria-hidden="true" style="margin-top:120px"></i></div>
+									</div>
+								
+									<div class="row">
+									<button type="submit" class="btn btn-sm btn-success" style="    border-width: 4px;
+    font-size: 13px;
+    padding: 4px 9px;
+    line-height: 1.38;
+    width: 83px;
+    height: 37px; 
+	float:right;
+	margin-right:160px;">
+																Submit
+																<i class="ace-icon fa fa-arrow-right icon-on-right bigger-110"></i>
+															</button>
+									</div>
+							</form>	
+						</div>
+						</div>
+						<div id="Previous Employment" class="tabcontent" style="margin-top: 60px;">	
+						<div class="container">
+							
+						<div class="row">
+						<h3>Previous Employment</h3>
+							<div class="col-md-12">
+							<form>
+								<div class="col-md-6">
+								 <div class="content" id="wrapper"> 
+								<div class="row">
+									<button style="width:90%;height:35px;color:white" disabled>COMPANY INFORMATION</button>
+									
+									<div class="row" style="padding:20px;">
+								
+									<button class="title" disabled>Compnay Name</button>
+									<input type="text" style="margin-left:10px;">
+									</div>
+									<div class="row" style="padding:20px;">
+										<button class="title" disabled>Location</button>
+										<input type="text" style="margin-left:10px;">
+									</div>	
+									<div class="row" style="padding:20px;">
+										<button class="title" disabled>City</button>
+										<input type="text" style="margin-left:10px;">
+									</div>		
+									<div class="row" style="padding:20px;">
+										<button class="title" disabled>Country</button>
+										<input type="text" style="margin-left:10px;">
+									</div>	
+									<div class="row" style="padding:20px;">
+										<button class="title" disabled>State</button>
+										<input type="text" style="margin-left:10px;">
+									</div>	
+									<div class="row" style="padding:20px;">
+										<button class="title" disabled>Designation</button>
+										<input type="text" style="margin-left:10px;">
+									</div>	
+									<div class="row" style="padding:20px;">
+										<button class="title" disabled>Skills</button>
+										<input type="text" style="margin-left:10px;">
+									</div>	
+									<div class="row" style="padding:20px;">
+										<button class="title" disabled>From Period</button>
+										<input type="text" style="margin-left:10px;">
+									</div>	
+									<div class="row" style="padding:20px;">
+										<button class="title" disabled>To Period</button>
+										<input type="text" style="margin-left:10px;">
+									</div>	
+									<div class="row" style="padding:20px;">
+										<button class="title" disabled>Contact No</button>
+										<input type="text" style="margin-left:10px;">
+									</div>	
+									<div class="row" style="padding:20px;">
+										<button class="title" disabled>Reporting Manager's Name</button>
+										<input type="text" style="margin-left:10px;">
+									</div>	
+									<div class="row" style="padding:20px;">
+										<button class="title" disabled>Contact No</button>
+										<input type="text" style="margin-left:10px;">
+									</div>	
+									<div class="row" style="padding:20px;">
+										<button class="title" disabled>Hr Manager Name</button>
+										<input type="text" style="margin-left:10px;">
+									</div>	
+									</div>
+									</div>
+									<div class="col-md-4">
+					<i id="more_fields" onclick="add_fields();" value="Add More" class="fa fa-plus" aria-hidden="true"  style="    width: 25px;
+    height: 25px;"></i>
+<i id="del"  value="Add More" class="fa fa-trash-o" aria-hidden="true"  style="    width: 25px;
+    height: 25px;"></i>
+							</div>
+						</div>
+						<div class="col-md-6">
+						 <div class="content" id="wrapperOne"> 
+								<div class="row">
+									<button style="width:90%;height:35px;color:white" disabled>REFRENCES</button>
+									
+									<div class="row" style="padding:20px;">
+								
+									<button class="title" disabled>Name</button>
+									<input type="text" style="margin-left:10px;">
+									</div>
+									<div class="row" style="padding:20px;">
+										<button class="title" disabled>Company</button>
+										<input type="text" style="margin-left:10px;">
+									</div>	
+									<div class="row" style="padding:20px;">
+										<button class="title" disabled>Designation</button>
+										<input type="text" style="margin-left:10px;">
+									</div>		
+									<div class="row" style="padding:20px;">
+										<button class="title" disabled>Contact Number</button>
+										<input type="text" style="margin-left:10px;">
+									</div>	
+									<div class="row" style="padding:20px;">
+										<button class="title" disabled>Email Id</button>
+										<input type="text" style="margin-left:10px;">
+									</div>	
+									<div class="row" style="padding:20px;">
+										<button class="title" disabled>Relation</button>
+										<input type="text" style="margin-left:10px;">
+									</div>	
+								
+									
+								
+										
+									</div>
+									</div>
+										<div class="col-md-4">
+					<i id="more_fields" onclick="add_fieldsOne();" value="Add More" class="fa fa-plus" aria-hidden="true"  style="    width: 25px;
+    height: 25px;"></i>
+	<i id="delOne"  value="Add More" class="fa fa-trash-o" aria-hidden="true"  style="    width: 25px;
+    height: 25px;"></i>
+							</div>
+						</div>
+						<div class="row">
+									<button type="submit" class="btn btn-sm btn-success" style="    border-width: 4px;
+    font-size: 13px;
+    padding: 4px 9px;
+    line-height: 1.38;
+    width: 83px;
+    height: 37px; 
+	float:right;
+	margin-right:160px;">
+																Submit
+																<i class="ace-icon fa fa-arrow-right icon-on-right bigger-110"></i>
+															</button>
+									</div>
+									</form>
+						</div>
+							
+							
+							
+							</div>
+							</div>
+							</div>
+							<div id="Family Information" class="tabcontent" style="margin-top: 60px;">	
+							<div class="container-fluid">
+							<div class="row">
+							<h3>Family Information</h3>
+						<form>
+							<div class="col-md-12">
+							<form>
+								<div class="col-md-4">
+								
+								<div class="row">
+									<button style="width:90%;height:35px;color:white" disabled>Father's Detail</button>
+									
+									<div class="row" style="padding:20px;">
+								
+									<button class="title" disabled>Name</button>
+									<input type="text" style="margin-left:10px;    width: 147px;">
+									</div>
+									
+										<div class="row" style="padding:20px;">
+										<button class="title" disabled>Date of Birth</button>
+
+									<input type="date" style="margin-left:10px">
+									</div>	
+									
+									<div class="row" style="padding:20px;">
+										<button class="title" disabled>Education</button>
+										<input type="text" style="margin-left:10px;    width: 147px;">
+									</div>		
+									<div class="row" style="padding:20px;">
+										<button class="title" disabled>Occupation</button>
+										<input type="text" style="margin-left:10px;    width: 147px;">
+									</div>	
+									<div class="row" style="padding:20px;">
+										<button class="title" disabled>Contact No</button>
+										<input type="text" style="margin-left:10px;    width: 147px;">
+									</div>		
+									</div>
+							</div>
+							<div class="col-md-4">
+								
+								<div class="row">
+									<button style="width:90%;height:35px;color:white" disabled>Mother's Detail</button>
+									
+									<div class="row" style="padding:20px;">
+								
+									<button class="title" disabled>Name</button>
+									<input type="text" style="margin-left:10px;    width: 147px;">
+									</div>
+									<div class="row" style="padding:20px;">
+										<button class="title" disabled>Date Of Birth</button>
+										<input type="date" style="margin-left:10px;">
+									</div>	
+									<div class="row" style="padding:20px;">
+										<button class="title" disabled>Education</button>
+										<input type="text" style="margin-left:10px;    width: 147px;">
+									</div>		
+									<div class="row" style="padding:20px;">
+										<button class="title" disabled>Occupation</button>
+										<input type="text" style="margin-left:10px;    width: 147px;">
+									</div>	
+									<div class="row" style="padding:20px;">
+										<button class="title" disabled>Contact No</button>
+										<input type="text" style="margin-left:10px;    width: 147px;">
+									</div>		
+									</div>
+							</div>
+							<div class="col-md-4">
+								
+								<div class="row">
+									<button style="width:90%;height:35px;color:white" disabled>Spouse Detail</button>
+									
+									<div class="row" style="padding:20px;">
+								
+									<button class="title" disabled>Name</button>
+									<input type="text" style="margin-left:10px;    width: 147px;">
+									</div>
+									<div class="row" style="padding:20px;">
+										<button class="title" disabled>Date Of Birth</button>
+										<input type="date" style="margin-left:10px;    ">
+									</div>	
+									<div class="row" style="padding:20px;">
+										<button class="title" disabled>Education</button>
+										<input type="text" style="margin-left:10px;    width: 147px;">
+									</div>		
+									<div class="row" style="padding:20px;">
+										<button class="title" disabled>Occupation</button>
+										<input type="text" style="margin-left:10px;    width: 147px;">
+									</div>	
+									<div class="row" style="padding:20px;">
+										<button class="title" disabled>Contact No</button>
+										<input type="text" style="margin-left:10px;    width: 147px;">
+									</div>		
+									</div>
+							</div>
+							</div>
+						<div class="col-md-12">
+							
+								<div class="col-md-4">
+														 <div class="content" id="wrapperTwo">
+								<div class="row">
+									<button style="width:90%;height:35px;color:white" disabled>Sibling Detail</button>
+									
+									<div class="row" style="padding:20px;">
+								
+									<button class="title" disabled>Name</button>
+									<input type="text" style="margin-left:10px;    width: 147px;">
+									</div>
+									<div class="row" style="padding:20px;">
+										<button class="title" disabled>Date Of Birth</button>
+										<input type="date" style="margin-left:10px;">
+									</div>	
+									<div class="row" style="padding:20px;">
+										<button class="title" disabled>Education</button>
+										<input type="text" style="margin-left:10px;    width: 147px;">
+									</div>		
+									<div class="row" style="padding:20px;">
+										<button class="title" disabled>Occupation</button>
+										<input type="text" style="margin-left:10px;    width: 147px;">
+									</div>	
+									<div class="row" style="padding:20px;">
+										<button class="title" disabled>Contact No</button>
+										<input type="text" style="margin-left:10px;    width: 147px;">
+									</div>		
+									</div>
+									</div>
+									<div class="col-md-4">
+					<i id="more_fields" onclick="add_fieldsTwo();" value="Add More" class="fa fa-plus" aria-hidden="true"  style="    width: 25px;
+    height: 25px;"></i>
+		<i id="delTwo"  value="Add More" class="fa fa-trash-o" aria-hidden="true"  style="    width: 25px;
+    height: 25px;"></i>
+							</div>
+							
+							</div>
+							
+							<div class="col-md-4">
+														 <div class="content" id="wrapperThree">
+								<div class="row">
+									<button style="width:90%;height:35px;color:white" disabled>Child Detail</button>
+									
+									<div class="row" style="padding:20px;">
+								
+									<button class="title" disabled>Name</button>
+									<input type="text" style="margin-left:10px;    width: 147px;">
+									</div>
+									<div class="row" style="padding:20px;">
+										<button class="title" disabled>Date Of Birth</button>
+										<input type="date" style="margin-left:10px;">
+									</div>	
+									<div class="row" style="padding:20px;">
+										<button class="title" disabled>Education</button>
+										<input type="text" style="margin-left:10px;    width: 147px;">
+									</div>		
+									<div class="row" style="padding:20px;">
+										<button class="title" disabled>Occupation</button>
+										<input type="text" style="margin-left:10px;    width: 147px;">
+									</div>	
+									<div class="row" style="padding:20px;">
+										<button class="title" disabled>Contact No</button>
+										<input type="text" style="margin-left:10px;    width: 147px;">
+									</div>		
+									</div>
+									</div>
+									<div class="col-md-4">
+					<i id="more_fields" onclick="add_fieldsThree();" value="Add More" class="fa fa-plus" aria-hidden="true"  style="    width: 25px;
+    height: 25px;"></i>
+	<i id="delThree"  value="Add More" class="fa fa-trash-o" aria-hidden="true"  style="    width: 25px;
+    height: 25px;"></i>
+							</div>
+							</div>
+							</div>
+							<div class="row">
+									<button type="submit" class="btn btn-sm btn-success" style="    border-width: 4px;
+    font-size: 13px;
+    padding: 4px 9px;
+    line-height: 1.38;
+    width: 83px;
+    height: 37px; 
+	float:right;
+	margin-right:160px;">
+																Submit
+																<i class="ace-icon fa fa-arrow-right icon-on-right bigger-110"></i>
+															</button>
+									</div>
+									</form>
+							</div>
+							</div>
+							</div>
+							<div id="Attach Documents" class="tabcontent" style="margin-top: 60px;">	
+							<div class="container">
+							<form>
+							<div class="row">
+							<h3>Attach Documents</h3>
+						
+							<div class="col-md-12">
+					
+								<div class="col-md-6">
+								
+								<div class="row">
+								
+									
+									<div class="row" style="padding:20px;">
+								
+									<button class="title" disabled>Resume</button>
+									<input type="file" style="margin-left:10px;">
+									</div>
+									<div class="row" style="padding:20px;">
+										<button class="title" disabled>Pan Card</button>
+										<input type="file" style="margin-left:10px;">
+									</div>	
+									<div class="row" style="padding:20px;">
+										<button class="title" disabled>Aadhar Card</button>
+										<input type="file" style="margin-left:10px;">
+									</div>		
+									<div class="row" style="padding:20px;">
+										<button class="title" disabled>Address Proof</button>
+										<input type="file" style="margin-left:10px;">
+									</div>	
+											
+									</div>
+							</div>
+							<div class="col-md-6">
+								
+								<div class="row">
+									
+									
+									<div class="row" style="padding:20px;">
+								
+									<button class="title" disabled>10th Marks List</button>
+									<input type="file" style="margin-left:10px;">
+									</div>
+									<div class="row" style="padding:20px;">
+										<button class="title" disabled>12th Marks List</button>
+										<input type="file" style="margin-left:10px;">
+									</div>	
+									<div class="row" style="padding:20px;">
+										<button class="title" disabled>Graduation Marks List</button>
+										<input type="file" style="margin-left:10px;">
+									</div>		
+									 <div class="content" id="wrapperFour">
+									<div class="row" style="padding:20px;">
+										<button class="title" disabled>PG Marks List</button>
+										<input type="file" style="margin-left:10px;">
+									</div>	
+									</div>
+											
+											<div class="col-md-4">
+					<i id="more_fields" onclick="add_fieldsFour();" value="Add More" class="fa fa-plus" aria-hidden="true"  style="    width: 25px;
+    height: 25px;"></i>
+	<i id="delFour"  value="Add More" class="fa fa-trash-o" aria-hidden="true"  style="    width: 25px;
+    height: 25px;"></i>
+							</div>
+									</div>
+							</div>
+								<div class="row">
+									<button type="submit" class="btn btn-sm btn-success" style="    border-width: 4px;
+    font-size: 13px;
+    padding: 4px 9px;
+    line-height: 1.38;
+    width: 83px;
+    height: 37px; 
+	float:right;
+	margin-right:160px;">
+																Submit
+																<i class="ace-icon fa fa-arrow-right icon-on-right bigger-110"></i>
+															</button>
+									</div>
+							</div>
+							</div>
+							</form>
+							</div>
+							</div>
+								<div id="Official Information" class="tabcontent" style="margin-top: 60px;">	
+							<div class="container">
+							
+							<div class="row">
+							<h3>Official Information</h3>
+						<form>
+							<div class="col-md-12">
+							<form>
+								<div class="col-md-6">
+								
+								<div class="row">
+									
+									
+									<div class="row" style="padding:20px;">
+								
+									<button class="title" disabled>Organization</button>
+									<select class="form-control" style="    width: 29%;
+   
+    float: right;
+    margin-right: 60px;" >
+																<option value=""></option>
+																<option value="AL">Org-1</option>
+																<option value="AK">Org-2</option>
+																
+																
+														
+															</select>
+									</div>
+									<div class="row" style="padding:20px;">
+										<button class="title" disabled>Work Location</button>
+									<select class="form-control" style="    width: 29%;
+   
+    float: right;
+    margin-right: 60px;" >	
+									<option value=""></option>
+									<option>Singasandra</option>
+									<option>RR Nagar</option>
+									<option>Abu Dhabhi</option>
+									<option>Oman</option>
+									</select>
+									</div>	
+									<div class="row" style="padding:20px;">
+										<button class="title" disabled>Department</button>
+										<select class="form-control" style="    width: 29%;
+   
+    float: right;
+    margin-right: 60px;" >
+									<option value=""></option>
+									<option>HR</option>
+									<option>IT-Development</option>
+									<option>Testing</option>
+									<option>Project management</option>
+									<option>Pre-Sales</option>
+									<option>IT-Support</option>
+									<option>Finance</option>
+									<option>Legal</option>
+									<option>BPO</option>
+									</select>
+									</div>		
+									<div class="row" style="padding:20px;">
+										<button class="title" disabled>Grade</button>
+										<select class="form-control" style="    width: 29%;
+   
+    float: right;
+    margin-right: 60px;" >
+									<option></option>
+									<option>HR</option>
+									<option>IT-Development</option>
+									<option>Testing</option>
+									<option>Project management</option>
+									<option>Pre-Sales</option>
+									<option>IT-Support</option>
+									<option>Finance</option>
+									<option>Legal</option>
+									<option>BPO</option>
+									</select>
+									</div>	
+									<div class="row" style="padding:20px;">
+										<button class="title" disabled>Designation</button>
+										<select class="form-control" style="    width: 29%;
+   
+    float: right;
+    margin-right: 60px;" >
+									<option></option>
+									<option>HR</option>
+									<option>IT-Development</option>
+									<option>Testing</option>
+									<option>Project management</option>
+									<option>Pre-Sales</option>
+									<option>IT-Support</option>
+									<option>Finance</option>
+									<option>Legal</option>
+									<option>BPO</option>
+									</select>
+									</div>		
+									<div class="row" style="padding:20px;">
+										<button class="title" disabled>Employee/Contractor</button>
+										<select class="form-control" style="    width: 29%;
+   
+    float: right;
+    margin-right: 60px;" >
+									<option></option>
+									<option>Employee</option>
+									<option>Contractor</option>
+									</select>
+									</div>
+										<div class="row" style="padding:20px;">
+										<button class="title" disabled>Employee Type</button>
+										<select class="form-control" style="    width: 29%;
+   
+    float: right;
+    margin-right: 60px;" >
+									<option></option>
+									<option>Full Time</option>
+									<option>Part Time</option>
+									<option>Contractual</option>
+									<option>Consultant</option>
+									</select>
+									</div>	
+										<div class="row" style="padding:20px;">
+										<button class="title" disabled>Employee Code</button>
+										<select class="form-control" style="    width: 29%;
+   
+    float: right;
+    margin-right: 60px;" >
+									<option></option>
+									<option>HR</option>
+									<option>IT-Development</option>
+									<option>Testing</option>
+									<option>Project management</option>
+									<option>Pre-Sales</option>
+									<option>IT-Support</option>
+									<option>Finance</option>
+									<option>Legal</option>
+									<option>BPO</option>
+									</select>
+									</div>		
+										<div class="row" style="padding:20px;">
+										<button class="title" disabled>Date of Joining</button>
+									<input type="date" style="margin-left:53px;width:29%">
+									</div>	
+<div class="row" style="padding:20px;">
+								
+									<button class="title" disabled>Reporting manager</button>
+										<select class="form-control" style="    width: 29%;
+   
+    float: right;
+    margin-right: 60px;" >
+									<option></option>
+									<option>Employee</option>
+									<option>Contractor</option>
+									</select>
+									</div>
+									<div class="row" style="padding:20px;">
+										<button class="title" disabled>HR</button>
+											<select class="form-control" style="    width: 29%;
+   
+    float: right;
+    margin-right: 60px;" >
+									<option></option>
+									<option>Anju</option>
+									<option>.....</option>
+									</select>
+									</div>										
+									</div>
+							</div>
+							<div class="col-md-6">
+								
+								<div class="row">
+									
+									
+									
+									<div class="row" style="padding:20px;">
+										<button class="title" disabled>Employee Status</button>
+											<select class="form-control" style="    width: 33%;
+   
+    float: right;
+    margin-right: 38px;" >
+									<option></option>
+									<option>Probation</option>
+									<option>Permanent</option>
+									<option>Temporary</option>
+									<option>Resigned</option>
+									</select>
+									</div>		
+									<div class="row" style="padding:20px;">
+										<button class="title" disabled>Probation period</button>
+										<input type="text" style="margin-left:53px;">
+									</div>	
+									<div class="row" style="padding:20px;">
+										<button class="title" disabled>Notice Period</button>
+										<input type="text" style="margin-left:53px;">
+									</div>		
+									<div class="row" style="padding:20px;">
+										<button class="title" disabled>Select Leave Type</button>
+										<input type="text" style="margin-left:53px;">
+									</div>
+									<div class="row" style="padding:20px;">
+										<button class="title" disabled>Payment Mode</button>
+										<select class="form-control" style="    width: 33%;
+   
+    float: right;
+    margin-right: 38px;" >
+									<option></option>
+									<option>Probation</option>
+									<option>Permanent</option>
+									<option>Temporary</option>
+									<option>Resigned</option>
+									</select>
+									</div>
+									<div class="row" style="padding:20px;">
+										<button class="title" disabled>Bank Name</button>
+											<input type="text" style="margin-left:53px;">
+									</div>
+									<div class="row" style="padding:20px;">
+										<button class="title" disabled>Account Number</button>
+											<input type="text" style="margin-left:53px;">
+									</div>
+									
+									<div class="row" style="padding:20px;">
+								
+									<button class="title" disabled>Corporate Mobile</button>
+									<input type="text" style="margin-left:53px;">
+									</div>
+										<div class="row" style="padding:20px;">
+								
+									<button class="title" disabled>Corporate Mobile</button>
+									<input type="text" style="margin-left:53px;">
+									</div>
+									<div class="row" style="padding:20px;">
+										<button class="title" disabled>Corporte Email-Id</button>
+										<input type="text" style="margin-left:53px;">
+									</div>	
+										<div class="row" style="padding:20px;">
+										<button class="title" disabled>Form-16</button>
+										<input type="checkbox" style="margin-left:53px;">
+									</div>
+									<div class="row">
+									<button type="submit" class="btn btn-sm btn-success" style="    border-width: 4px;
+    font-size: 13px;
+    padding: 4px 9px;
+    line-height: 1.38;
+    width: 83px;
+    height: 37px; 
+	float:right;
+	margin-right:160px;">
+																Submit
+																<i class="ace-icon fa fa-arrow-right icon-on-right bigger-110"></i>
+															</button>
+									</div>
+							</div>
+							
+							</div>
+				
+							
+									</div>
+									</form>
+							</div>
+							</form>
+							</div>
+							</div>
+							</div>
+<div class="footer">
+				<div class="footer-inner">
+					<div class="footer-content">
+						<span class="bigger-120">
+							<span class="blue bolder">ExcelbizSolutions</span>
+							 &copy; 2017
+						</span>
+
+						&nbsp; &nbsp;
+						<span class="action-buttons">
+							<a href="#">
+								<i class="ace-icon fa fa-twitter-square light-blue bigger-150"></i>
+							</a>
+
+							<a href="#">
+								<i class="ace-icon fa fa-facebook-square text-primary bigger-150"></i>
+							</a>
+
+							<a href="#">
+								<i class="ace-icon fa fa-rss-square orange bigger-150"></i>
+							</a>
+						</span>
+					</div>
+				</div>
+			</div>
+
+			<a href="#" id="btn-scroll-up" class="btn-scroll-up btn btn-sm btn-inverse">
+				<i class="ace-icon fa fa-angle-double-up icon-only bigger-110"></i>
+			</a>
+		</div><!-- /.main-container -->
+
+		<!-- basic scripts -->
+
+		<!--[if !IE]> -->
+		<script src="assets/js/jquery-2.1.4.min.js"></script>
+
+		<!-- <![endif]-->
+
+		<!--[if IE]>
+<script src="assets/js/jquery-1.11.3.min.js"></script>
+<![endif]-->
+		<script type="text/javascript">
+			if('ontouchstart' in document.documentElement) document.write("<script src='assets/js/jquery.mobile.custom.min.js'>"+"<"+"/script>");
+		</script>
+		<script src="assets/js/bootstrap.min.js"></script>
+
+		<!-- page specific plugin scripts -->
+
+		<!--[if lte IE 8]>
+		  <script src="assets/js/excanvas.min.js"></script>
+		<![endif]-->
+		<script src="assets/js/jquery-ui.custom.min.js"></script>
+		<script src="assets/js/jquery.ui.touch-punch.min.js"></script>
+		<script src="assets/js/jquery.gritter.min.js"></script>
+		<script src="assets/js/bootbox.js"></script>
+		<script src="assets/js/jquery.easypiechart.min.js"></script>
+		<script src="assets/js/bootstrap-datepicker.min.js"></script>
+		<script src="assets/js/jquery.hotkeys.index.min.js"></script>
+		<script src="assets/js/bootstrap-wysiwyg.min.js"></script>
+		<script src="assets/js/select2.min.js"></script>
+		<script src="assets/js/spinbox.min.js"></script>
+		<script src="assets/js/bootstrap-editable.min.js"></script>
+		<script src="assets/js/ace-editable.min.js"></script>
+		<script src="assets/js/jquery.maskedinput.min.js"></script>
+
+		<!-- ace scripts -->
+		<script src="assets/js/ace-elements.min.js"></script>
+		<script src="assets/js/ace.min.js"></script>
+
+		<!-- inline scripts related to this page -->
+		<script type="text/javascript">
+			jQuery(function($) {
+			
+				//editables on first profile page
+				$.fn.editable.defaults.mode = 'inline';
+				$.fn.editableform.loading = "<div class='editableform-loading'><i class='ace-icon fa fa-spinner fa-spin fa-2x light-blue'></i></div>";
+			    $.fn.editableform.buttons = '<button type="submit" class="btn btn-info editable-submit"><i class="ace-icon fa fa-check"></i></button>'+
+			                                '<button type="button" class="btn editable-cancel"><i class="ace-icon fa fa-times"></i></button>';    
+				
+				//editables 
+				
+				//text editable
+			    $('#username')
+				.editable({
+					type: 'text',
+					name: 'username'		
+			    });
+			
+			
+				
+				//select2 editable
+				var countries = [];
+			    $.each({ "CA": "Canada", "IN": "India", "NL": "Netherlands", "TR": "Turkey", "US": "United States"}, function(k, v) {
+			        countries.push({id: k, text: v});
+			    });
+			
+				var cities = [];
+				cities["CA"] = [];
+				$.each(["Toronto", "Ottawa", "Calgary", "Vancouver"] , function(k, v){
+					cities["CA"].push({id: v, text: v});
+				});
+				cities["IN"] = [];
+				$.each(["Delhi", "Mumbai", "Bangalore"] , function(k, v){
+					cities["IN"].push({id: v, text: v});
+				});
+				cities["NL"] = [];
+				$.each(["Amsterdam", "Rotterdam", "The Hague"] , function(k, v){
+					cities["NL"].push({id: v, text: v});
+				});
+				cities["TR"] = [];
+				$.each(["Ankara", "Istanbul", "Izmir"] , function(k, v){
+					cities["TR"].push({id: v, text: v});
+				});
+				cities["US"] = [];
+				$.each(["New York", "Miami", "Los Angeles", "Chicago", "Wysconsin"] , function(k, v){
+					cities["US"].push({id: v, text: v});
+				});
+				
+				var currentValue = "NL";
+			    $('#country').editable({
+					type: 'select2',
+					value : 'NL',
+					//onblur:'ignore',
+			        source: countries,
+					select2: {
+						'width': 140
+					},		
+					success: function(response, newValue) {
+						if(currentValue == newValue) return;
+						currentValue = newValue;
+						
+						var new_source = (!newValue || newValue == "") ? [] : cities[newValue];
+						
+						//the destroy method is causing errors in x-editable v1.4.6+
+						//it worked fine in v1.4.5
+						/**			
+						$('#city').editable('destroy').editable({
+							type: 'select2',
+							source: new_source
+						}).editable('setValue', null);
+						*/
+						
+						//so we remove it altogether and create a new element
+						var city = $('#city').removeAttr('id').get(0);
+						$(city).clone().attr('id', 'city').text('Select City').editable({
+							type: 'select2',
+							value : null,
+							//onblur:'ignore',
+							source: new_source,
+							select2: {
+								'width': 140
+							}
+						}).insertAfter(city);//insert it after previous instance
+						$(city).remove();//remove previous instance
+						
+					}
+			    });
+			
+				$('#city').editable({
+					type: 'select2',
+					value : 'Amsterdam',
+					//onblur:'ignore',
+			        source: cities[currentValue],
+					select2: {
+						'width': 140
+					}
+			    });
+			
+			
+				
+				//custom date editable
+				$('#signup').editable({
+					type: 'adate',
+					date: {
+						//datepicker plugin options
+						    format: 'yyyy/mm/dd',
+						viewformat: 'yyyy/mm/dd',
+						 weekStart: 1
+						 
+						//,nativeUI: true//if true and browser support input[type=date], native browser control will be used
+						//,format: 'yyyy-mm-dd',
+						//viewformat: 'yyyy-mm-dd'
+					}
+				})
+			
+			    $('#age').editable({
+			        type: 'spinner',
+					name : 'age',
+					spinner : {
+						min : 16,
+						max : 99,
+						step: 1,
+						on_sides: true
+						//,nativeUI: true//if true and browser support input[type=number], native browser control will be used
+					}
+				});
+				
+			
+			    $('#login').editable({
+			        type: 'slider',
+					name : 'login',
+					
+					slider : {
+						 min : 1,
+						  max: 50,
+						width: 100
+						//,nativeUI: true//if true and browser support input[type=range], native browser control will be used
+					},
+					success: function(response, newValue) {
+						if(parseInt(newValue) == 1)
+							$(this).html(newValue + " hour ago");
+						else $(this).html(newValue + " hours ago");
+					}
+				});
+			
+				$('#about').editable({
+					mode: 'inline',
+			        type: 'wysiwyg',
+					name : 'about',
+			
+					wysiwyg : {
+						//css : {'max-width':'300px'}
+					},
+					success: function(response, newValue) {
+					}
+				});
+				
+				
+				
+				// *** editable avatar *** //
+				try {//ie8 throws some harmless exceptions, so let's catch'em
+			
+					//first let's add a fake appendChild method for Image element for browsers that have a problem with this
+					//because editable plugin calls appendChild, and it causes errors on IE at unpredicted points
+					try {
+						document.createElement('IMG').appendChild(document.createElement('B'));
+					} catch(e) {
+						Image.prototype.appendChild = function(el){}
+					}
+			
+					var last_gritter
+					$('#avatar').editable({
+						type: 'image',
+						name: 'avatar',
+						value: null,
+						//onblur: 'ignore',  //don't reset or hide editable onblur?!
+						image: {
+							//specify ace file input plugin's options here
+							btn_choose: 'Click Here',
+							droppable: true,
+							maxSize: 110000,//~100Kb
+			
+							//and a few extra ones here
+							name: 'avatar',//put the field name here as well, will be used inside the custom plugin
+							on_error : function(error_type) {//on_error function will be called when the selected file has a problem
+								if(last_gritter) $.gritter.remove(last_gritter);
+								if(error_type == 1) {//file format error
+									last_gritter = $.gritter.add({
+										title: 'File is not an image!',
+										text: 'Please choose a jpg|gif|png image!',
+										class_name: 'gritter-error gritter-center'
+									});
+								} else if(error_type == 2) {//file size rror
+									last_gritter = $.gritter.add({
+										title: 'File too big!',
+										text: 'Image size should not exceed 100Kb!',
+										class_name: 'gritter-error gritter-center'
+									});
+								}
+								else {//other error
+								}
+							},
+							on_success : function() {
+								$.gritter.removeAll();
+							}
+						},
+					    url: function(params) {
+							// ***UPDATE AVATAR HERE*** //
+							//for a working upload example you can replace the contents of this function with 
+							//examples/profile-avatar-update.js
+			
+							var deferred = new $.Deferred
+			
+							var value = $('#avatar').next().find('input[type=hidden]:eq(0)').val();
+							if(!value || value.length == 0) {
+								deferred.resolve();
+								return deferred.promise();
+							}
+			
+			
+							//dummy upload
+							setTimeout(function(){
+								if("FileReader" in window) {
+									//for browsers that have a thumbnail of selected image
+									var thumb = $('#avatar').next().find('img').data('thumb');
+									if(thumb) $('#avatar').get(0).src = thumb;
+								}
+								
+								deferred.resolve({'status':'OK'});
+			
+								if(last_gritter) $.gritter.remove(last_gritter);
+								last_gritter = $.gritter.add({
+									title: 'Avatar Updated!',
+									text: 'Uploading to server can be easily implemented. A working example is included with the template.',
+									class_name: 'gritter-info gritter-center'
+								});
+								
+							 } , parseInt(Math.random() * 800 + 800))
+			
+							return deferred.promise();
+							
+							// ***END OF UPDATE AVATAR HERE*** //
+						},
+						
+						success: function(response, newValue) {
+						}
+					})
+				}catch(e) {}
+				
+				/**
+				//let's display edit mode by default?
+				var blank_image = true;//somehow you determine if image is initially blank or not, or you just want to display file input at first
+				if(blank_image) {
+					$('#avatar').editable('show').on('hidden', function(e, reason) {
+						if(reason == 'onblur') {
+							$('#avatar').editable('show');
+							return;
+						}
+						$('#avatar').off('hidden');
+					})
+				}
+				*/
+			
+				//another option is using modals
+				$('#avatar2').on('click', function(){
+					var modal = 
+					'<div class="modal fade">\
+					  <div class="modal-dialog">\
+					   <div class="modal-content">\
+						<div class="modal-header">\
+							<button type="button" class="close" data-dismiss="modal">&times;</button>\
+							<h4 class="blue">Change Avatar</h4>\
+						</div>\
+						\
+						<form class="no-margin">\
+						 <div class="modal-body">\
+							<div class="space-4"></div>\
+							<div style="width:75%;margin-left:12%;"><input type="file" name="file-input" /></div>\
+						 </div>\
+						\
+						 <div class="modal-footer center">\
+							<button type="submit" class="btn btn-sm btn-success"><i class="ace-icon fa fa-check"></i> Submit</button>\
+							<button type="button" class="btn btn-sm" data-dismiss="modal"><i class="ace-icon fa fa-times"></i> Cancel</button>\
+						 </div>\
+						</form>\
+					  </div>\
+					 </div>\
+					</div>';
+					
+					
+					var modal = $(modal);
+					modal.modal("show").on("hidden", function(){
+						modal.remove();
+					});
+			
+					var working = false;
+			
+					var form = modal.find('form:eq(0)');
+					var file = form.find('input[type=file]').eq(0);
+					file.ace_file_input({
+						style:'well',
+						btn_choose:'Click to choose new avatar',
+						btn_change:null,
+						no_icon:'ace-icon fa fa-picture-o',
+						thumbnail:'small',
+						before_remove: function() {
+							//don't remove/reset files while being uploaded
+							return !working;
+						},
+						allowExt: ['jpg', 'jpeg', 'png', 'gif'],
+						allowMime: ['image/jpg', 'image/jpeg', 'image/png', 'image/gif']
+					});
+			
+					form.on('submit', function(){
+						if(!file.data('ace_input_files')) return false;
+						
+						file.ace_file_input('disable');
+						form.find('button').attr('disabled', 'disabled');
+						form.find('.modal-body').append("<div class='center'><i class='ace-icon fa fa-spinner fa-spin bigger-150 orange'></i></div>");
+						
+						var deferred = new $.Deferred;
+						working = true;
+						deferred.done(function() {
+							form.find('button').removeAttr('disabled');
+							form.find('input[type=file]').ace_file_input('enable');
+							form.find('.modal-body > :last-child').remove();
+							
+							modal.modal("hide");
+			
+							var thumb = file.next().find('img').data('thumb');
+							if(thumb) $('#avatar2').get(0).src = thumb;
+			
+							working = false;
+						});
+						
+						
+						setTimeout(function(){
+							deferred.resolve();
+						} , parseInt(Math.random() * 800 + 800));
+			
+						return false;
+					});
+							
+				});
+			
+				
+			
+				//////////////////////////////
+				$('#profile-feed-1').ace_scroll({
+					height: '250px',
+					mouseWheelLock: true,
+					alwaysVisible : true
+				});
+			
+				$('a[ data-original-title]').tooltip();
+			
+				$('.easy-pie-chart.percentage').each(function(){
+				var barColor = $(this).data('color') || '#555';
+				var trackColor = '#E2E2E2';
+				var size = parseInt($(this).data('size')) || 72;
+				$(this).easyPieChart({
+					barColor: barColor,
+					trackColor: trackColor,
+					scaleColor: false,
+					lineCap: 'butt',
+					lineWidth: parseInt(size/10),
+					animate:false,
+					size: size
+				}).css('color', barColor);
+				});
+			  
+				///////////////////////////////////////////
+			
+				//right & left position
+				//show the user info on right or left depending on its position
+				$('#user-profile-2 .memberdiv').on('mouseenter touchstart', function(){
+					var $this = $(this);
+					var $parent = $this.closest('.tab-pane');
+			
+					var off1 = $parent.offset();
+					var w1 = $parent.width();
+			
+					var off2 = $this.offset();
+					var w2 = $this.width();
+			
+					var place = 'left';
+					if( parseInt(off2.left) < parseInt(off1.left) + parseInt(w1 / 2) ) place = 'right';
+					
+					$this.find('.popover').removeClass('right left').addClass(place);
+				}).on('click', function(e) {
+					e.preventDefault();
+				});
+			
+			
+				///////////////////////////////////////////
+				$('#user-profile-3')
+				.find('input[type=file]').ace_file_input({
+					style:'well',
+					btn_choose:'Change avatar',
+					btn_change:null,
+					no_icon:'ace-icon fa fa-picture-o',
+					thumbnail:'large',
+					droppable:true,
+					
+					allowExt: ['jpg', 'jpeg', 'png', 'gif'],
+					allowMime: ['image/jpg', 'image/jpeg', 'image/png', 'image/gif']
+				})
+				.end().find('button[type=reset]').on(ace.click_event, function(){
+					$('#user-profile-3 input[type=file]').ace_file_input('reset_input');
+				})
+				.end().find('.date-picker').datepicker().next().on(ace.click_event, function(){
+					$(this).prev().focus();
+				})
+				$('.input-mask-phone').mask('(999) 999-9999');
+			
+				$('#user-profile-3').find('input[type=file]').ace_file_input('show_file_list', [{type: 'image', name: $('#avatar').attr('src')}]);
+			
+			
+				////////////////////
+				//change profile
+				$('[data-toggle="buttons"] .btn').on('click', function(e){
+					var target = $(this).find('input[type=radio]');
+					var which = parseInt(target.val());
+					$('.user-profile').parent().addClass('hide');
+					$('#user-profile-'+which).parent().removeClass('hide');
+				});
+				
+				
+				
+				/////////////////////////////////////
+				$(document).one('ajaxloadstart.page', function(e) {
+					//in ajax mode, remove remaining elements before leaving page
+					try {
+						$('.editable').editable('destroy');
+					} catch(e) {}
+					$('[class*=select2]').remove();
+				});
+			});
+		</script>
+		<script>
+function openButton(evt, cityName) {
+    var i, tabcontent, tablinks;
+    tabcontent = document.getElementsByClassName("tabcontent");
+    for (i = 0; i < tabcontent.length; i++) {
+        tabcontent[i].style.display = "none";
+    }
+    tablinks = document.getElementsByClassName("tablinks");
+    for (i = 0; i < tablinks.length; i++) {
+        tablinks[i].className = tablinks[i].className.replace(" active", "");
+    }
+    document.getElementById(cityName).style.display = "block";
+    evt.currentTarget.className += " active";
+	
+}
+document.getElementById("defaultOpen").click();
+</script>
+<script>
+var $document = $(document);
+(function () { 
+  var clock = function () {
+      clearTimeout(timer);
+    
+      date = new Date();    
+      hours = date.getHours();
+      minutes = date.getMinutes();
+      seconds = date.getSeconds();
+      dd = (hours >= 12) ? 'pm' : 'am';
+      
+    hours = (hours > 12) ? (hours - 12) : hours
+      
+      var timer = setTimeout(clock, 1000);
+    
+    $('.hours').html('<p>' + Math.floor(hours) + ':</p>');
+    $('.minutes').html('<p>' + Math.floor(minutes) + ':</p>');
+    $('.seconds').html('<p>' + Math.floor(seconds) + '</p>');
+      $('.twelvehr').html('<p>' + dd + '</p>');
+  };
+  clock();
+})();
+
+
+</script>
+<script>
+function myFunction() {
+    var table = document.getElementById("myTable");
+    var row = table.insertRow(-1);
+    var cell1 = row.insertCell(0);
+    var cell2 = row.insertCell(1);
+	var cell3 = row.insertCell(2);
+	var cell4 = row.insertCell(3);
+	var cell5 = row.insertCell(4);
+    
+    
+}
+function myFunctionDel() {
+    var table = document.getElementById("myTable");
+    var row = table.deleteRow(-1);
+    var cell1 = row.deleteCell(0);
+    var cell2 = row.deleteCell(1);
+	var cell3 = row.deleteCell(2);
+	var cell4 = row.deleteCell(3);
+	var cell5 = row.deleteCell(4);
+    
+    
+}
+function myFunctionDele() {
+    var table = document.getElementById("table");
+    var row = table.deleteRow(-1);
+    var cell1 = row.deleteCell(0);
+    var cell2 = row.deleteCell(1);
+	var cell3 = row.deleteCell(2);
+	var cell4 = row.deleteCell(3);
+	
+    
+    
+}
+  document.getElementById("myTable").contentEditable = true;
+   document.getElementById("non").contentEditable = false;
+   function addRow(table) {
+
+			var table = document.getElementById(table);
+
+			var rowCount = table.rows.length;
+			var row = table.insertRow(rowCount);
+
+			var colCount = table.rows[1].cells.length;
+
+			for(var i=0; i<colCount; i++) {
+
+				var newcell	= row.insertCell(i);
+
+				newcell.innerHTML = table.rows[1].cells[i].innerHTML;
+				//alert(newcell.childNodes);
+				switch(newcell.childNodes[0].type) {
+					case "text":
+							newcell.childNodes[0].value = "";
+							break;
+					case "checkbox":
+							newcell.childNodes[0].checked = false;
+							break;
+					case "select-one":
+							newcell.childNodes[0].selectedIndex = 0;
+							break;
+				}
+			}
+		}
+
+</script>
+<script>
+function add_fields() {
+    
+    
+    document.getElementById('wrapper').innerHTML += '<div id="new"><div class="row"><button style="width:90%;height:35px" disabled>COMPANY INFORMATION</button><div class="row" style="padding:20px;"><button class="title" disabled>Compnay Name</button><input type="text" style="margin-left:10px;"></div><div class="row" style="padding:20px;"><button class="title" disabled>Location</button><input type="text" style="margin-left:10px;"></div>	<div class="row" style="padding:20px;"><button class="title" disabled>City</button><input type="text" style="margin-left:10px;"></div>		<div class="row" style="padding:20px;"><button class="title" disabled>Country</button><input type="text" style="margin-left:10px;"></div>	<div class="row" style="padding:20px;"><button class="title" disabled>State</button><input type="text" style="margin-left:10px;"></div>	<div class="row" style="padding:20px;"><button class="title" disabled>Designation</button><input type="text" style="margin-left:10px;"></div>	<div class="row" style="padding:20px;"><button class="title" disabled>Skills</button><input type="text" style="margin-left:10px;"></div>	<div class="row" style="padding:20px;"><button class="title" disabled>From Period</button><input type="text" style="margin-left:10px;"></div>	<div class="row" style="padding:20px;"><button class="title" disabled>To Period</button><input type="text" style="margin-left:10px;"></div>	<div class="row" style="padding:20px;"><button class="title" disabled>Contact No</button><input type="text" style="margin-left:10px;"></div>	<div class="row" style="padding:20px;"><button class="title" disabled>Reporting Managers Name</button><input type="text" style="margin-left:10px;"></div><div class="row" style="padding:20px;"><button class="title" disabled>Contact No</button><input type="text" style="margin-left:10px;"></div><div class="row" style="padding:20px;"><button class="title" disabled>Hr Manager Name</button><input type="text" style="margin-left:10px;"></div></div></div>'
+}
+$(document).ready(function(){
+    $("#del").click(function(){
+        $("#new").remove();
+    });
+});
+function add_fieldsOne() {
+	 document.getElementById('wrapperOne').innerHTML += '<div id="newOne"><div class="row"><button style="width:90%;height:35px" disabled>REFRENCES</button><div class="row" style="padding:20px;"><button class="title" disabled>Name</button><input type="text" style="margin-left:10px;"></div><div class="row" style="padding:20px;"><button class="title" disabled>Company</button><input type="text" style="margin-left:10px;"></div>	<div class="row" style="padding:20px;"><button class="title" disabled>Designation</button><input type="text" style="margin-left:10px;"></div>		<div class="row" style="padding:20px;"><button class="title" disabled>Contact Number</button><input type="text" style="margin-left:10px;"></div>	<div class="row" style="padding:20px;"><button class="title" disabled>Email Id</button><input type="text" style="margin-left:10px;"></div>	<div class="row" style="padding:20px;"><button class="title" disabled>Relation</button><input type="text" style="margin-left:10px;"></div></div> </div>'
+	 }
+	 $(document).ready(function(){
+    $("#delOne").click(function(){
+        $("#newOne").remove();
+    });
+});
+function add_fieldsTwo() {
+	document.getElementById('wrapperTwo').innerHTML +=' <div id="newTwo"><div class="row"><button style="width:90%;height:35px" disabled>Sibling Detail</button><div class="row" style="padding:20px;"><button class="title" disabled>Name</button><input type="text" style="margin-left:10px;    width: 147px;"></div><div class="row" style="padding:20px;"><button class="title" disabled>Date Of Birth</button><input type="date" style="margin-left:10px;"></div>	<div class="row" style="padding:20px;"><button class="title" disabled>Education</button><input type="text" style="margin-left:10px;    width: 147px;"></div>		<div class="row" style="padding:20px;"><button class="title" disabled>Occupation</button><input type="text" style="margin-left:10px;    width: 147px;"></div>	<div class="row" style="padding:20px;"><button class="title" disabled>Contact No</button><input type="text" style="margin-left:10px;    width: 147px;"></div></div></div>'
+		}
+	 $(document).ready(function(){
+    $("#delTwo").click(function(){
+        $("#newTwo").remove();
+    });
+});	
+function add_fieldsThree() {
+	document.getElementById('wrapperThree').innerHTML +='<div id="newThree"> <div class="row"><button style="width:90%;height:35px" disabled>Child Detail</button><div class="row" style="padding:20px;"><button class="title" disabled>Name</button><input type="text" style="margin-left:10px;    width: 147px;"></div><div class="row" style="padding:20px;"><button class="title" disabled>Date Of Birth</button><input type="date" style="margin-left:10px;"></div>	<div class="row" style="padding:20px;"><button class="title" disabled>Education</button><input type="text" style="margin-left:10px;    width: 147px;"></div>		<div class="row" style="padding:20px;"><button class="title" disabled>Occupation</button><input type="text" style="margin-left:10px;    width: 147px;"></div>	<div class="row" style="padding:20px;"><button class="title" disabled>Contact No</button><input type="text" style="margin-left:10px;    width: 147px;"></div></div></div>'
+	
+		}
+		 $(document).ready(function(){
+    $("#delThree").click(function(){
+        $("#newThree").remove();
+    });
+});	
+function add_fieldsFour() {
+	document.getElementById('wrapperFour').innerHTML +='<div id="newFour"><div class="row" style="padding:20px;"><button class="title" id="but" onclick="but">New Document</button><input type="file" style="margin-left:10px;"></div></div> '
+	}
+	 $(document).ready(function(){
+    $("#delFour").click(function(){
+        $("#newFour").remove();
+    });
+});	
+	function but() {
+	 document.getElementById("but").contentEditable = true;
+	 }
+</script>
+<script>
+$(function(){
+    $('#make-same').click(function(){
+      // ...do this for each line
+      $('#permanent-address-line-1').val($('#current-address-line-1').val());
+    });
+});
+</script>
+	</body>
+</html>

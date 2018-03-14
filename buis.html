@@ -7,7 +7,8 @@
 
 		<meta name="description" content="overview &amp; stats" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
-
+<script type= "text/javascript" src = "assets/js/countries.js"></script>
+<script type= "text/javascript" src = "countries2.js"></script>
 		<!-- bootstrap & fontawesome -->
 		<link rel="stylesheet" href="assets/css/bootstrap.min.css" />
 		<link rel="stylesheet" href="assets/font-awesome/4.5.0/css/font-awesome.min.css" />
@@ -82,9 +83,82 @@
   text-align: center;
   color:white;
 }
+
+button.accordion {
+    background-color: #eee;
+    color: #444;
+    cursor: pointer;
+    padding: 18px;
+    width: 100%;
+    border: none;
+    text-align: left;
+    outline: none;
+    font-size: 17px;
+    transition: 0.4s;
+	font-weight:bolder
+}
+
+button.accordion.active, button.accordion:hover {
+    background-color:#ccdbda;
+}
+
+div.panel {
+    padding: 0 18px;
+    background-color: white;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.2s ease-out;
+}
+button {
+    font-family: inherit;
+    font-size: 18px;
+    line-height: inherit;
+    width: 73%;
+    height: 50px;
+	    background-color: #003946;
+}
+a {
+color:white;
+}
+hr {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    border-top: 1px solid #80a9d0;
+}
 .form-group {
     margin-bottom: 15px;
-    padding: 15px;
+    float: left;
+	margin-left:10px;
+	 padding-bottom: 10px;
+}
+#imageUpload
+{
+    display: none;
+}
+
+#profileImage
+{
+    cursor: pointer;
+}
+#profile-container {
+    width: 150px;
+    height: 37px;
+  
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    -ms-border-radius: 50%;
+    -o-border-radius: 50%;
+    border-radius: 50%;
+}
+tbody {
+background-color:white;
+}
+thead {
+background-color:grey;
+}
+.wysiwyg-toolbar {
+    line-height: 39px;
+    margin: 0!important;
 }
 </style>
 	</head>
@@ -108,8 +182,8 @@
 						<span class="glyphicon glyphicon-home" style="font-size: 25px; line-height:0;color:white"></span>
 					</a>
 				</li>
-			
-				<li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown"> <span class="glyphicon glyphicon-bell" style="font-size: 25px; line-height:0;color:white;></span>
+				
+				<li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown"> <span class="glyphicon glyphicon-bell" style="font-size: 25px; line-height:0; color:white;></span>
 					<span class="caret"></span></a>
 					<ul class="dropdown-menu">
 						<li><a href="#">Page 1-1</a></li>
@@ -128,9 +202,9 @@
 </div>
 					
 					
-			<ul class="nav navbar-nav navbar-right" style="margin-top:-48px;">	
+			<ul class="nav navbar-nav navbar-right" style="margin-top:-48px;color:white">	
 				<li>
-					<p style="margin-top:15px;color:white">Admin</p>
+					<p style="margin-top:15px;">Admin</p>
 				</li>
 				<li>
 					<select name="Role" style="margin-top:10px;">
@@ -142,14 +216,15 @@
 						<option value="ba">BA</option>
 					</select>
 				</li>
+					<li><a href="cog.html" style="color:black;">
+						<span class="glyphicon glyphicon-cog" style="font-size: 25px; line-height:0;color:white"></span>
+					</a>
+				</li>
 				<li><a href="password.html" style="color:black;">
 						<span class="glyphicon glyphicon-lock" style="font-size: 25px; line-height:0;color:white"></span>
 					</a>
 				</li>
-				<li><a href="cog.html" style="color:black;">
-						<span class="glyphicon glyphicon-cog" style="font-size: 25px; line-height:0;color:white"></span>
-					</a>
-				</li>
+			
 				<li class="light-blue dropdown-modal" style="margin-top:-6px;">
 					<a data-toggle="dropdown" href="#" class="dropdown-toggle">
 						<img class="nav-user-photo" src="assets/images/avatars/user.jpg" alt="Jason's Photo" />
@@ -166,8 +241,7 @@
 									
 						</li>
 
-					
-
+						
 
 							<li>
 								<a href="#">
@@ -175,6 +249,7 @@
 										Logout
 								</a>
 							</li>
+							
 					</ul>
 				</li>
 			</ul>
@@ -191,8 +266,7 @@
 					try{ace.settings.loadState('sidebar')}catch(e){}
 				</script>
 
-				
-
+		
 				<ul class="nav nav-list">
 					<li class="">
 						<a href="index.html">
@@ -273,7 +347,6 @@
 					</li>
 				</ul><!-- /.nav-list -->
 
-
 				<div class="sidebar-toggle sidebar-collapse" id="sidebar-collapse">
 					<i id="sidebar-toggle-icon" class="ace-icon fa fa-angle-double-left ace-save-state" data-icon1="ace-icon fa fa-angle-double-left" data-icon2="ace-icon fa fa-angle-double-right"></i>
 				</div>
@@ -285,10 +358,15 @@
 						<ul class="breadcrumb">
 							<li>
 								<i class="ace-icon fa fa-home home-icon"></i>
-								<a href="#">Home</a>
+								<a href="cog.html">Settings</a>
 							</li>
-							<li class="active">Dashboard</li>
+
+							<li>
+								<a href="buis.html">Buisness Rule</a>
+							</li>
+							
 						</ul><!-- /.breadcrumb -->
+
 
 						<div class="nav-search" id="nav-search">
 							<form class="form-search">
@@ -367,55 +445,98 @@
 								</div><!-- /.pull-left -->
 							</div><!-- /.ace-settings-box -->
 						</div><!-- /.ace-settings-container -->
+						
+						</div>
+			</div>
+			</div>
+			</div><!-- /.main-content -->
+			<h3>Business Rules</h3>
+		
+			<button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal" style="width:12%">Add New Exception Rule</button>
+				  <!-- Modal -->
+  <div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog">
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Add New Exception Rule</h4>
+        </div>
+        <div class="modal-body">
+		
+			
+											
 
-						<div class="page-header">
-							<h1>
-								Password
-								<small>
-									<i class="ace-icon fa fa-angle-double-right"></i>
-									Set new password
-								</small>
-							</h1>
-						</div><!-- /.page-header -->
-						<div class="row">
-							<div class="col-md-12" style="padding:100px;">
-							
-															<div class="space-10"></div>
+    
+		</div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+    <h5>No Exception Rule Has Been Set</h5>
+  <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal1" style="width:12%">Add New Half Day Rule</button>
 
-															<div class="form-group" >
-																<label class="col-sm-3 control-label no-padding-right" for="form-field-pass1">New Password</label>
+   <div class="modal fade" id="myModal1" role="dialog">
+    <div class="modal-dialog">
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Add New Half Day Rule</h4>
+        </div>
+        <div class="modal-body">
+		
+			
+											
 
-																<div class="col-sm-9">
-																	<input type="password" id="form-field-pass1" />
-																</div>
-															</div>
+    
+		</div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+  <h5>No Half Day Rule Has been Set</h5>
+  <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal2" style="width:12%">Add New Full Day Rule</button>
 
-															<div class="space-4"></div>
+   <div class="modal fade" id="myModal2" role="dialog">
+    <div class="modal-dialog">
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Add New Full Day Rule</h4>
+        </div>
+        <div class="modal-body">
+		
+			
+											
 
-															<div class="form-group">
-																<label class="col-sm-3 control-label no-padding-right" for="form-field-pass2">Confirm Password</label>
-
-																<div class="col-sm-9">
-																	<input type="password" id="form-field-pass2" />
-																</div>
-															</div>
-															<div class="form-group">
-																 <button type="submit" class="btn btn-default" style="    margin-left: 220px; margin-top: 35px;">Submit</button>
-																
-															</div>
-															</div>
-															</div>
-															</div>
-															</div>
-															</div>
-															</div>
-														
-						<div class="footer">
+    
+		</div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+  <h5>No Full Day Rule Has been Set</h5>
+  </div>
+			<div class="footer">
 				<div class="footer-inner">
 					<div class="footer-content">
 						<span class="bigger-120">
-							<span class="blue bolder">ExcelbizSolutions</span>
-							 &copy; 2017
+							<span class="blue bolder">Ace</span>
+							Application &copy; 2013-2014
 						</span>
 
 						&nbsp; &nbsp;
@@ -457,17 +578,13 @@
 		<script src="assets/js/bootstrap.min.js"></script>
 
 		<!-- page specific plugin scripts -->
-
-		<!--[if lte IE 8]>
-		  <script src="assets/js/excanvas.min.js"></script>
-		<![endif]-->
 		<script src="assets/js/jquery-ui.custom.min.js"></script>
 		<script src="assets/js/jquery.ui.touch-punch.min.js"></script>
-		<script src="assets/js/jquery.easypiechart.min.js"></script>
-		<script src="assets/js/jquery.sparkline.index.min.js"></script>
-		<script src="assets/js/jquery.flot.min.js"></script>
-		<script src="assets/js/jquery.flot.pie.min.js"></script>
-		<script src="assets/js/jquery.flot.resize.min.js"></script>
+		<script src="assets/js/markdown.min.js"></script>
+		<script src="assets/js/bootstrap-markdown.min.js"></script>
+		<script src="assets/js/jquery.hotkeys.index.min.js"></script>
+		<script src="assets/js/bootstrap-wysiwyg.min.js"></script>
+		<script src="assets/js/bootbox.js"></script>
 
 		<!-- ace scripts -->
 		<script src="assets/js/ace-elements.min.js"></script>
@@ -475,222 +592,187 @@
 
 		<!-- inline scripts related to this page -->
 		<script type="text/javascript">
-			jQuery(function($) {
-				$('.easy-pie-chart.percentage').each(function(){
-					var $box = $(this).closest('.infobox');
-					var barColor = $(this).data('color') || (!$box.hasClass('infobox-dark') ? $box.css('color') : 'rgba(255,255,255,0.95)');
-					var trackColor = barColor == 'rgba(255,255,255,0.95)' ? 'rgba(255,255,255,0.25)' : '#E2E2E2';
-					var size = parseInt($(this).data('size')) || 50;
-					$(this).easyPieChart({
-						barColor: barColor,
-						trackColor: trackColor,
-						scaleColor: false,
-						lineCap: 'butt',
-						lineWidth: parseInt(size/10),
-						animate: ace.vars['old_ie'] ? false : 1000,
-						size: size
-					});
-				})
-			
-				$('.sparkline').each(function(){
-					var $box = $(this).closest('.infobox');
-					var barColor = !$box.hasClass('infobox-dark') ? $box.css('color') : '#FFF';
-					$(this).sparkline('html',
-									 {
-										tagValuesAttribute:'data-values',
-										type: 'bar',
-										barColor: barColor ,
-										chartRangeMin:$(this).data('min') || 0
-									 });
-				});
-			
-			
-			  //flot chart resize plugin, somehow manipulates default browser resize event to optimize it!
-			  //but sometimes it brings up errors with normal resize event handlers
-			  $.resize.throttleWindow = false;
-			
-			  var placeholder = $('#piechart-placeholder').css({'width':'90%' , 'min-height':'150px'});
-			  var data = [
-				{ label: "social networks",  data: 38.7, color: "#68BC31"},
-				{ label: "search engines",  data: 24.5, color: "#2091CF"},
-				{ label: "ad campaigns",  data: 8.2, color: "#AF4E96"},
-				{ label: "direct traffic",  data: 18.6, color: "#DA5430"},
-				{ label: "other",  data: 10, color: "#FEE074"}
-			  ]
-			  function drawPieChart(placeholder, data, position) {
-			 	  $.plot(placeholder, data, {
-					series: {
-						pie: {
-							show: true,
-							tilt:0.8,
-							highlight: {
-								opacity: 0.25
-							},
-							stroke: {
-								color: '#fff',
-								width: 2
-							},
-							startAngle: 2
+			jQuery(function($){
+	
+	$('textarea[data-provide="markdown"]').each(function(){
+        var $this = $(this);
+
+		if ($this.data('markdown')) {
+		  $this.data('markdown').showEditor();
+		}
+		else $this.markdown()
+		
+		$this.parent().find('.btn').addClass('btn-white');
+    })
+	
+	
+	
+	function showErrorAlert (reason, detail) {
+		var msg='';
+		if (reason==='unsupported-file-type') { msg = "Unsupported format " +detail; }
+		else {
+			//console.log("error uploading file", reason, detail);
+		}
+		$('<div class="alert"> <button type="button" class="close" data-dismiss="alert">&times;</button>'+ 
+		 '<strong>File upload error</strong> '+msg+' </div>').prependTo('#alerts');
+	}
+
+	//$('#editor1').ace_wysiwyg();//this will create the default editor will all buttons
+
+	//but we want to change a few buttons colors for the third style
+	$('#editor1').ace_wysiwyg({
+		toolbar:
+		[
+			'font',
+			null,
+			'fontSize',
+			null,
+			{name:'bold', className:'btn-info'},
+			{name:'italic', className:'btn-info'},
+			{name:'strikethrough', className:'btn-info'},
+			{name:'underline', className:'btn-info'},
+			null,
+			{name:'insertunorderedlist', className:'btn-success'},
+			{name:'insertorderedlist', className:'btn-success'},
+			{name:'outdent', className:'btn-purple'},
+			{name:'indent', className:'btn-purple'},
+			null,
+			{name:'justifyleft', className:'btn-primary'},
+			{name:'justifycenter', className:'btn-primary'},
+			{name:'justifyright', className:'btn-primary'},
+			{name:'justifyfull', className:'btn-inverse'},
+			null,
+			{name:'createLink', className:'btn-pink'},
+			{name:'unlink', className:'btn-pink'},
+			null,
+			{name:'insertImage', className:'btn-success'},
+			null,
+			'foreColor',
+			null,
+			{name:'undo', className:'btn-grey'},
+			{name:'redo', className:'btn-grey'}
+		],
+		'wysiwyg': {
+			fileUploadError: showErrorAlert
+		}
+	}).prev().addClass('wysiwyg-style2');
+
+	
+	/**
+	//make the editor have all the available height
+	$(window).on('resize.editor', function() {
+		var offset = $('#editor1').parent().offset();
+		var winHeight =  $(this).height();
+		
+		$('#editor1').css({'height':winHeight - offset.top - 10, 'max-height': 'none'});
+	}).triggerHandler('resize.editor');
+	*/
+	
+
+	$('#editor2').css({'height':'200px'}).ace_wysiwyg({
+		toolbar_place: function(toolbar) {
+			return $(this).closest('.widget-box')
+			       .find('.widget-header').prepend(toolbar)
+				   .find('.wysiwyg-toolbar').addClass('inline');
+		},
+		toolbar:
+		[
+			'bold',
+			{name:'italic' , title:'Change Title!', icon: 'ace-icon fa fa-leaf'},
+			'strikethrough',
+			null,
+			'insertunorderedlist',
+			'insertorderedlist',
+			null,
+			'justifyleft',
+			'justifycenter',
+			'justifyright'
+		],
+		speech_button: false
+	});
+	
+	
+
+
+	$('[data-toggle="buttons"] .btn').on('click', function(e){
+		var target = $(this).find('input[type=radio]');
+		var which = parseInt(target.val());
+		var toolbar = $('#editor1').prev().get(0);
+		if(which >= 1 && which <= 4) {
+			toolbar.className = toolbar.className.replace(/wysiwyg\-style(1|2)/g , '');
+			if(which == 1) $(toolbar).addClass('wysiwyg-style1');
+			else if(which == 2) $(toolbar).addClass('wysiwyg-style2');
+			if(which == 4) {
+				$(toolbar).find('.btn-group > .btn').addClass('btn-white btn-round');
+			} else $(toolbar).find('.btn-group > .btn-white').removeClass('btn-white btn-round');
+		}
+	});
+
+
+	
+
+	//RESIZE IMAGE
+	
+	//Add Image Resize Functionality to Chrome and Safari
+	//webkit browsers don't have image resize functionality when content is editable
+	//so let's add something using jQuery UI resizable
+	//another option would be opening a dialog for user to enter dimensions.
+	if ( typeof jQuery.ui !== 'undefined' && ace.vars['webkit'] ) {
+		
+		var lastResizableImg = null;
+		function destroyResizable() {
+			if(lastResizableImg == null) return;
+			lastResizableImg.resizable( "destroy" );
+			lastResizableImg.removeData('resizable');
+			lastResizableImg = null;
+		}
+
+		var enableImageResize = function() {
+			$('.wysiwyg-editor')
+			.on('mousedown', function(e) {
+				var target = $(e.target);
+				if( e.target instanceof HTMLImageElement ) {
+					if( !target.data('resizable') ) {
+						target.resizable({
+							aspectRatio: e.target.width / e.target.height,
+						});
+						target.data('resizable', true);
+						
+						if( lastResizableImg != null ) {
+							//disable previous resizable image
+							lastResizableImg.resizable( "destroy" );
+							lastResizableImg.removeData('resizable');
 						}
-					},
-					legend: {
-						show: true,
-						position: position || "ne", 
-						labelBoxBorderColor: null,
-						margin:[-30,15]
+						lastResizableImg = target;
 					}
-					,
-					grid: {
-						hoverable: true,
-						clickable: true
-					}
-				 })
-			 }
-			 drawPieChart(placeholder, data);
-			
-			 /**
-			 we saved the drawing function and the data to redraw with different position later when switching to RTL mode dynamically
-			 so that's not needed actually.
-			 */
-			 placeholder.data('chart', data);
-			 placeholder.data('draw', drawPieChart);
-			
-			
-			  //pie chart tooltip example
-			  var $tooltip = $("<div class='tooltip top in'><div class='tooltip-inner'></div></div>").hide().appendTo('body');
-			  var previousPoint = null;
-			
-			  placeholder.on('plothover', function (event, pos, item) {
-				if(item) {
-					if (previousPoint != item.seriesIndex) {
-						previousPoint = item.seriesIndex;
-						var tip = item.series['label'] + " : " + item.series['percent']+'%';
-						$tooltip.show().children(0).text(tip);
-					}
-					$tooltip.css({top:pos.pageY + 10, left:pos.pageX + 10});
-				} else {
-					$tooltip.hide();
-					previousPoint = null;
 				}
-				
-			 });
-			
-				/////////////////////////////////////
-				$(document).one('ajaxloadstart.page', function(e) {
-					$tooltip.remove();
-				});
-			
-			
-			
-			
-				var d1 = [];
-				for (var i = 0; i < Math.PI * 2; i += 0.5) {
-					d1.push([i, Math.sin(i)]);
-				}
-			
-				var d2 = [];
-				for (var i = 0; i < Math.PI * 2; i += 0.5) {
-					d2.push([i, Math.cos(i)]);
-				}
-			
-				var d3 = [];
-				for (var i = 0; i < Math.PI * 2; i += 0.2) {
-					d3.push([i, Math.tan(i)]);
-				}
-				
-			
-				var sales_charts = $('#sales-charts').css({'width':'100%' , 'height':'220px'});
-				$.plot("#sales-charts", [
-					{ label: "Domains", data: d1 },
-					{ label: "Hosting", data: d2 },
-					{ label: "Services", data: d3 }
-				], {
-					hoverable: true,
-					shadowSize: 0,
-					series: {
-						lines: { show: true },
-						points: { show: true }
-					},
-					xaxis: {
-						tickLength: 0
-					},
-					yaxis: {
-						ticks: 10,
-						min: -2,
-						max: 2,
-						tickDecimals: 3
-					},
-					grid: {
-						backgroundColor: { colors: [ "#fff", "#fff" ] },
-						borderWidth: 1,
-						borderColor:'#555'
-					}
-				});
-			
-			
-				$('#recent-box [data-rel="tooltip"]').tooltip({placement: tooltip_placement});
-				function tooltip_placement(context, source) {
-					var $source = $(source);
-					var $parent = $source.closest('.tab-content')
-					var off1 = $parent.offset();
-					var w1 = $parent.width();
-			
-					var off2 = $source.offset();
-					//var w2 = $source.width();
-			
-					if( parseInt(off2.left) < parseInt(off1.left) + parseInt(w1 / 2) ) return 'right';
-					return 'left';
-				}
-			
-			
-				$('.dialogs,.comments').ace_scroll({
-					size: 300
-			    });
-				
-				
-				//Android's default browser somehow is confused when tapping on label which will lead to dragging the task
-				//so disable dragging when clicking on label
-				var agent = navigator.userAgent.toLowerCase();
-				if(ace.vars['touch'] && ace.vars['android']) {
-				  $('#tasks').on('touchstart', function(e){
-					var li = $(e.target).closest('#tasks li');
-					if(li.length == 0)return;
-					var label = li.find('label.inline').get(0);
-					if(label == e.target || $.contains(label, e.target)) e.stopImmediatePropagation() ;
-				  });
-				}
-			
-				$('#tasks').sortable({
-					opacity:0.8,
-					revert:true,
-					forceHelperSize:true,
-					placeholder: 'draggable-placeholder',
-					forcePlaceholderSize:true,
-					tolerance:'pointer',
-					stop: function( event, ui ) {
-						//just for Chrome!!!! so that dropdowns on items don't appear below other items after being moved
-						$(ui.item).css('z-index', 'auto');
-					}
-					}
-				);
-				$('#tasks').disableSelection();
-				$('#tasks input:checkbox').removeAttr('checked').on('click', function(){
-					if(this.checked) $(this).closest('li').addClass('selected');
-					else $(this).closest('li').removeClass('selected');
-				});
-			
-			
-				//show the dropdowns on top or bottom depending on window height and menu position
-				$('#task-tab .dropdown-hover').on('mouseenter', function(e) {
-					var offset = $(this).offset();
-			
-					var $w = $(window)
-					if (offset.top > $w.scrollTop() + $w.innerHeight() - 100) 
-						$(this).addClass('dropup');
-					else $(this).removeClass('dropup');
-				});
-			
 			})
+			.on('click', function(e) {
+				if( lastResizableImg != null && !(e.target instanceof HTMLImageElement) ) {
+					destroyResizable();
+				}
+			})
+			.on('keydown', function() {
+				destroyResizable();
+			});
+	    }
+
+		enableImageResize();
+
+		/**
+		//or we can load the jQuery UI dynamically only if needed
+		if (typeof jQuery.ui !== 'undefined') enableImageResize();
+		else {//load jQuery UI if not loaded
+			//in Ace demo ./components will be replaced by correct components path
+			$.getScript("assets/js/jquery-ui.custom.min.js", function(data, textStatus, jqxhr) {
+				enableImageResize()
+			});
+		}
+		*/
+	}
+
+
+});
 		</script>
 		<script>
 var $document = $(document);
@@ -718,6 +800,35 @@ var $document = $(document);
 
 
 </script>
+		<script>
+
+
+var slno = 0;
+$("#ds").click(function() {
+ var inpObj = document.getElementById("dn");
+	if(!inpObj.checkValidity()){
+    alert('enter the required fields')
+	}
+	else{
+	
+	var dn = $("#dn").val();
+    var na = $("#na").val();
+	
+	var h = $("#h").val();
+	
+	var f = $("#f").val();
+		
+	var editor1 = $(".wysiwyg-editor textarea").change(function(){
+    $("#editor1").html($(".wysiwyg-editor textarea").val());
+}
+		
+	
+		
+    var new_row = "<tr><td>" + ++slno + "</td><td contenteditable='true'>" + dn + "</td><td contenteditable='true'>" + na + "</td><td contenteditable='true'>" + h + "</td><td contenteditable='true'>" + f + "</td><td contenteditable='true'>" + editor1 + "</td></tr>";
+    $("#dstb").append(new_row);
+    return false;
+	}
+});
+</script>
 	</body>
 </html>
-								

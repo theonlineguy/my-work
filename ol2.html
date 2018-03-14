@@ -1,0 +1,1468 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+		<meta charset="utf-8" />
+		<title>Dashboard</title>
+
+		<meta name="description" content="overview &amp; stats" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+<script type= "text/javascript" src = "assets/js/countries.js"></script>
+<script type= "text/javascript" src = "countries2.js"></script>
+		<!-- bootstrap & fontawesome -->
+		<link rel="stylesheet" href="assets/css/bootstrap.min.css" />
+		<link rel="stylesheet" href="assets/font-awesome/4.5.0/css/font-awesome.min.css" />
+
+		<!-- page specific plugin styles -->
+
+		<!-- text fonts -->
+		<link rel="stylesheet" href="assets/css/fonts.googleapis.com.css" />
+
+		<!-- ace styles -->
+		<link rel="stylesheet" href="assets/css/ace.min.css" class="ace-main-stylesheet" id="main-ace-style" />
+
+		<!--[if lte IE 9]>
+			<link rel="stylesheet" href="assets/css/ace-part2.min.css" class="ace-main-stylesheet" />
+		<![endif]-->
+		<link rel="stylesheet" href="assets/css/ace-skins.min.css" />
+		<link rel="stylesheet" href="assets/css/ace-rtl.min.css" />
+
+		<!--[if lte IE 9]>
+		  <link rel="stylesheet" href="assets/css/ace-ie.min.css" />
+		<![endif]-->
+
+		<!-- inline styles related to this page -->
+
+		<!-- ace settings handler -->
+		<script src="assets/js/ace-extra.min.js"></script>
+
+		<!-- HTML5shiv and Respond.js for IE8 to support HTML5 elements and media queries -->
+
+		<!--[if lte IE 8]>
+		<script src="assets/js/html5shiv.min.js"></script>
+		<script src="assets/js/respond.min.js"></script>
+		<![endif]-->
+		<style>
+		.btn-primary, .btn-primary.focus, .btn-primary:focus {
+    background-color: #1962a0!important;
+    border-color: #428BCA;
+}
+@media screen and (max-width: 900px) {
+    ul.nav nav-list {
+        width: 100%;
+        height: auto;
+        position: relative;
+    }
+    ul.nav nav-list li a {
+        float: left;
+        padding: 15px;
+    }
+    div.content {margin-left: 0;}
+}
+
+@media screen and (max-height: 450px) {
+  .sidenav {padding-top: 15px;}
+  .sidenav a {font-size: 18px;}
+}
+
+
+
+.clock {
+  top:30%;
+  background-color: #3c434c;
+  width:210px;
+  height:50px;
+  margin:auto;
+  padding:15px;
+}
+.clock div {
+  display:inline-block;
+  background-color: #202731;
+  width:25%;
+  height: 100%;
+  text-align: center;
+  color:white;
+}
+
+button.accordion {
+    background-color: #eee;
+    color: #444;
+    cursor: pointer;
+    padding: 18px;
+    width: 100%;
+    border: none;
+    text-align: left;
+    outline: none;
+    font-size: 17px;
+    transition: 0.4s;
+	font-weight:bolder
+}
+
+button.accordion.active, button.accordion:hover {
+    background-color:#ccdbda;
+}
+
+div.panel {
+    padding: 0 18px;
+    background-color: white;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.2s ease-out;
+}
+button {
+    font-family: inherit;
+    font-size: 18px;
+    line-height: inherit;
+    width: 73%;
+    height: 50px;
+	    background-color: #003946;
+}
+a {
+color:white;
+}
+hr {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    border-top: 1px solid #80a9d0;
+}
+.form-group {
+    margin-bottom: 15px;
+    float: left;
+	margin-left:10px;
+	 padding-bottom: 10px;
+}
+#imageUpload
+{
+    display: none;
+}
+
+#profileImage
+{
+    cursor: pointer;
+}
+#profile-container {
+    width: 150px;
+    height: 37px;
+  
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    -ms-border-radius: 50%;
+    -o-border-radius: 50%;
+    border-radius: 50%;
+}
+tbody {
+background-color:white;
+}
+thead {
+background-color:grey;
+}
+
+</style>
+	</head>
+
+	<body class="no-skin">
+	<nav class="navbar navbar-default" style=" background-color:#003946;">
+		<div class="container-fluid">
+			<ul class="nav navbar-nav">
+				<ul class="navbar-header">
+					<button type="button" class="navbar-toggle menu-toggler pull-left" id="menu-toggler" data-target="#sidebar">
+						<span class="sr-only">Toggle sidebar</span>
+
+						<span class="icon-bar"></span>
+
+						<span class="icon-bar"></span>
+
+						<span class="icon-bar"></span>
+					</button>
+				</ul>
+				<li><a href="index.html" style="color:black;">
+						<span class="glyphicon glyphicon-home" style="font-size: 25px; line-height:0;color:white"></span>
+					</a>
+				</li>
+				
+				<li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown"> <span class="glyphicon glyphicon-bell" style="font-size: 25px; line-height:0; color:white;></span>
+					<span class="caret"></span></a>
+					<ul class="dropdown-menu">
+						<li><a href="#">Page 1-1</a></li>
+						<li><a href="#">Page 1-2</a></li>
+						<li><a href="#">Page 1-3</a></li>
+					</ul>
+				</li>
+
+								
+			</ul>	
+					<div class="clock">
+      <div class="hours"></div><!--
+   --><div class="minutes"></div><!--
+    --><div class="seconds"></div><!--
+    --><div class="twelvehr"></div>
+</div>
+					
+					
+			<ul class="nav navbar-nav navbar-right" style="margin-top:-48px;color:white">	
+				<li>
+					<p style="margin-top:15px;">Admin</p>
+				</li>
+				<li>
+					<select name="Role" style="margin-top:10px;">
+					<option value="Role">Role</option>
+						<option value="finance">FINANCE</option>
+						<option value="redmine">Redmine</option>
+						<option value="java">Java Developer</option>
+						<option value="ui">UI Developer</option>
+						<option value="ba">BA</option>
+					</select>
+				</li>
+					<li><a href="cog.html" style="color:black;">
+						<span class="glyphicon glyphicon-cog" style="font-size: 25px; line-height:0;color:white"></span>
+					</a>
+				</li>
+				<li><a href="password.html" style="color:black;">
+						<span class="glyphicon glyphicon-lock" style="font-size: 25px; line-height:0;color:white"></span>
+					</a>
+				</li>
+			
+				<li class="light-blue dropdown-modal" style="margin-top:-6px;">
+					<a data-toggle="dropdown" href="#" class="dropdown-toggle">
+						<img class="nav-user-photo" src="assets/images/avatars/user.jpg" alt="Jason's Photo" />
+						<span class="user-info">
+							<small style=color:white;">Welcome,
+									Jason</small>
+						</span>
+
+						<i class="ace-icon fa fa-caret-down"></i>
+					</a>
+
+					<ul class="user-menu dropdown-menu-right dropdown-menu dropdown-yellow dropdown-caret dropdown-close">
+						<li>
+									
+						</li>
+
+						
+
+							<li>
+								<a href="#">
+									<i class="ace-icon fa fa-power-off"></i>
+										Logout
+								</a>
+							</li>
+							
+					</ul>
+				</li>
+			</ul>
+		</div>
+	</nav>
+
+		<div class="main-container ace-save-state" id="main-container">
+			<script type="text/javascript">
+				try{ace.settings.loadState('main-container')}catch(e){}
+			</script>
+
+		<div id="sidebar" class="sidebar      h-sidebar                navbar-collapse collapse          ace-save-state">
+				<script type="text/javascript">
+					try{ace.settings.loadState('sidebar')}catch(e){}
+				</script>
+
+		
+				<ul class="nav nav-list">
+					<li class="">
+						<a href="index.html">
+							<i class="menu-icon fa fa-tachometer"></i>
+							<span class="menu-text"> Dashboard </span>
+						</a>
+
+						<b class="arrow"></b>
+					</li>
+					<li class="">
+						<a href="report.html">
+							<i class="menu-icon fa fa-line-chart"></i>
+
+							<span class="menu-text">
+								Reports
+
+								<span class="badge badge-transparent tooltip-error" title="2 Important Events">
+									
+								</span>
+							</span>
+						</a>
+
+						<b class="arrow"></b>
+					</li>
+					<li class="">
+						<a href="employee.html">
+							<i class="menu-icon fa fa-users" aria-hidden="true"></i>
+							<span class="menu-text">
+								Employee
+
+								
+							</span>
+						</a>
+
+						<b class="arrow"></b>
+					</li>
+					<li class="">
+						<a href="time.html">
+							<i class="menu-icon fa fa-calendar" aria-hidden="true"></i>
+							<span class="menu-text">
+								Time & Attendence
+
+								
+							</span>
+						</a>
+
+						<b class="arrow"></b>
+					</li>
+					<li class="">
+						<a href="travel.html">
+							<i class="menu-icon fa fa-plane" aria-hidden="true"></i>
+							<span class="menu-text">
+								Leave
+
+								
+							</span>
+						</a>
+
+						<b class="arrow"></b>
+					</li>
+						<li class="">
+						<a href="pay.html">
+							<i class="menu-icon fa fa-money" aria-hidden="true"></i>
+							<span class="menu-text">
+								Pay
+
+								
+							</span>
+						</a>
+
+						<b class="arrow"></b>
+					</li>
+					<li><a href="index.html" style="color:black;">
+						<img src="assets/images/ebs_logo-1.png">
+					</a>
+				</li>
+						</ul>
+					</li>
+				</ul><!-- /.nav-list -->
+
+				<div class="sidebar-toggle sidebar-collapse" id="sidebar-collapse">
+					<i id="sidebar-toggle-icon" class="ace-icon fa fa-angle-double-left ace-save-state" data-icon1="ace-icon fa fa-angle-double-left" data-icon2="ace-icon fa fa-angle-double-right"></i>
+				</div>
+			</div>
+
+			<div class="main-content">
+				<div class="main-content-inner">
+					<div class="breadcrumbs ace-save-state" id="breadcrumbs">
+						<ul class="breadcrumb">
+							<li>
+								<i class="ace-icon fa fa-home home-icon"></i>
+								<a href="cog.html">Settings</a>
+							</li>
+
+							<li>
+								<a href="ol.html">Office Location</a>
+							</li>
+							
+						</ul><!-- /.breadcrumb -->
+
+
+						<div class="nav-search" id="nav-search">
+							<form class="form-search">
+								<span class="input-icon">
+									<input type="text" placeholder="Search ..." class="nav-search-input" id="nav-search-input" autocomplete="off" />
+									<i class="ace-icon fa fa-search nav-search-icon"></i>
+								</span>
+							</form>
+						</div><!-- /.nav-search -->
+					</div>
+				<div>
+					<div class="page-content">
+						<div class="ace-settings-container" id="ace-settings-container">
+							<div class="btn btn-app btn-xs btn-warning ace-settings-btn" id="ace-settings-btn">
+								<i class="ace-icon fa fa-cog bigger-130"></i>
+							</div>
+
+							<div class="ace-settings-box clearfix" id="ace-settings-box">
+								<div class="pull-left width-50">
+									<div class="ace-settings-item">
+										<div class="pull-left">
+											<select id="skin-colorpicker" class="hide">
+												<option data-skin="no-skin" value="#438EB9">#438EB9</option>
+												<option data-skin="skin-1" value="#222A2D">#222A2D</option>
+												<option data-skin="skin-2" value="#C6487E">#C6487E</option>
+												<option data-skin="skin-3" value="#D0D0D0">#D0D0D0</option>
+											</select>
+										</div>
+										<span>&nbsp; Choose Skin</span>
+									</div>
+
+									<div class="ace-settings-item">
+										<input type="checkbox" class="ace ace-checkbox-2 ace-save-state" id="ace-settings-navbar" autocomplete="off" />
+										<label class="lbl" for="ace-settings-navbar"> Fixed Navbar</label>
+									</div>
+
+									<div class="ace-settings-item">
+										<input type="checkbox" class="ace ace-checkbox-2 ace-save-state" id="ace-settings-sidebar" autocomplete="off" />
+										<label class="lbl" for="ace-settings-sidebar"> Fixed Sidebar</label>
+									</div>
+
+									<div class="ace-settings-item">
+										<input type="checkbox" class="ace ace-checkbox-2 ace-save-state" id="ace-settings-breadcrumbs" autocomplete="off" />
+										<label class="lbl" for="ace-settings-breadcrumbs"> Fixed Breadcrumbs</label>
+									</div>
+
+									<div class="ace-settings-item">
+										<input type="checkbox" class="ace ace-checkbox-2" id="ace-settings-rtl" autocomplete="off" />
+										<label class="lbl" for="ace-settings-rtl"> Right To Left (rtl)</label>
+									</div>
+
+									<div class="ace-settings-item">
+										<input type="checkbox" class="ace ace-checkbox-2 ace-save-state" id="ace-settings-add-container" autocomplete="off" />
+										<label class="lbl" for="ace-settings-add-container">
+											Inside
+											<b>.container</b>
+										</label>
+									</div>
+								</div><!-- /.pull-left -->
+
+								<div class="pull-left width-50">
+									<div class="ace-settings-item">
+										<input type="checkbox" class="ace ace-checkbox-2" id="ace-settings-hover" autocomplete="off" />
+										<label class="lbl" for="ace-settings-hover"> Submenu on Hover</label>
+									</div>
+
+									<div class="ace-settings-item">
+										<input type="checkbox" class="ace ace-checkbox-2" id="ace-settings-compact" autocomplete="off" />
+										<label class="lbl" for="ace-settings-compact"> Compact Sidebar</label>
+									</div>
+
+									<div class="ace-settings-item">
+										<input type="checkbox" class="ace ace-checkbox-2" id="ace-settings-highlight" autocomplete="off" />
+										<label class="lbl" for="ace-settings-highlight"> Alt. Active Item</label>
+									</div>
+								</div><!-- /.pull-left -->
+							</div><!-- /.ace-settings-box -->
+						</div><!-- /.ace-settings-container -->
+						</div>
+						<h2 style="text-align:center">Office Locations</h2>
+						<div class="container-fluid">
+						<h4 style="color:#003946">Add Legal Entity</h4>
+							<!--<div style="border: 1px solid #80a9d0;
+    padding: 15px;
+    box-shadow: 1px 3px 13px -2px">
+							<form class="form-inline" >
+							<fieldset>
+							<div class="row">
+							
+							
+									<div class="form-group">
+										<label > Organization Code<span style="color:red">*</span> </label>
+
+										
+											<input type="text" id="Oc"  required/>
+
+									</div>
+									<div class="form-group">
+										<label > Name Of Organization<span style="color:red">*</span> </label>
+
+										
+											<input type="text" id="noo"  required/>
+										
+									</div>
+									<div class="form-group">
+								<label>Address<span style="color:red">*</span></label>
+											
+															<textarea class="form-control" id="Address" ></textarea>
+												
+										</div>	
+										
+
+							</div>
+							<hr />
+							<div class="row">
+							
+							
+									<div class="form-group">
+										<label > City<span style="color:red">*</span> </label>
+
+										
+											<input type="text" id="city"  required/>
+
+									</div>
+									<div class="form-group">
+										<label >Select Country<span style="color:red">*</span> </label>
+											   <select id="country" name ="country"></select>
+										
+											  
+									</div>
+									<div class="form-group">
+								<label >Select State<span style="color:red">*</span></label>
+											
+													 <select name ="state" id ="state"></select>
+												
+										</div>	
+										<div class="form-group">
+								<label >Pin Code<span style="color:red">*</span></label>
+											
+															<input type="text" id="pincode"  required/>
+												
+										</div>	
+										<div class="form-group">
+								<label >Contact No</label>
+											
+															<input type="text" id="contactno"  required/>
+												
+										</div>
+								<div class="form-group">
+								<label >Email Address</label>
+											
+															<input type="email" id="email"  required/>
+												
+										</div>		
+														<div class="form-group">
+														<label >Edit Logo</label>
+														<div>
+														<div id="profile-container">
+															<image id="profileImage" src="assets/images/ebs_logo-1.png" />
+														</div>
+														
+														<input id="imageUpload" type="file" name="profile_photo" placeholder="Photo" maxfilesize="100kb"  capture>
+													</div>
+													</div>	
+								<div class="form-group">
+								<label >Currency</label>
+											
+															<input type="currency" id="currency"  required/>
+												
+										</div>		
+<div class="form-group">
+													<button type="submit" id="i_submit" class="btn btn-sm btn-success" style="    border-width: 4px;
+    font-size: 13px;
+    padding: 4px 9px;
+    line-height: 1.38;
+    width: 83px;
+    height: 37px;display:block;margin:0 auto" >
+																Submit
+																<i class="ace-icon fa fa-arrow-right icon-on-right bigger-110"></i>
+															</button>
+															</div>										
+
+							</div>
+							</fieldset>
+							</form>
+							
+							</div>-->
+							<button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal" style="width:10%">Add New Bank</button>
+
+  <!-- Modal -->
+  <div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog">
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Organization & Office Location</h4>
+        </div>
+        <div class="modal-body">
+			<form>
+			<label for="form-field-select-1" ><b>Add Legal Entity</b></label>
+			<div class="row">
+				
+				
+				<div class="form-group">
+										<label > Organization Code<span style="color:red">*</span> </label>
+
+										
+											<input type="text" class="form-control" id="Oc"  required/>
+
+									</div>
+									<div class="form-group">
+										<label > Name Of Organization<span style="color:red">*</span> </label>
+
+										
+											<input type="text" class="form-control" id="noo"  required/>
+										
+									</div>
+									<div class="form-group">
+								<label>Address<span style="color:red">*</span></label>
+											
+															<textarea class="form-control" id="Address" ></textarea>
+												
+										</div>	
+									
+									
+									
+									
+								<div class="form-group">
+										<label > City<span style="color:red">*</span> </label>
+
+										
+											<input type="text" class="form-control"  id="city"  required/>
+
+									</div>
+									<div class="form-group">
+										<label >Select Country<span style="color:red">*</span> </label>
+											   <select id="country" class="form-control"  name ="country"></select>
+										
+											  
+									</div>
+									<div class="form-group">
+								<label >Select State<span style="color:red">*</span></label>
+											
+													 <select name ="state" class="form-control" id ="state"></select>
+												
+										</div>	
+										<div class="form-group">
+								<label >Pin Code<span style="color:red">*</span></label>
+											
+															<input type="text" class="form-control" id="pincode"  required/>
+												
+										</div>	
+										<div class="form-group">
+								<label >Contact No</label>
+											
+															<input type="text" class="form-control"  id="contactno"  required/>
+												
+										</div>
+								<div class="form-group">
+								<label >Email Address</label>
+											
+															<input type="email" class="form-control" id="email"  required/>
+												
+										</div>		
+														<div class="form-group">
+														<label >Edit Logo</label>
+														<div>
+														<div id="profile-container">
+															<image id="profileImage" src="assets/images/ebs_logo-1.png" />
+														</div>
+														
+														<input id="imageUpload" type="file" name="profile_photo" placeholder="Photo" maxfilesize="100kb"  capture>
+													</div>
+													</div>	
+								<div class="form-group" style="margin-left:44px">
+								<label >Currency</label>
+											
+															<input type="currency" class="form-control" id="currency"  required/>
+												
+										</div>
+									
+									</div>
+									<label for="form-field-select-1" ><b>Add Office Type</b></label>
+								<div class="row">
+							<div class="form-group">
+										<label > Office Code<span style="color:red">*</span> </label>
+
+										
+											<input type="text" class="form-control" id="oc"  required/>
+
+									</div>
+									<div class="form-group">
+										<label > Office Name<span style="color:red">*</span> </label>
+
+										
+											<input type="text" class="form-control" id="on"  required/>
+										
+									</div>
+									
+									</div>
+									<label for="form-field-select-1" ><b>Add Work location</b></label>
+										<div class="row">
+							
+							
+									
+									<div class="form-group">
+										<label > Work Location Code<span style="color:red">*</span> </label>
+
+										
+											<input type="text" class="form-control" id="wlc"  required/>
+
+									</div>
+									<div class="form-group">
+										<label > Work Location Name<span style="color:red">*</span> </label>
+
+										
+											<input type="text" class="form-control" id="wln"  required/>
+										
+									</div>
+									<div class="form-group">
+										<label > Work Location Address<span style="color:red">*</span> </label>
+
+										
+											<input type="text" class="form-control" id="wla"  required/>
+										
+									</div>
+										<div class="form-group">
+										<label > City<span style="color:red">*</span> </label>
+
+										
+											<input type="text" class="form-control" id="city1"  required/>
+										
+									</div>
+									<div class="form-group">
+										<label > Country<span style="color:red">*</span> </label>
+
+										
+											  <select id="country1" class="form-control" name ="country"></select>
+										
+									</div>
+										<div class="form-group">
+										<label > State<span style="color:red">*</span> </label>
+
+										
+											 <select name ="state" class="form-control" id ="state1"></select>
+										
+									</div>
+									<div class="form-group">
+										<label > Postcode<span style="color:red">*</span> </label>
+
+										
+											<input type="text" class="form-control" id="postcode1"  required/>
+										
+									</div>
+									</div>
+									
+											
+<div class="form-group">
+													<button type="submit" id="i_submit" class="btn btn-sm btn-success" style="    border-width: 4px;
+    font-size: 13px;
+    padding: 4px 9px;
+    line-height: 1.38;
+    width: 83px;
+    height: 37px;display:block;margin:0 auto" >
+																Submit
+																<i class="ace-icon fa fa-arrow-right icon-on-right bigger-110"></i>
+															</button>
+															</div>	
+     
+		</form>
+		
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+  </div>
+							<div class="row" style="padding:20px;
+    height: 200px;
+    overflow: scroll;">
+							<div style="overflow-x:auto;">
+							
+							 <table class="table controls controls-row">
+								<thead>
+									<tr>
+										<th>S.no</th>
+										<th> Organization Code</th>
+										<th>Name Of Organization</th>
+										<th> Address </th>
+										<th> City </th>
+										<th> Select Country</th>
+										<th> Select State</th>
+										<th> Pin Code </th>
+										<th> Contact No </th>
+										<th> Email Address </th>
+										<th> Logo </th>
+										<th>Currency</th>
+									</tr>
+								</thead>
+								<tbody id="od" >
+								</tbody>
+							</table>
+							
+							</div>
+							</div>
+							<hr />
+							<h4  style="color:#003946">Add Office Type</h4>
+												<button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal1" style="width:10%">Add New Bank</button>
+
+  <!-- Modal -->
+  <div class="modal fade" id="myModal1" role="dialog">
+    <div class="modal-dialog">
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Bank Details</h4>
+        </div>
+        <div class="modal-body">
+			<form>
+			<div class="row">
+				<div class="row">
+							<div class="form-group">
+										<label > Office Code<span style="color:red">*</span> </label>
+
+										
+											<input type="text" class="form-control" id="officecode"  required/>
+
+									</div>
+									<div class="form-group">
+										<label > Office Name<span style="color:red">*</span> </label>
+
+										
+											<input type="text" class="form-control" id="officename"  required/>
+										
+									</div>
+									
+									</div>
+									
+									</div>
+									
+											
+<div class="form-group">
+													<button type="submit" id="ot" class="btn btn-sm btn-success" style="    border-width: 4px;
+    font-size: 13px;
+    padding: 4px 9px;
+    line-height: 1.38;
+    width: 83px;
+    height: 37px;display:block;margin:0 auto" >
+																Submit
+																<i class="ace-icon fa fa-arrow-right icon-on-right bigger-110"></i>
+															</button>
+															</div>	
+     
+		</form>
+		
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+  </div>
+							<!--<div style="border: 1px solid #80a9d0;
+    padding: 15px;
+    box-shadow: 1px 3px 13px -2px">
+							<form class="form-inline" >
+							<fieldset>
+							<div class="row">
+							<div class="form-group">
+										<label > Office Code<span style="color:red">*</span> </label>
+
+										
+											<input type="text" id="officecode"  required/>
+
+									</div>
+									<div class="form-group">
+										<label > Office Name<span style="color:red">*</span> </label>
+
+										
+											<input type="text" id="officename"  required/>
+										
+									</div>
+							
+									
+											
+<div class="form-group">
+													<button type="submit" id="aot" class="btn btn-sm btn-success" style="    border-width: 4px;
+    font-size: 13px;
+    padding: 4px 9px;
+    line-height: 1.38;
+    width: 83px;
+    height: 37px;display:block;margin:0 auto" >
+																Submit
+																<i class="ace-icon fa fa-arrow-right icon-on-right bigger-110"></i>
+															</button>
+															</div>										
+
+							</div>
+							</fieldset>
+							</form>
+							
+							</div>
+							<div class="row" style="padding:20px;
+    height: 200px;
+    overflow: scroll;">
+							<div style="overflow-x:auto;">
+							
+							 <table class="table controls controls-row">
+								<thead>
+									<tr>
+										<th>S.no</th>
+										<th> Office Code</th>
+										<th> Office Name</th>
+									</tr>
+								</thead>
+								<tbody id="aottb">
+								</tbody>
+							</table>
+							
+							</div>
+							</div>-->
+							<hr />
+							<h4  style="color:#003946">Add Work Location</h4>
+							<!--<div style="border: 1px solid #80a9d0;
+    padding: 15px;
+    box-shadow: 1px 3px 13px -2px">
+							<form class="form-inline" >
+							<fieldset>
+							<div class="row">
+							
+							
+									
+									<div class="form-group">
+										<label > Work Location Code<span style="color:red">*</span> </label>
+
+										
+											<input type="text" id="wlc"  required/>
+
+									</div>
+									<div class="form-group">
+										<label > Work Location Name<span style="color:red">*</span> </label>
+
+										
+											<input type="text" id="wln"  required/>
+										
+									</div>
+									<div class="form-group">
+										<label > Work Location Address<span style="color:red">*</span> </label>
+
+										
+											<input type="text" id="wla"  required/>
+										
+									</div>
+										<div class="form-group">
+										<label > City<span style="color:red">*</span> </label>
+
+										
+											<input type="text" id="city1"  required/>
+										
+									</div>
+									<div class="form-group">
+										<label > Country<span style="color:red">*</span> </label>
+
+										
+											  <select id="country1" name ="country"></select>
+										
+									</div>
+										<div class="form-group">
+										<label > State<span style="color:red">*</span> </label>
+
+										
+											 <select name ="state" id ="state1"></select>
+										
+									</div>
+									</div>
+									<div class="row">
+										<div class="form-group">
+										<label > Postcode<span style="color:red">*</span> </label>
+
+										
+											<input type="text" id="postcode"  required/>
+										
+									</div>
+											
+<div class="form-group">
+													<button type="submit" id="awl" class="btn btn-sm btn-success" style="    border-width: 4px;
+    font-size: 13px;
+    padding: 4px 9px;
+    line-height: 1.38;
+    width: 83px;
+    height: 37px;display:block;margin:0 auto" >
+																Submit
+																<i class="ace-icon fa fa-arrow-right icon-on-right bigger-110"></i>
+															</button>
+															</div>	
+</div>															
+
+							
+							</fieldset>
+							</form>
+							
+							</div>
+							<div class="row" style="padding:20px;
+    height: 200px;
+    overflow: scroll;">
+							<div style="overflow-x:auto;">
+							
+							 <table class="table controls controls-row">
+								<thead>
+									<tr>
+										<th>S.no</th>
+										<th> Work Location Code</th>
+										<th> Work Location Name</th>
+										<th> Work Location Address</th>
+										<th> City</th>
+										<th> Country</th>
+										<th> State</th>
+										<th> PostCode</th>
+									</tr>
+								</thead>
+								<tbody id="awltb">
+								</tbody>
+							</table>
+							
+							</div>
+							</div>-->
+									</div>
+									</div>
+									</div>
+									</div>
+						<div class="footer">
+				<div class="footer-inner">
+					<div class="footer-content">
+						<span class="bigger-120">
+							<span class="blue bolder">ExcelbizSolutions</span>
+							 &copy; 2017
+						</span>
+
+						&nbsp; &nbsp;
+						<span class="action-buttons">
+							<a href="#">
+								<i class="ace-icon fa fa-twitter-square light-blue bigger-150"></i>
+							</a>
+
+							<a href="#">
+								<i class="ace-icon fa fa-facebook-square text-primary bigger-150"></i>
+							</a>
+
+							<a href="#">
+								<i class="ace-icon fa fa-rss-square orange bigger-150"></i>
+							</a>
+						</span>
+					</div>
+				</div>
+			</div>
+
+			<a href="#" id="btn-scroll-up" class="btn-scroll-up btn btn-sm btn-inverse">
+				<i class="ace-icon fa fa-angle-double-up icon-only bigger-110"></i>
+			</a>
+		</div><!-- /.main-container -->
+		<script language="javascript">
+				populateCountries("country", "state");
+				populateCountries("country1", "state1");
+			</script>
+
+		<!-- basic scripts -->
+
+		<!--[if !IE]> -->
+		<script src="assets/js/jquery-2.1.4.min.js"></script>
+
+		<!-- <![endif]-->
+
+		<!--[if IE]>
+<script src="assets/js/jquery-1.11.3.min.js"></script>
+<![endif]-->
+ 
+		<script type="text/javascript">
+			if('ontouchstart' in document.documentElement) document.write("<script src='assets/js/jquery.mobile.custom.min.js'>"+"<"+"/script>");
+		</script>
+		<script src="assets/js/bootstrap.min.js"></script>
+
+		<!-- page specific plugin scripts -->
+
+
+		<!--[if lte IE 8]>
+		  <script src="assets/js/excanvas.min.js"></script>
+		<![endif]-->
+		<script src="assets/js/jquery-ui.custom.min.js"></script>
+		<script src="assets/js/jquery.ui.touch-punch.min.js"></script>
+		<script src="assets/js/jquery.easypiechart.min.js"></script>
+		<script src="assets/js/jquery.sparkline.index.min.js"></script>
+		<script src="assets/js/jquery.flot.min.js"></script>
+		<script src="assets/js/jquery.flot.pie.min.js"></script>
+		<script src="assets/js/jquery.flot.resize.min.js"></script>
+
+		<!-- ace scripts -->
+		<script src="assets/js/ace-elements.min.js"></script>
+		<script src="assets/js/ace.min.js"></script>
+
+		<!-- inline scripts related to this page -->
+		<script type="text/javascript">
+			jQuery(function($) {
+				$('.easy-pie-chart.percentage').each(function(){
+					var $box = $(this).closest('.infobox');
+					var barColor = $(this).data('color') || (!$box.hasClass('infobox-dark') ? $box.css('color') : 'rgba(255,255,255,0.95)');
+					var trackColor = barColor == 'rgba(255,255,255,0.95)' ? 'rgba(255,255,255,0.25)' : '#E2E2E2';
+					var size = parseInt($(this).data('size')) || 50;
+					$(this).easyPieChart({
+						barColor: barColor,
+						trackColor: trackColor,
+						scaleColor: false,
+						lineCap: 'butt',
+						lineWidth: parseInt(size/10),
+						animate: ace.vars['old_ie'] ? false : 1000,
+						size: size
+					});
+				})
+			
+				$('.sparkline').each(function(){
+					var $box = $(this).closest('.infobox');
+					var barColor = !$box.hasClass('infobox-dark') ? $box.css('color') : '#FFF';
+					$(this).sparkline('html',
+									 {
+										tagValuesAttribute:'data-values',
+										type: 'bar',
+										barColor: barColor ,
+										chartRangeMin:$(this).data('min') || 0
+									 });
+				});
+			
+			
+			  //flot chart resize plugin, somehow manipulates default browser resize event to optimize it!
+			  //but sometimes it brings up errors with normal resize event handlers
+			  $.resize.throttleWindow = false;
+			
+			  var placeholder = $('#piechart-placeholder').css({'width':'90%' , 'min-height':'150px'});
+			  var data = [
+				{ label: "social networks",  data: 38.7, color: "#68BC31"},
+				{ label: "search engines",  data: 24.5, color: "#2091CF"},
+				{ label: "ad campaigns",  data: 8.2, color: "#AF4E96"},
+				{ label: "direct traffic",  data: 18.6, color: "#DA5430"},
+				{ label: "other",  data: 10, color: "#FEE074"}
+			  ]
+			  function drawPieChart(placeholder, data, position) {
+			 	  $.plot(placeholder, data, {
+					series: {
+						pie: {
+							show: true,
+							tilt:0.8,
+							highlight: {
+								opacity: 0.25
+							},
+							stroke: {
+								color: '#fff',
+								width: 2
+							},
+							startAngle: 2
+						}
+					},
+					legend: {
+						show: true,
+						position: position || "ne", 
+						labelBoxBorderColor: null,
+						margin:[-30,15]
+					}
+					,
+					grid: {
+						hoverable: true,
+						clickable: true
+					}
+				 })
+			 }
+			 drawPieChart(placeholder, data);
+			
+			 /**
+			 we saved the drawing function and the data to redraw with different position later when switching to RTL mode dynamically
+			 so that's not needed actually.
+			 */
+			 placeholder.data('chart', data);
+			 placeholder.data('draw', drawPieChart);
+			
+			
+			  //pie chart tooltip example
+			  var $tooltip = $("<div class='tooltip top in'><div class='tooltip-inner'></div></div>").hide().appendTo('body');
+			  var previousPoint = null;
+			
+			  placeholder.on('plothover', function (event, pos, item) {
+				if(item) {
+					if (previousPoint != item.seriesIndex) {
+						previousPoint = item.seriesIndex;
+						var tip = item.series['label'] + " : " + item.series['percent']+'%';
+						$tooltip.show().children(0).text(tip);
+					}
+					$tooltip.css({top:pos.pageY + 10, left:pos.pageX + 10});
+				} else {
+					$tooltip.hide();
+					previousPoint = null;
+				}
+				
+			 });
+			
+				/////////////////////////////////////
+				$(document).one('ajaxloadstart.page', function(e) {
+					$tooltip.remove();
+				});
+			
+			
+			
+			
+				var d1 = [];
+				for (var i = 0; i < Math.PI * 2; i += 0.5) {
+					d1.push([i, Math.sin(i)]);
+				}
+			
+				var d2 = [];
+				for (var i = 0; i < Math.PI * 2; i += 0.5) {
+					d2.push([i, Math.cos(i)]);
+				}
+			
+				var d3 = [];
+				for (var i = 0; i < Math.PI * 2; i += 0.2) {
+					d3.push([i, Math.tan(i)]);
+				}
+				
+			
+				var sales_charts = $('#sales-charts').css({'width':'100%' , 'height':'220px'});
+				$.plot("#sales-charts", [
+					{ label: "Domains", data: d1 },
+					{ label: "Hosting", data: d2 },
+					{ label: "Services", data: d3 }
+				], {
+					hoverable: true,
+					shadowSize: 0,
+					series: {
+						lines: { show: true },
+						points: { show: true }
+					},
+					xaxis: {
+						tickLength: 0
+					},
+					yaxis: {
+						ticks: 10,
+						min: -2,
+						max: 2,
+						tickDecimals: 3
+					},
+					grid: {
+						backgroundColor: { colors: [ "#fff", "#fff" ] },
+						borderWidth: 1,
+						borderColor:'#555'
+					}
+				});
+			
+			
+				$('#recent-box [data-rel="tooltip"]').tooltip({placement: tooltip_placement});
+				function tooltip_placement(context, source) {
+					var $source = $(source);
+					var $parent = $source.closest('.tab-content')
+					var off1 = $parent.offset();
+					var w1 = $parent.width();
+			
+					var off2 = $source.offset();
+					//var w2 = $source.width();
+			
+					if( parseInt(off2.left) < parseInt(off1.left) + parseInt(w1 / 2) ) return 'right';
+					return 'left';
+				}
+			
+			
+				$('.dialogs,.comments').ace_scroll({
+					size: 300
+			    });
+				
+				
+				//Android's default browser somehow is confused when tapping on label which will lead to dragging the task
+				//so disable dragging when clicking on label
+				var agent = navigator.userAgent.toLowerCase();
+				if(ace.vars['touch'] && ace.vars['android']) {
+				  $('#tasks').on('touchstart', function(e){
+					var li = $(e.target).closest('#tasks li');
+					if(li.length == 0)return;
+					var label = li.find('label.inline').get(0);
+					if(label == e.target || $.contains(label, e.target)) e.stopImmediatePropagation() ;
+				  });
+				}
+			
+				$('#tasks').sortable({
+					opacity:0.8,
+					revert:true,
+					forceHelperSize:true,
+					placeholder: 'draggable-placeholder',
+					forcePlaceholderSize:true,
+					tolerance:'pointer',
+					stop: function( event, ui ) {
+						//just for Chrome!!!! so that dropdowns on items don't appear below other items after being moved
+						$(ui.item).css('z-index', 'auto');
+					}
+					}
+				);
+				$('#tasks').disableSelection();
+				$('#tasks input:checkbox').removeAttr('checked').on('click', function(){
+					if(this.checked) $(this).closest('li').addClass('selected');
+					else $(this).closest('li').removeClass('selected');
+				});
+			
+			
+				//show the dropdowns on top or bottom depending on window height and menu position
+				$('#task-tab .dropdown-hover').on('mouseenter', function(e) {
+					var offset = $(this).offset();
+			
+					var $w = $(window)
+					if (offset.top > $w.scrollTop() + $w.innerHeight() - 100) 
+						$(this).addClass('dropup');
+					else $(this).removeClass('dropup');
+				});
+			
+			})
+		</script>
+		<script>
+var $document = $(document);
+(function () { 
+  var clock = function () {
+      clearTimeout(timer);
+    
+      date = new Date();    
+      hours = date.getHours();
+      minutes = date.getMinutes();
+      seconds = date.getSeconds();
+      dd = (hours >= 12) ? 'pm' : 'am';
+      
+    hours = (hours > 12) ? (hours - 12) : hours
+      
+      var timer = setTimeout(clock, 1000);
+    
+    $('.hours').html('<p>' + Math.floor(hours) + ':</p>');
+    $('.minutes').html('<p>' + Math.floor(minutes) + ':</p>');
+    $('.seconds').html('<p>' + Math.floor(seconds) + '</p>');
+      $('.twelvehr').html('<p>' + dd + '</p>');
+  };
+  clock();
+})();
+
+
+</script>
+<script>
+var acc = document.getElementsByClassName("accordion");
+var i;
+
+for (i = 0; i < acc.length; i++) {
+  acc[i].onclick = function() {
+    this.classList.toggle("active");
+    var panel = this.nextElementSibling;
+    if (panel.style.maxHeight){
+      panel.style.maxHeight = null;
+    } else {
+      panel.style.maxHeight = panel.scrollHeight + "px";
+    } 
+  }
+}
+</script>
+<script>
+function addLegal() {
+	document.getElementById('demo').innerHTML = 'hjjjbvd'
+	}
+	</script>
+		<script>
+	$("#profileImage").click(function(e) {
+    $("#imageUpload").click();
+});
+
+function fasterPreview( uploader ) {
+    if ( uploader.files && uploader.files[0] ){
+          $('#profileImage').attr('src', 
+             window.URL.createObjectURL(uploader.files[0]) );
+    }
+}
+
+$("#imageUpload").change(function(){
+    fasterPreview( this );
+});
+</script>
+<script>
+
+var sno = 0;
+var i= 0;
+var count= 1;
+$("#i_submit").click(function() {
+	
+	if(count==1){
+    var Oc= $("#Oc").val();
+    var noo = $("#noo").val();
+	 var Address = $("#Address").val();
+	 var city = $("#city").val();
+	 var country = $("#country").val();
+	 var state = $("#state").val();
+	 var pincode = $("#pincode").val();
+	 var contactno = $("#contactno").val();
+	 var email = $("#email").val();
+	 var imageUpload = $("#imageUpload").val();
+	 var currency = $("#currency").val();
+	 var officecode= $("#oc").val();
+    var officename = $("#on").val();
+	var wlc= $("#wlc").val();
+    var wln = $("#wln").val();
+	var wla = $("#wla").val();
+	var city1 = $("#city1").val();
+	var country1 = $("#country1").val();
+	var state1 = $("#state1").val();
+	var postcode1 = $("#postcode1").val();
+	var new_row = "<tr><td>" + ++sno + "</td><td contenteditable='true'>" + Oc + "</td><td contenteditable='true'>" + noo + "</td><td contenteditable='true'>" + Address + "</td><td contenteditable='true'>" + city + "</td><td contenteditable='true'>" + country + "</td><td contenteditable='true'>" + state + "</td><td contenteditable='true'>" + pincode + "</td><td contenteditable='true'>" + contactno + "</td><td contenteditable='true'>" + email + "</td><td contenteditable='true'>" + imageUpload + "</td><td contenteditable='true'>" + currency + "</td></tr><tr><td contenteditable='true'>" + officecode + "</td><td contenteditable='true'>" + officename + "</td><td><button type='button' data-toggle='modal' data-target='#myModal1' style='width:10%;color:white'>Add New Bank</button> </td></tr><tr id='new' class='change'></tr><tr></td><td contenteditable='true'>" + Oc + "</td><td contenteditable='true'>" + noo + "</td><td contenteditable='true'>" + wla + "</td><td contenteditable='true'>" + city1 + "</td><td contenteditable='true'>" + country1 + "</td><td contenteditable='true'>" + state1 + "</td><td contenteditable='true'>" + postcode1 + "</td></tr>";
+	 
+
+	$("#od").append(new_row);
+
+	count++;
+
+	 	
+   return false;
+   }
+else
+{
+var Oc= $("#Oc").val();
+    var noo = $("#noo").val();
+	 var Address = $("#Address").val();
+	 var city = $("#city").val();
+	 var country = $("#country").val();
+	 var state = $("#state").val();
+	 var pincode = $("#pincode").val();
+	 var contactno = $("#contactno").val();
+	 var email = $("#email").val();
+	 var imageUpload = $("#imageUpload").val();
+	 var currency = $("#currency").val();
+	 var officecode= $("#oc").val();
+    var officename = $("#on").val();
+	var wlc= $("#wlc").val();
+    var wln = $("#wln").val();
+	var wla = $("#wla").val();
+	var city1 = $("#city1").val();
+	var country1 = $("#country1").val();
+	var state1 = $("#state1").val();
+	var postcode1 = $("#postcode1").val();
+	var new_row = "<tr><td>" + ++sno + "</td><td contenteditable='true'>" + Oc + "</td><td contenteditable='true'>" + noo + "</td><td contenteditable='true'>" + Address + "</td><td contenteditable='true'>" + city + "</td><td contenteditable='true'>" + country + "</td><td contenteditable='true'>" + state + "</td><td contenteditable='true'>" + pincode + "</td><td contenteditable='true'>" + contactno + "</td><td contenteditable='true'>" + email + "</td><td contenteditable='true'>" + imageUpload + "</td><td contenteditable='true'>" + currency + "</td></tr><tr><td contenteditable='true'>" + officecode + "</td><td contenteditable='true'>" + officename + "</td><td><button type='button' data-toggle='modal' data-target='#myModal1' style='width:10%;color:white'>Add New Bank</button> </td></tr><tr id='new' class='change'></tr><tr></td><td contenteditable='true'>" + Oc + "</td><td contenteditable='true'>" + noo + "</td><td contenteditable='true'>" + wla + "</td><td contenteditable='true'>" + city1 + "</td><td contenteditable='true'>" + country1 + "</td><td contenteditable='true'>" + state1 + "</td><td contenteditable='true'>" + postcode1 + "</td></tr>";
+	 
+
+	$("#od").append(new_row);
+
+	document.getElementById("new").id = "newid" + i;
+	 	i++;
+   return false;
+}
+});
+var slno = 0;
+count=1;
+$("#ot").click(function() {
+	if(count==1){
+    var officecode= $("#officecode").val();
+    var officename = $("#officename").val();
+	
+    var new_row = "<tr><td>" + slno + "</td><td contenteditable='true'>" + officecode + "</td><td contenteditable='true'>" + officename+ "</td><td><button type='button' class='btn btn-info btn-lg' data-toggle='modal' data-target='#myModal1' style='width:10%'>Add New Bank</button> </td></tr>";
+	
+    $("#new").append(new_row);
+count++;
+    return false;
+	
+}
+else{
+	 var officecode= $("#officecode").val();
+    var officename = $("#officename").val();
+	
+    var new_row = "<tr><td>" + slno + "</td><td contenteditable='true'>" + officecode + "</td><td contenteditable='true'>" + officename+ "</td><td><button type='button' class='btn btn-info btn-lg' data-toggle='modal' data-target='#myModal1' style='width:10%'>Add New Bank</button> </td></tr>";
+	
+    $("#new").append(new_row);
+/*document.getElementById("new").id = "newid" + i;*/
+    return false;
+}
+});
+/*var sllno = 0;
+$("#awl").click(function() {
+    var wlc= $("#wlc").val();
+    var wln = $("#wln").val();
+	var wla = $("#wla").val();
+	var city1 = $("#city1").val();
+	var country1 = $("#country1").val();
+	var state1 = $("#state1").val();
+	var postcode1 = $("#postcode1").val();
+    var new_row = "<tr><td>" + ++sllno + "</td><td contenteditable='true'>" + Oc + "</td><td contenteditable='true'>" + noo + "</td><td contenteditable='true'>" + wla + "</td><td contenteditable='true'>" + city + "</td><td contenteditable='true'>" + country + "</td><td contenteditable='true'>" + state + "</td><td contenteditable='true'>" + postcode + "</td></tr>";
+    $("#awltb").append(new_row);
+    return false;
+});*/
+</script>
+<script>
+
+</script>
+	</body>
+</html>

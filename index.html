@@ -3,18 +3,17 @@
 	<head>
 		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 		<meta charset="utf-8" />
-		<title>Full Calendar</title>
+		<title>Dashboard</title>
 
-		<meta name="description" content="with draggable and editable events" />
+		<meta name="description" content="overview &amp; stats" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
 
 		<!-- bootstrap & fontawesome -->
 		<link rel="stylesheet" href="assets/css/bootstrap.min.css" />
 		<link rel="stylesheet" href="assets/font-awesome/4.5.0/css/font-awesome.min.css" />
+	
 
 		<!-- page specific plugin styles -->
-		<link rel="stylesheet" href="assets/css/jquery-ui.custom.min.css" />
-		<link rel="stylesheet" href="assets/css/fullcalendar.min.css" />
 
 		<!-- text fonts -->
 		<link rel="stylesheet" href="assets/css/fonts.googleapis.com.css" />
@@ -36,6 +35,8 @@
 
 		<!-- ace settings handler -->
 		<script src="assets/js/ace-extra.min.js"></script>
+			<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+			
 
 		<!-- HTML5shiv and Respond.js for IE8 to support HTML5 elements and media queries -->
 
@@ -44,7 +45,31 @@
 		<script src="assets/js/respond.min.js"></script>
 		<![endif]-->
 		<style>
-		.clock {
+		.btn-primary, .btn-primary.focus, .btn-primary:focus {
+    background-color: #1962a0!important;
+    border-color: #428BCA;
+}
+@media screen and (max-width: 900px) {
+    ul.nav nav-list {
+        width: 100%;
+        height: auto;
+        position: relative;
+    }
+    ul.nav nav-list li a {
+        float: left;
+        padding: 15px;
+    }
+    div.content {margin-left: 0;}
+}
+
+@media screen and (max-height: 450px) {
+  .sidenav {padding-top: 15px;}
+  .sidenav a {font-size: 18px;}
+}
+
+
+
+.clock {
   top:30%;
   background-color: #3c434c;
   width:210px;
@@ -60,11 +85,109 @@
   text-align: center;
   color:white;
 }
+button.accordion {
+    background-color: #ccd8da;
+    color: #444;
+    cursor: pointer;
+    padding: 18px;
+    width: 100%;
+    border: none;
+    text-align: left;
+    outline: none;
+    font-size: 15px;
+    transition: 0.4s;
+}
+
+button.accordion.active, button.accordion:hover {
+    background-color:#ccd8da;
+}
+
+button.accordion:after {
+    content: '\002B';
+    color: #777;
+    font-weight: bold;
+    float: right;
+    margin-left: 5px;
+}
+
+button.accordion.active:after {
+    content: "\2212";
+}
+
+div.panel {
+    padding: 0 18px;
+    background-color: #fbefcd;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.2s ease-out;
+}
+button {
+	width: 32%;
+    height: 75px;
+	background-color:#023945;
+	font-size: 18px;
+    font-weight: bolder;
+	color:white
+
+	}
+	/* entire container, keeps perspective */
+.flip-container {
+	perspective: 1000px;
+}
+	/* flip the pane when hovered */
+	.flip-container:hover .flipper, .flip-container.hover .flipper {
+		transform: rotateY(180deg);
+	}
+
+.flip-container, .front, .back {
+	width: 200px;
+	height: 250px;
+}
+
+/* flip speed goes here */
+.flipper {
+	transition: 0.6s;
+	transform-style: preserve-3d;
+
+	position: relative;
+}
+
+/* hide back of pane during swap */
+.front, .back {
+	backface-visibility: hidden;
+
+	position: absolute;
+	top: 0;
+	left: 0;
+}
+
+/* front pane, placed above back */
+.front {
+	z-index: 2;
+	/* for firefox 31 */
+	transform: rotateY(0deg);
+}
+
+/* back, initially hidden pane */
+.back {
+	transform: rotateY(180deg);
+}
+h3 {
+    font-size: 22px;
+    padding: 41px;
+    font-family: calibri bold;
+}
+.front {
+    z-index: 2;
+    transform: rotateY(0deg);
+    background-color: #80a9d0;
+	color:white
+}
 </style>
 	</head>
 
 	<body class="no-skin">
-		<nav class="navbar navbar-default" style=" background-color:#438EB9;">
+	<nav class="navbar navbar-default" style=" background-color:#003946;">
 		<div class="container-fluid">
 			<ul class="nav navbar-nav">
 				<ul class="navbar-header">
@@ -78,15 +201,13 @@
 						<span class="icon-bar"></span>
 					</button>
 				</ul>
+			
 				<li><a href="index.html" style="color:black;">
-						<span class="glyphicon glyphicon-home" style="font-size: 25px; line-height:0;"></span>
+						<span class="glyphicon glyphicon-home" style="font-size: 25px; line-height:0;color:white"></span>
 					</a>
 				</li>
-				<li><a href="pro.html" style="color:black;">
-						<span class="glyphicon glyphicon-book" style="font-size: 25px; line-height:0;"></span>
-					</a>
-				</li>
-				<li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown"> <span class="glyphicon glyphicon-bell" style="font-size: 25px; line-height:0;color:black;></span>
+				
+				<li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown"> <span class="glyphicon glyphicon-bell" style="font-size: 25px; line-height:0;color:white;></span>
 					<span class="caret"></span></a>
 					<ul class="dropdown-menu">
 						<li><a href="#">Page 1-1</a></li>
@@ -94,6 +215,8 @@
 						<li><a href="#">Page 1-3</a></li>
 					</ul>
 				</li>
+
+								
 			</ul>	
 					<div class="clock">
       <div class="hours"></div><!--
@@ -101,9 +224,11 @@
     --><div class="seconds"></div><!--
     --><div class="twelvehr"></div>
 </div>
+					
+					
 			<ul class="nav navbar-nav navbar-right" style="margin-top:-48px;">	
 				<li>
-					<p style="margin-top:15px;">Admin</p>
+					<p style="margin-top:15px;color:white">Admin</p>
 				</li>
 				<li>
 					<select name="Role" style="margin-top:10px;">
@@ -115,19 +240,19 @@
 						<option value="ba">BA</option>
 					</select>
 				</li>
-				<li><a href="password.html" style="color:black;">
-						<span class="glyphicon glyphicon-lock" style="font-size: 25px; line-height:0;"></span>
-					</a>
-				</li>
-					<li><a href="cog.html" style="color:black;">
+					<li><a href="cog.html" style="color:white;">
 						<span class="glyphicon glyphicon-cog" style="font-size: 25px; line-height:0;"></span>
 					</a>
 				</li>
-				<li class="light-blue dropdown-modal" style="margin-top:-8px;">
+				<li><a href="password.html" style="color:white;">
+						<span class="glyphicon glyphicon-lock" style="font-size: 25px; line-height:0;"></span>
+					</a>
+				</li>
+				<li class="light-blue dropdown-modal" style="margin-top:-6px;">
 					<a data-toggle="dropdown" href="#" class="dropdown-toggle">
 						<img class="nav-user-photo" src="assets/images/avatars/user.jpg" alt="Jason's Photo" />
 						<span class="user-info">
-							<small style=color:black;">Welcome,
+							<small style=color:white;">Welcome,
 									Jason</small>
 						</span>
 
@@ -139,7 +264,6 @@
 									
 						</li>
 
-					
 						
 
 							<li>
@@ -159,12 +283,13 @@
 				try{ace.settings.loadState('main-container')}catch(e){}
 			</script>
 
-						<div id="sidebar" class="sidebar      h-sidebar                navbar-collapse collapse          ace-save-state">
+		<div id="sidebar" class="sidebar      h-sidebar                navbar-collapse collapse          ace-save-state">
 				<script type="text/javascript">
 					try{ace.settings.loadState('sidebar')}catch(e){}
 				</script>
 
 				
+
 				<ul class="nav nav-list">
 					<li class="">
 						<a href="index.html">
@@ -175,14 +300,14 @@
 						<b class="arrow"></b>
 					</li>
 					<li class="">
-						<a href="calendar.html">
-							<i class="menu-icon fa fa-calendar"></i>
+						<a href="report.html">
+							<i class="menu-icon fa fa-line-chart"></i>
 
 							<span class="menu-text">
-								Calendar
+								Reports
 
 								<span class="badge badge-transparent tooltip-error" title="2 Important Events">
-								
+									
 								</span>
 							</span>
 						</a>
@@ -190,10 +315,10 @@
 						<b class="arrow"></b>
 					</li>
 					<li class="">
-						<a href="my pay.html">
-							<i class="menu-icon fa fa-money" aria-hidden="true"></i>
+						<a href="employee.html">
+							<i class="menu-icon fa fa-users" aria-hidden="true"></i>
 							<span class="menu-text">
-								My Pay
+								Employee
 
 								
 							</span>
@@ -202,10 +327,10 @@
 						<b class="arrow"></b>
 					</li>
 					<li class="">
-						<a href="leave.html">
-							<i class="menu-icon fa fa-money" aria-hidden="true"></i>
+						<a href="time.html">
+							<i class="menu-icon fa fa-calendar" aria-hidden="true"></i>
 							<span class="menu-text">
-								Leave
+								Time & Attendence
 
 								
 							</span>
@@ -217,7 +342,7 @@
 						<a href="travel.html">
 							<i class="menu-icon fa fa-plane" aria-hidden="true"></i>
 							<span class="menu-text">
-								Travel
+								Leave
 
 								
 							</span>
@@ -226,10 +351,10 @@
 						<b class="arrow"></b>
 					</li>
 						<li class="">
-						<a href="reimbruisment.html">
+						<a href="pay.html">
 							<i class="menu-icon fa fa-money" aria-hidden="true"></i>
 							<span class="menu-text">
-								Reimbursement
+								Pay
 
 								
 							</span>
@@ -237,7 +362,10 @@
 
 						<b class="arrow"></b>
 					</li>
-					
+						<li><a href="index.html" style="color:black;">
+						<img src="assets/images/ebs_logo-1.png">
+					</a>
+				</li>
 						</ul>
 					</li>
 				</ul><!-- /.nav-list -->
@@ -246,7 +374,7 @@
 					<i id="sidebar-toggle-icon" class="ace-icon fa fa-angle-double-left ace-save-state" data-icon1="ace-icon fa fa-angle-double-left" data-icon2="ace-icon fa fa-angle-double-right"></i>
 				</div>
 			</div>
-			
+
 			<div class="main-content">
 				<div class="main-content-inner">
 					<div class="breadcrumbs ace-save-state" id="breadcrumbs">
@@ -336,130 +464,152 @@
 							</div><!-- /.ace-settings-box -->
 						</div><!-- /.ace-settings-container -->
 
-						<div class="page-header">
-							<h1>
-								Dashboard
-								<small>
-									<i class="ace-icon fa fa-angle-double-right"></i>
-									overview &amp; stats
-								</small>
-							</h1>
-						</div><!-- /.page-header -->
+						
 
-						<div id="user-profile-1" class="user-profile row">
-										<div class="col-xs-12 col-sm-3 center">
-											<div>
-												<span class="profile-picture">
-													<img id="avatar" class="editable img-responsive" alt="Alex's Avatar" src="assets/images/avatars/profile-pic.jpg" />
-												</span>
+						<div class="row">
+							<div class="col-md-6">
+							
+								
+								<button class="accordion" id="defaultOpen">Geographical Spread</button>
+										 
+											<div class="panel">	
+											
+												<div>
+												<div class="col-md-3">
+													<div class="flip-container" ontouchstart="this.classList.toggle('hover');">
+														<div class="flipper">
+															<div class="front">
+																<h3>Bangalore-Singasandra</h3>
+															</div>
+															<div class="back">
+																<div id="map" class="col-md-3" style="width:200px;height:250px;background:yellow" ></div>
+															</div>
+														</div>
+													</div>	
+												</div>
+												<div class="col-md-3">
+													<div class="flip-container" ontouchstart="this.classList.toggle('hover');">
+														<div class="flipper">
+															<div class="front">
+																<h3>Bangalore-RR nagar</p>
+															</div>
+															<div class="back">
+																<div id="map1" class="col-md-3"style="width:200px;height:250px;background:yellow"></div>
+															</div>
+														</div>
+													</div>
+												</div>
+												<div class="col-md-3">												
+													<div class="flip-container" ontouchstart="this.classList.toggle('hover');">
+														<div class="flipper">
+															<div class="front">
+																<h3>Oman</h3>
+															</div>
+															<div class="back">
+																<div id="map2" class="col-md-3"style="width:200px;height:250px;background:yellow"></div>
+															</div>
+														</div>
+													</div>
+												</div>
+												<div class="col-md-3">
+													<div class="flip-container" ontouchstart="this.classList.toggle('hover');">
+														<div class="flipper">
+															<div class="front">
+																<h3>Abu Dhabi</h3>
+															</div>
+															<div class="back">
+																<div id="map3" class="col-md-3"style="width:200px;height:250px;background:yellow"></div>
+															</div>
+														</div>
+													</div>	
+												</div>
+												</div>	
+												</div>
+										</div>
+									
+									
+								
+								
 
-												<div class="space-4"></div>
+								<!-- PAGE CONTENT ENDS -->
+							
+							<div class="col-md-6">
+							 
+								<button class="accordion" id="defaultPpen">Departmental Spread</button>
+									
+										<div class="panel">
+											
+												
+													<button>HR</button>
+													<button>IT-Development</button>
+													<button>Testing</button>
+													<button>Project Management</button>
+													<button>Pre-Sales</button>
+													<button>IT-Support</button>
+													<button>Finance</button>
+													<button>Legal</button>
+													<button>BPO</button>
+												</div>	
+									</div>			
+										
+								
+								<!-- /.col -->
+						<!-- /.row -->
+					</div>
+					<div class="row">
+						<div class="col-md-6">
+							 
+							<button class="accordion" id="defaultQpen">Hire vs Termination</button>
+							
+								<div class="panel" class="col-md-6">
+								<div id="top_x_div" class="col-md-3"style="width: 500px; height: 500px;"></div>
+								</div>
+								</div>
+				
+						<div class="col-md-6">
+						
+							<button class="accordion" id="defaultRpen">Skill Spread</button>
+							 
+								<div class="panel">
+								<div class="col-md-6" style="width:100%">
+										<div class="widget-box" style="width:100%;">
+											<div class="widget-header widget-header-flat widget-header-small">
+												<h5 class="widget-title">
+													<i class="ace-icon fa fa-signal"></i>
+													Skills
+												</h5>
 
-												<div class="width-80 label label-info label-xlg arrowed-in arrowed-in-right">
-													<div class="inline position-relative">
-														<a href="#" class="user-title-label dropdown-toggle" data-toggle="dropdown">
-
-															<span class="white">Alex M. Doe</span>
-														</a>
+												<div class="widget-toolbar no-border">
+													<div class="inline dropdown-hover">
+														
 
 														
 													</div>
 												</div>
 											</div>
 
-											<div class="space-6"></div>
+											<div class="widget-body" style="height:415px">
+												<div class="widget-main">
+													<div id="piechart-placeholder" style="    min-height: 250px;
+    width: 91%;
+    padding: 0px;
+    position: relative;"></div>
 
-											
+													
 
-
-											<div class="hr hr16 dotted"></div>
-										</div>
-
-										<div class="col-xs-12 col-sm-9">
-											
-											<div class="space-12"></div>
-
-											<div class="profile-user-info profile-user-info-striped">
-												<div class="profile-info-row">
-													<div class="profile-info-name"> Name </div>
-
-													<div class="profile-info-value">
-														<span class="editable" id="username">alexdoe</span>
-													</div>
-												</div>
-												<div class="profile-info-row">
-													<div class="profile-info-name"> Designation </div>
-
-													<div class="profile-info-value">
-														<span class="editable" id="designation">Developer</span>
-													</div>
-												</div>
-										<div class="profile-info-row">
-													<div class="profile-info-name"> Level </div>
-
-													<div class="profile-info-value">
-														<span class="editable" id="username">bm2</span>
-													</div>
-												</div>
-												<div class="profile-info-row">
-													<div class="profile-info-name"> Department </div>
-
-													<div class="profile-info-value">
-														<span class="editable" id="username">IT</span>
-													</div>
-												</div>
-												<div class="profile-info-row">
-													<div class="profile-info-name"> Location </div>
-
-													<div class="profile-info-value">
-														<i class="fa fa-map-marker light-orange bigger-110"></i>
-														<span class="editable" id="country">India</span>
-														<span class="editable" id="city">Bangalore</span>
-													</div>
-												</div>
-
-												<div class="profile-info-row">
-													<div class="profile-info-name"> Organization</div>
-
-													<div class="profile-info-value">
-														<span class="editable" id="age">EBS</span>
-													</div>
-												</div>
-
-												<div class="profile-info-row">
-													<div class="profile-info-name"> Reporting Manager</div>
-
-													<div class="profile-info-value">
-														<span class="editable" id="signup">......</span>
-													</div>
-												</div>
-
-											
-											</div>
-
-											<div class="space-20"></div>
-
-											
-
-										
-
-											<div class="space-6"></div>
-
-											
-										</div>
-									</div>
+													
+												</div><!-- /.widget-main -->
+											</div><!-- /.widget-body -->
+										</div><!-- /.widget-box -->
+									</div><!-- /.col -->
+								</div><!-- /.row -->
 								</div>
-	
-								
-								
-
-								<!-- PAGE CONTENT ENDS -->
-							</div><!-- /.col -->
-						</div><!-- /.row -->
-					</div><!-- /.page-content -->
+						</div>
+					</div>
+							<!-- /.page-content -->
 				</div>
 			</div><!-- /.main-content -->
-
+			</div>
 			<div class="footer">
 				<div class="footer-inner">
 					<div class="footer-content">
@@ -485,6 +635,7 @@
 					</div>
 				</div>
 			</div>
+			
 
 			<a href="#" id="btn-scroll-up" class="btn-scroll-up btn btn-sm btn-inverse">
 				<i class="ace-icon fa fa-angle-double-up icon-only bigger-110"></i>
@@ -501,6 +652,7 @@
 		<!--[if IE]>
 <script src="assets/js/jquery-1.11.3.min.js"></script>
 <![endif]-->
+
 		<script type="text/javascript">
 			if('ontouchstart' in document.documentElement) document.write("<script src='assets/js/jquery.mobile.custom.min.js'>"+"<"+"/script>");
 		</script>
@@ -559,13 +711,13 @@
 			  //but sometimes it brings up errors with normal resize event handlers
 			  $.resize.throttleWindow = false;
 			
-			  var placeholder = $('#piechart-placeholder').css({'width':'90%' , 'min-height':'150px'});
+			  var placeholder = $('#piechart-placeholder').css({'width':'90%' , 'min-height':'250px'});
 			  var data = [
-				{ label: "social networks",  data: 38.7, color: "#68BC31"},
-				{ label: "search engines",  data: 24.5, color: "#2091CF"},
-				{ label: "ad campaigns",  data: 8.2, color: "#AF4E96"},
-				{ label: "direct traffic",  data: 18.6, color: "#DA5430"},
-				{ label: "other",  data: 10, color: "#FEE074"}
+				{ label: "Finance",  data: 38.7, color: "#68BC31"},
+				{ label: "Java",  data: 24.5, color: "#2091CF"},
+				{ label: "Redmine",  data: 8.2, color: "#AF4E96"},
+				{ label: "Buisness Analyst",  data: 18.6, color: "#DA5430"},
+				{ label: "UI Developer",  data: 10, color: "#FEE074"}
 			  ]
 			  function drawPieChart(placeholder, data, position) {
 			 	  $.plot(placeholder, data, {
@@ -768,5 +920,145 @@ var $document = $(document);
 
 
 </script>
-	</body>
+<script>
+var acc = document.getElementsByClassName("accordion");
+var i;
+ 
+for (i = 0; i < acc.length; i++) {
+  acc[i].onclick = function() {
+    this.classList.toggle("active");
+    var panel = this.nextElementSibling;
+    if (panel.style.maxHeight){
+      panel.style.maxHeight = null;
+    } else {
+      panel.style.maxHeight = panel.scrollHeight + "px";
+    } 
+  }
+}
+</script>
+
+
+ <script>
+      // This example requires the Places library. Include the libraries=places
+      // parameter when you first load the API. For example:
+      // <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=places">
+
+      function initMap() {
+	   var myLatLng = {lat: 12.926166, lng: 77.514197};
+        var map = new google.maps.Map(document.getElementById('map'), {
+          center: {lat:12.873596, lng: 77.649904},
+          zoom: 19
+        });
+		 var map1 = new google.maps.Map(document.getElementById('map1'), {
+         center: myLatLng,
+          zoom: 19
+        });
+		var map2 = new google.maps.Map(document.getElementById('map2'), {
+          center: {lat:12.873596, lng: 77.649904},
+          zoom: 19
+        });
+		 var map3 = new google.maps.Map(document.getElementById('map3'), {
+          center: {lat:12.873596, lng: 77.649904},
+          zoom: 19
+        });
+        var infowindow = new google.maps.InfoWindow();
+        var service = new google.maps.places.PlacesService(map);
+
+        service.getDetails({
+          placeId: 'ChIJQeuhMboUrjsR9U4ir0a1ta0'
+        }, function(place, status) {
+          if (status === google.maps.places.PlacesServiceStatus.OK) {
+            var marker = new google.maps.Marker({
+              map: map,
+              position: place.geometry.location
+            });
+            google.maps.event.addListener(marker, 'click', function() {
+              infowindow.setContent('<div><strong>' + place.name + '</strong><br>' +
+                'Place ID: ' + place.place_id + '<br>' +
+                place.formatted_address + '</div>');
+              infowindow.open(map, this);
+            });
+          }
+        });
+		var marker = new google.maps.Marker({
+    position: myLatLng ,
+    map: map1,
+    
+  });
+
+       
+      }
+    </script>
+	
+ 
+    <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD6WpG8mvDoeghtsSy6P2dbtmEnjegx3AI&libraries=places&callback=initMap">
+    </script>
+	<script>
+	  google.charts.load('current', {'packages':['bar']});
+      google.charts.setOnLoadCallback(drawStuff);
+
+	 function drawStuff() {
+        var data = new google.visualization.arrayToDataTable([
+          ['Hire', 'Percentage'],
+          ["2017", 44],
+          ["2016", 31],
+          ["2015", 12],
+          ["2014", 10],
+          ['2013', 3]
+        ]);
+		
+
+        var options = {
+          title: 'Hire v/s Termination',
+          width: 900,
+          legend: { position: 'none' },
+		     
+          chart: { title: 'Hire v/s Termination' },
+          bars: 'vertical', // Required for Material Bar Charts.
+		   vAxis: {
+       title: "Cups"
+   },
+		  
+          axes: {
+            x: {
+              0: { side: 'down', label: 'Termination'} // Top x-axis.
+            }
+          },
+          bar: { groupWidth: "90%" }
+        };
+		 
+
+        var chart = new google.charts.Bar(document.getElementById('top_x_div'));
+        chart.draw(data, options);
+      };
+    </script>
+
+<script>
+$(document).ready(function(){
+    $("#sing").click(function(){
+        $("#map").animate();
+    });
+	</script>
+
+<script>
+	(function() {
+  
+  $(".panel").on("show.bs.collapse hide.bs.collapse", function(e) {
+    if (e.type=='show'){
+      $(this).addClass('active');
+    }else{
+      $(this).removeClass('active');
+    }
+  });  
+
+}).call(this);
+document.getElementById("defaultOpen").click();
+document.getElementById("defaultRpen").click();
+document.getElementById("defaultPpen").click();
+document.getElementById("defaultQpen").click();
+</script>
+
+
+</body>
 </html>

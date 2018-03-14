@@ -11,6 +11,7 @@
 		<!-- bootstrap & fontawesome -->
 		<link rel="stylesheet" href="assets/css/bootstrap.min.css" />
 		<link rel="stylesheet" href="assets/font-awesome/4.5.0/css/font-awesome.min.css" />
+	
 
 		<!-- page specific plugin styles -->
 
@@ -34,6 +35,8 @@
 
 		<!-- ace settings handler -->
 		<script src="assets/js/ace-extra.min.js"></script>
+			<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+			
 
 		<!-- HTML5shiv and Respond.js for IE8 to support HTML5 elements and media queries -->
 
@@ -82,9 +85,101 @@
   text-align: center;
   color:white;
 }
-.form-group {
-    margin-bottom: 15px;
-    padding: 15px;
+button.accordion {
+    background-color: #438cbb;
+    color: #444;
+    cursor: pointer;
+    padding: 18px;
+    width: 100%;
+    border: none;
+    text-align: left;
+    outline: none;
+    font-size: 15px;
+    transition: 0.4s;
+}
+
+button.accordion.active, button.accordion:hover {
+    background-color: #ccc;
+}
+
+button.accordion:after {
+    content: '\002B';
+    color: #777;
+    font-weight: bold;
+    float: right;
+    margin-left: 5px;
+}
+
+button.accordion.active:after {
+    content: "\2212";
+}
+
+div.panel {
+    padding: 0 18px;
+    background-color: white;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.2s ease-out;
+}
+button {
+	width: 30%;
+    height: 100px;
+	background-color:#438dba
+	}
+	/* entire container, keeps perspective */
+.flip-container {
+	perspective: 1000px;
+}
+	/* flip the pane when hovered */
+	.flip-container:hover .flipper, .flip-container.hover .flipper {
+		transform: rotateY(180deg);
+	}
+
+.flip-container, .front, .back {
+	width: 200px;
+	height: 250px;
+}
+
+/* flip speed goes here */
+.flipper {
+	transition: 0.6s;
+	transform-style: preserve-3d;
+
+	position: relative;
+}
+
+/* hide back of pane during swap */
+.front, .back {
+	backface-visibility: hidden;
+
+	position: absolute;
+	top: 0;
+	left: 0;
+}
+
+/* front pane, placed above back */
+.front {
+	z-index: 2;
+	/* for firefox 31 */
+	transform: rotateY(0deg);
+}
+
+/* back, initially hidden pane */
+.back {
+	transform: rotateY(180deg);
+}
+h3 {
+    font-size: 22px;
+   
+    
+}
+.front {
+    z-index: 2;
+    transform: rotateY(0deg);
+    background-color: #438EB9;
+}
+.widget-main {
+    padding: 25px;
 }
 </style>
 	</head>
@@ -108,7 +203,7 @@
 						<span class="glyphicon glyphicon-home" style="font-size: 25px; line-height:0;color:white"></span>
 					</a>
 				</li>
-			
+				
 				<li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown"> <span class="glyphicon glyphicon-bell" style="font-size: 25px; line-height:0;color:white;></span>
 					<span class="caret"></span></a>
 					<ul class="dropdown-menu">
@@ -142,12 +237,12 @@
 						<option value="ba">BA</option>
 					</select>
 				</li>
-				<li><a href="password.html" style="color:black;">
-						<span class="glyphicon glyphicon-lock" style="font-size: 25px; line-height:0;color:white"></span>
+					<li><a href="cog.html" style="color:black;">
+						<span class="glyphicon glyphicon-cog" style="font-size: 25px; line-height:0;color:white"></span>
 					</a>
 				</li>
-				<li><a href="cog.html" style="color:black;">
-						<span class="glyphicon glyphicon-cog" style="font-size: 25px; line-height:0;color:white"></span>
+				<li><a href="password.html" style="color:black;">
+						<span class="glyphicon glyphicon-lock" style="font-size: 25px; line-height:0;color:white"></span>
 					</a>
 				</li>
 				<li class="light-blue dropdown-modal" style="margin-top:-6px;">
@@ -166,11 +261,10 @@
 									
 						</li>
 
-					
-
+						
 
 							<li>
-								<a href="#">
+								<a href="login.html">
 									<i class="ace-icon fa fa-power-off"></i>
 										Logout
 								</a>
@@ -273,10 +367,10 @@
 					</li>
 				</ul><!-- /.nav-list -->
 
-
 				<div class="sidebar-toggle sidebar-collapse" id="sidebar-collapse">
 					<i id="sidebar-toggle-icon" class="ace-icon fa fa-angle-double-left ace-save-state" data-icon1="ace-icon fa fa-angle-double-left" data-icon2="ace-icon fa fa-angle-double-right"></i>
 				</div>
+			</div>
 			</div>
 
 			<div class="main-content">
@@ -285,9 +379,9 @@
 						<ul class="breadcrumb">
 							<li>
 								<i class="ace-icon fa fa-home home-icon"></i>
-								<a href="#">Home</a>
+								<a href="#">Import</a>
 							</li>
-							<li class="active">Dashboard</li>
+							<li class="active">Select Method</li>
 						</ul><!-- /.breadcrumb -->
 
 						<div class="nav-search" id="nav-search">
@@ -299,7 +393,7 @@
 							</form>
 						</div><!-- /.nav-search -->
 					</div>
-				<div>
+				
 					<div class="page-content">
 						<div class="ace-settings-container" id="ace-settings-container">
 							<div class="btn btn-app btn-xs btn-warning ace-settings-btn" id="ace-settings-btn">
@@ -370,47 +464,82 @@
 
 						<div class="page-header">
 							<h1>
-								Password
-								<small>
-									<i class="ace-icon fa fa-angle-double-right"></i>
-									Set new password
-								</small>
+								Import Employee
+								
 							</h1>
 						</div><!-- /.page-header -->
-						<div class="row">
-							<div class="col-md-12" style="padding:100px;">
-							
-															<div class="space-10"></div>
+							<div class="container">
+								<div class="col-xs-12 col-sm-12 widget-container-col" id="widget-container-col-4">
+											<div class="widget-box" id="widget-box-4">
+												<div class="widget-header widget-header-large">
+													<h4 class="widget-title">Big Header</h4>
 
-															<div class="form-group" >
-																<label class="col-sm-3 control-label no-padding-right" for="form-field-pass1">New Password</label>
+													
+												</div>
 
-																<div class="col-sm-9">
-																	<input type="password" id="form-field-pass1" />
+												<div class="widget-body">
+													<div class="widget-main">
+														<h3 style="font-weight:bolder;color:#438EB9">Add New employee</h3>
+														<div class="row">
+															<div class="row">
+																<div class="col-sm-12">
+																	<h4 style="text-align:center;background-color:#ccc">To Add New Employee By Yourself Click On The Link Below</h4>
+																	</div>
+																	</div>
+																	<div class="row" style="padding:20px;text-decoration:none">
+																<a href="empimp.html" style="text-decoration:none">	<button type="button" class="btn btn-sm btn-success" style="    border-width: 4px;
+    font-size: 13px;
+    padding: 4px 9px;
+    line-height: 1.38;
+    width: 200px;
+    height: 37px;
+	display:block;
+	margin:0 auto;">
+																Add Employee By Myself
+																<i class="ace-icon fa fa-arrow-right icon-on-right bigger-110"></i>
+															</button></a>
+															</div>
+																<div class="hr dotted"></div>
+																<div class="row">
+																<h4 style="text-align:center;background-color:#ccc">Quick Bulk Upload Your Employees</h4>
 																</div>
-															</div>
-
-															<div class="space-4"></div>
-
-															<div class="form-group">
-																<label class="col-sm-3 control-label no-padding-right" for="form-field-pass2">Confirm Password</label>
-
-																<div class="col-sm-9">
-																	<input type="password" id="form-field-pass2" />
+																<div class="row" style="padding:20px;">
+																	<div class="col-sm-6">
+																		<h5 style="text-align:center;font-weight:bolder">Select File To Import</h5>
+																	</div>
+																	<div class="col-sm-6">
+																		<input type="file" style="margin-top:8px">
+																	</div>
 																</div>
+																<div class="row">
+																	<button type="button" class="btn btn-sm btn-success" style="    border-width: 4px;
+    font-size: 13px;
+    padding: 4px 9px;
+    line-height: 1.38;
+    width: 200px;
+    height: 37px;
+	display:block;
+	margin:0 auto;">
+																Import File
+																<i class="ace-icon fa fa-arrow-left icon-on-right bigger-110"></i>
+															</button>
 															</div>
-															<div class="form-group">
-																 <button type="submit" class="btn btn-default" style="    margin-left: 220px; margin-top: 35px;">Submit</button>
-																
-															</div>
-															</div>
-															</div>
-															</div>
-															</div>
-															</div>
-															</div>
-														
-						<div class="footer">
+															<div class="row">
+																<a href="" download><h4 style="float:right;margin-right:10px;font-weight: bolder;
+    color: green;">Download Sample File</h4></a>
+																</div>
+													</div>
+												</div>
+											</div>
+										</div>		
+							</div>
+							</div>
+							</div>
+							</div>
+							</div>
+						
+
+			<div class="footer">
 				<div class="footer-inner">
 					<div class="footer-content">
 						<span class="bigger-120">
@@ -435,11 +564,12 @@
 					</div>
 				</div>
 			</div>
+		
 
 			<a href="#" id="btn-scroll-up" class="btn-scroll-up btn btn-sm btn-inverse">
 				<i class="ace-icon fa fa-angle-double-up icon-only bigger-110"></i>
 			</a>
-		</div><!-- /.main-container -->
+	<!-- /.main-container -->
 
 		<!-- basic scripts -->
 
@@ -451,6 +581,7 @@
 		<!--[if IE]>
 <script src="assets/js/jquery-1.11.3.min.js"></script>
 <![endif]-->
+
 		<script type="text/javascript">
 			if('ontouchstart' in document.documentElement) document.write("<script src='assets/js/jquery.mobile.custom.min.js'>"+"<"+"/script>");
 		</script>
@@ -509,13 +640,13 @@
 			  //but sometimes it brings up errors with normal resize event handlers
 			  $.resize.throttleWindow = false;
 			
-			  var placeholder = $('#piechart-placeholder').css({'width':'90%' , 'min-height':'150px'});
+			  var placeholder = $('#piechart-placeholder').css({'width':'90%' , 'min-height':'250px'});
 			  var data = [
-				{ label: "social networks",  data: 38.7, color: "#68BC31"},
-				{ label: "search engines",  data: 24.5, color: "#2091CF"},
-				{ label: "ad campaigns",  data: 8.2, color: "#AF4E96"},
-				{ label: "direct traffic",  data: 18.6, color: "#DA5430"},
-				{ label: "other",  data: 10, color: "#FEE074"}
+				{ label: "Finance",  data: 38.7, color: "#68BC31"},
+				{ label: "Java",  data: 24.5, color: "#2091CF"},
+				{ label: "Redmine",  data: 8.2, color: "#AF4E96"},
+				{ label: "Buisness Analyst",  data: 18.6, color: "#DA5430"},
+				{ label: "UI Developer",  data: 10, color: "#FEE074"}
 			  ]
 			  function drawPieChart(placeholder, data, position) {
 			 	  $.plot(placeholder, data, {
@@ -718,6 +849,145 @@ var $document = $(document);
 
 
 </script>
-	</body>
+<script>
+var acc = document.getElementsByClassName("accordion");
+var i;
+ 
+for (i = 0; i < acc.length; i++) {
+  acc[i].onclick = function() {
+    this.classList.toggle("active");
+    var panel = this.nextElementSibling;
+    if (panel.style.maxHeight){
+      panel.style.maxHeight = null;
+    } else {
+      panel.style.maxHeight = panel.scrollHeight + "px";
+    } 
+  }
+}
+</script>
+
+
+ <script>
+      // This example requires the Places library. Include the libraries=places
+      // parameter when you first load the API. For example:
+      // <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=places">
+
+      function initMap() {
+	   var myLatLng = {lat: 12.926166, lng: 77.514197};
+        var map = new google.maps.Map(document.getElementById('map'), {
+          center: {lat:12.873596, lng: 77.649904},
+          zoom: 19
+        });
+		 var map1 = new google.maps.Map(document.getElementById('map1'), {
+         center: myLatLng,
+          zoom: 19
+        });
+		var map2 = new google.maps.Map(document.getElementById('map2'), {
+          center: {lat:12.873596, lng: 77.649904},
+          zoom: 19
+        });
+		 var map3 = new google.maps.Map(document.getElementById('map3'), {
+          center: {lat:12.873596, lng: 77.649904},
+          zoom: 19
+        });
+        var infowindow = new google.maps.InfoWindow();
+        var service = new google.maps.places.PlacesService(map);
+
+        service.getDetails({
+          placeId: 'ChIJQeuhMboUrjsR9U4ir0a1ta0'
+        }, function(place, status) {
+          if (status === google.maps.places.PlacesServiceStatus.OK) {
+            var marker = new google.maps.Marker({
+              map: map,
+              position: place.geometry.location
+            });
+            google.maps.event.addListener(marker, 'click', function() {
+              infowindow.setContent('<div><strong>' + place.name + '</strong><br>' +
+                'Place ID: ' + place.place_id + '<br>' +
+                place.formatted_address + '</div>');
+              infowindow.open(map, this);
+            });
+          }
+        });
+		var marker = new google.maps.Marker({
+    position: myLatLng ,
+    map: map1,
+    
+  });
+
+       
+      }
+    </script>
+	
+ 
+    <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD6WpG8mvDoeghtsSy6P2dbtmEnjegx3AI&libraries=places&callback=initMap">
+    </script>
+	<script>
+	  google.charts.load('current', {'packages':['bar']});
+      google.charts.setOnLoadCallback(drawStuff);
+
+	 function drawStuff() {
+        var data = new google.visualization.arrayToDataTable([
+          ['Hire', 'Percentage'],
+          ["2017", 44],
+          ["2016", 31],
+          ["2015", 12],
+          ["2014", 10],
+          ['2013', 3]
+        ]);
+		
+
+        var options = {
+          title: 'Hire v/s Termination',
+          width: 900,
+          legend: { position: 'none' },
+		     
+          chart: { title: 'Hire v/s Termination' },
+          bars: 'vertical', // Required for Material Bar Charts.
+		   vAxis: {
+       title: "Cups"
+   },
+		  
+          axes: {
+            x: {
+              0: { side: 'down', label: 'Termination'} // Top x-axis.
+            }
+          },
+          bar: { groupWidth: "90%" }
+        };
+		 
+
+        var chart = new google.charts.Bar(document.getElementById('top_x_div'));
+        chart.draw(data, options);
+      };
+    </script>
+
+<script>
+$(document).ready(function(){
+    $("#sing").click(function(){
+        $("#map").animate();
+    });
+	</script>
+
+<script>
+	(function() {
+  
+  $(".panel").on("show.bs.collapse hide.bs.collapse", function(e) {
+    if (e.type=='show'){
+      $(this).addClass('active');
+    }else{
+      $(this).removeClass('active');
+    }
+  });  
+
+}).call(this);
+document.getElementById("defaultOpen").click();
+document.getElementById("defaultRpen").click();
+document.getElementById("defaultPpen").click();
+document.getElementById("defaultQpen").click();
+</script>
+
+
+</body>
 </html>
-								

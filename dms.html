@@ -3,23 +3,23 @@
 	<head>
 		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 		<meta charset="utf-8" />
-		<title>Dashboard</title>
+		<title>Document Setting</title>
 
 		<meta name="description" content="overview &amp; stats" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
-
+<script type= "text/javascript" src = "assets/js/countries.js"></script>
+<script type= "text/javascript" src = "countries2.js"></script>
 		<!-- bootstrap & fontawesome -->
 		<link rel="stylesheet" href="assets/css/bootstrap.min.css" />
 		<link rel="stylesheet" href="assets/font-awesome/4.5.0/css/font-awesome.min.css" />
 
 		<!-- page specific plugin styles -->
-
 		<!-- text fonts -->
 		<link rel="stylesheet" href="assets/css/fonts.googleapis.com.css" />
 
 		<!-- ace styles -->
 		<link rel="stylesheet" href="assets/css/ace.min.css" class="ace-main-stylesheet" id="main-ace-style" />
-
+<link rel="stylesheet" href="assets/css/jquery-ui.custom.min.css" />
 		<!--[if lte IE 9]>
 			<link rel="stylesheet" href="assets/css/ace-part2.min.css" class="ace-main-stylesheet" />
 		<![endif]-->
@@ -82,10 +82,80 @@
   text-align: center;
   color:white;
 }
+
+button.accordion {
+    background-color: #eee;
+    color: #444;
+    cursor: pointer;
+    padding: 18px;
+    width: 100%;
+    border: none;
+    text-align: left;
+    outline: none;
+    font-size: 17px;
+    transition: 0.4s;
+	font-weight:bolder
+}
+
+button.accordion.active, button.accordion:hover {
+    background-color:#ccdbda;
+}
+
+div.panel {
+    padding: 0 18px;
+    background-color: white;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.2s ease-out;
+}
+button {
+    font-family: inherit;
+    font-size: 18px;
+    line-height: inherit;
+    width: 73%;
+    height: 50px;
+	    background-color: #003946;
+}
+a {
+color:white;
+}
+hr {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    border-top: 1px solid #80a9d0;
+}
 .form-group {
     margin-bottom: 15px;
-    padding: 15px;
+    float: left;
+	margin-left:10px;
+	 padding-bottom: 10px;
 }
+#imageUpload
+{
+    display: none;
+}
+
+#profileImage
+{
+    cursor: pointer;
+}
+#profile-container {
+    width: 150px;
+    height: 37px;
+  
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    -ms-border-radius: 50%;
+    -o-border-radius: 50%;
+    border-radius: 50%;
+}
+tbody {
+background-color:white;
+}
+thead {
+background-color:grey;
+}
+
 </style>
 	</head>
 
@@ -108,8 +178,8 @@
 						<span class="glyphicon glyphicon-home" style="font-size: 25px; line-height:0;color:white"></span>
 					</a>
 				</li>
-			
-				<li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown"> <span class="glyphicon glyphicon-bell" style="font-size: 25px; line-height:0;color:white;></span>
+				
+				<li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown"> <span class="glyphicon glyphicon-bell" style="font-size: 25px; line-height:0; color:white;></span>
 					<span class="caret"></span></a>
 					<ul class="dropdown-menu">
 						<li><a href="#">Page 1-1</a></li>
@@ -128,9 +198,9 @@
 </div>
 					
 					
-			<ul class="nav navbar-nav navbar-right" style="margin-top:-48px;">	
+			<ul class="nav navbar-nav navbar-right" style="margin-top:-48px;color:white">	
 				<li>
-					<p style="margin-top:15px;color:white">Admin</p>
+					<p style="margin-top:15px;">Admin</p>
 				</li>
 				<li>
 					<select name="Role" style="margin-top:10px;">
@@ -142,14 +212,15 @@
 						<option value="ba">BA</option>
 					</select>
 				</li>
+					<li><a href="cog.html" style="color:black;">
+						<span class="glyphicon glyphicon-cog" style="font-size: 25px; line-height:0;color:white"></span>
+					</a>
+				</li>
 				<li><a href="password.html" style="color:black;">
 						<span class="glyphicon glyphicon-lock" style="font-size: 25px; line-height:0;color:white"></span>
 					</a>
 				</li>
-				<li><a href="cog.html" style="color:black;">
-						<span class="glyphicon glyphicon-cog" style="font-size: 25px; line-height:0;color:white"></span>
-					</a>
-				</li>
+			
 				<li class="light-blue dropdown-modal" style="margin-top:-6px;">
 					<a data-toggle="dropdown" href="#" class="dropdown-toggle">
 						<img class="nav-user-photo" src="assets/images/avatars/user.jpg" alt="Jason's Photo" />
@@ -166,8 +237,7 @@
 									
 						</li>
 
-					
-
+						
 
 							<li>
 								<a href="#">
@@ -175,6 +245,7 @@
 										Logout
 								</a>
 							</li>
+							
 					</ul>
 				</li>
 			</ul>
@@ -191,8 +262,7 @@
 					try{ace.settings.loadState('sidebar')}catch(e){}
 				</script>
 
-				
-
+		
 				<ul class="nav nav-list">
 					<li class="">
 						<a href="index.html">
@@ -273,7 +343,6 @@
 					</li>
 				</ul><!-- /.nav-list -->
 
-
 				<div class="sidebar-toggle sidebar-collapse" id="sidebar-collapse">
 					<i id="sidebar-toggle-icon" class="ace-icon fa fa-angle-double-left ace-save-state" data-icon1="ace-icon fa fa-angle-double-left" data-icon2="ace-icon fa fa-angle-double-right"></i>
 				</div>
@@ -285,10 +354,15 @@
 						<ul class="breadcrumb">
 							<li>
 								<i class="ace-icon fa fa-home home-icon"></i>
-								<a href="#">Home</a>
+								<a href="cog.html">Settings</a>
 							</li>
-							<li class="active">Dashboard</li>
+
+							<li>
+								<a href="bank.html">Bank Details</a>
+							</li>
+							
 						</ul><!-- /.breadcrumb -->
+
 
 						<div class="nav-search" id="nav-search">
 							<form class="form-search">
@@ -367,49 +441,131 @@
 								</div><!-- /.pull-left -->
 							</div><!-- /.ace-settings-box -->
 						</div><!-- /.ace-settings-container -->
+						</div>
+						<div>
+						<h3>Document Setting</h3>
 
-						<div class="page-header">
-							<h1>
-								Password
-								<small>
-									<i class="ace-icon fa fa-angle-double-right"></i>
-									Set new password
-								</small>
-							</h1>
-						</div><!-- /.page-header -->
-						<div class="row">
-							<div class="col-md-12" style="padding:100px;">
+						<button  data-toggle="modal" data-target="#myModal" style="width:18%;color:white" >Add New Document</button>
+
+  <!-- Modal -->
+  <div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog">
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Document Details</h4>
+        </div>
+        <div class="modal-body">
+			<form>
+			<div class="row">
+			
+				
+								
+			
+				<div class="form-group">
+										<label for="form-field-select-1">Document Name<span style="color:red">*</span> </label>
+
+										
+											<input type="text" class="form-control" id="dn"  required/>
+
+									</div>
+									<div class="form-group">
+										<label>Node Aligned<span style="color:red">*</span> </label>
+
+										<select id="na" class="form-control">
+											<option value="">Node Aligned</option>
+										</select>
+										
+									</div>
+									<div class="form-group">
+										<label>Header<span style="color:red">*</span> </label>
+
+										<select id="h" class="form-control">
+											<option value="">Header</option>
+										</select>
+										
+									</div>
+									<div class="form-group">
+										<label>Footer<span style="color:red">*</span> </label>
+
+										<select id="f" class="form-control">
+											<option value="">Footer</option>
+										</select>
+										
+									</div>
+									
+									<div class="row">
+							<div id="doc" class="col-xs-12">
+								
+								
+
+								<div class="wysiwyg-editor" id="editor1"></div>
+
+								<div class="hr hr-double dotted"></div>
+
+								
+
+								
+							</div>
+						</div>
+									
+									
+			
+
+															
+     </div>
+		</form>
+		
+        <div class="modal-footer">
+					
+<div class="form-group">
+													<button type="submit" id="ds" class="btn btn-sm btn-success" style="    border-width: 4px;
+    font-size: 13px;
+    padding: 4px 9px;
+    line-height: 1.38;
+    width: 83px;
+    height: 37px;display:block;margin:0 auto" >
+																Submit
+																<i class="ace-icon fa fa-arrow-right icon-on-right bigger-110"></i>
+															</button>
+															</div>	
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      
+      
+    </div>
+  </div>
+  </div>
+	</div>					
 							
-															<div class="space-10"></div>
-
-															<div class="form-group" >
-																<label class="col-sm-3 control-label no-padding-right" for="form-field-pass1">New Password</label>
-
-																<div class="col-sm-9">
-																	<input type="password" id="form-field-pass1" />
-																</div>
-															</div>
-
-															<div class="space-4"></div>
-
-															<div class="form-group">
-																<label class="col-sm-3 control-label no-padding-right" for="form-field-pass2">Confirm Password</label>
-
-																<div class="col-sm-9">
-																	<input type="password" id="form-field-pass2" />
-																</div>
-															</div>
-															<div class="form-group">
-																 <button type="submit" class="btn btn-default" style="    margin-left: 220px; margin-top: 35px;">Submit</button>
-																
-															</div>
-															</div>
-															</div>
-															</div>
-															</div>
-															</div>
-															</div>
-														
+							
+							<div class="row" style="padding:20px;
+    height: 400px;
+    overflow: scroll;">
+							<div style="overflow-x:auto;">
+							
+							 <table class="table controls controls-row">
+								<thead>
+									<th>Document Name</th>
+									<th>Node Aligned</th>
+									<th>Header</th>
+									<th>Footer</th>
+									<th>Document</th>
+								</thead>
+								<tbody id="dstb">
+								</tbody>
+							</table>
+							
+							</div>
+							</div>
+							
+								  
+			
+									</div>
+									</div>
+									</div>
 						<div class="footer">
 				<div class="footer-inner">
 					<div class="footer-content">
@@ -440,7 +596,14 @@
 				<i class="ace-icon fa fa-angle-double-up icon-only bigger-110"></i>
 			</a>
 		</div><!-- /.main-container -->
-
+		<script language="javascript">
+				populateCountries("country", "state");
+				populateCountries("country1", "state1");
+			</script>
+ <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
+	<script type="text/javascript" src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
 		<!-- basic scripts -->
 
 		<!--[if !IE]> -->
@@ -451,12 +614,14 @@
 		<!--[if IE]>
 <script src="assets/js/jquery-1.11.3.min.js"></script>
 <![endif]-->
+ 
 		<script type="text/javascript">
 			if('ontouchstart' in document.documentElement) document.write("<script src='assets/js/jquery.mobile.custom.min.js'>"+"<"+"/script>");
 		</script>
 		<script src="assets/js/bootstrap.min.js"></script>
 
 		<!-- page specific plugin scripts -->
+
 
 		<!--[if lte IE 8]>
 		  <script src="assets/js/excanvas.min.js"></script>
@@ -468,12 +633,201 @@
 		<script src="assets/js/jquery.flot.min.js"></script>
 		<script src="assets/js/jquery.flot.pie.min.js"></script>
 		<script src="assets/js/jquery.flot.resize.min.js"></script>
-
+<script src="assets/js/jquery-ui.custom.min.js"></script>
+		<script src="assets/js/jquery.ui.touch-punch.min.js"></script>
+		<script src="assets/js/markdown.min.js"></script>
+		<script src="assets/js/bootstrap-markdown.min.js"></script>
+		<script src="assets/js/jquery.hotkeys.index.min.js"></script>
+		<script src="assets/js/bootstrap-wysiwyg.min.js"></script>
+		<script src="assets/js/bootbox.js"></script>
 		<!-- ace scripts -->
 		<script src="assets/js/ace-elements.min.js"></script>
 		<script src="assets/js/ace.min.js"></script>
 
 		<!-- inline scripts related to this page -->
+		<script type="text/javascript">
+			jQuery(function($){
+	
+	$('textarea[data-provide="markdown"]').each(function(){
+        var $this = $(this);
+
+		if ($this.data('markdown')) {
+		  $this.data('markdown').showEditor();
+		}
+		else $this.markdown()
+		
+		$this.parent().find('.btn').addClass('btn-white');
+    })
+	
+	
+	
+	function showErrorAlert (reason, detail) {
+		var msg='';
+		if (reason==='unsupported-file-type') { msg = "Unsupported format " +detail; }
+		else {
+			//console.log("error uploading file", reason, detail);
+		}
+		$('<div class="alert"> <button type="button" class="close" data-dismiss="alert">&times;</button>'+ 
+		 '<strong>File upload error</strong> '+msg+' </div>').prependTo('#alerts');
+	}
+
+	//$('#editor1').ace_wysiwyg();//this will create the default editor will all buttons
+
+	//but we want to change a few buttons colors for the third style
+	$('#editor1').ace_wysiwyg({
+		toolbar:
+		[
+			'font',
+			null,
+			'fontSize',
+			null,
+			{name:'bold', className:'btn-info'},
+			{name:'italic', className:'btn-info'},
+			{name:'strikethrough', className:'btn-info'},
+			{name:'underline', className:'btn-info'},
+			null,
+			{name:'insertunorderedlist', className:'btn-success'},
+			{name:'insertorderedlist', className:'btn-success'},
+			{name:'outdent', className:'btn-purple'},
+			{name:'indent', className:'btn-purple'},
+			null,
+			{name:'justifyleft', className:'btn-primary'},
+			{name:'justifycenter', className:'btn-primary'},
+			{name:'justifyright', className:'btn-primary'},
+			{name:'justifyfull', className:'btn-inverse'},
+			null,
+			{name:'createLink', className:'btn-pink'},
+			{name:'unlink', className:'btn-pink'},
+			null,
+			{name:'insertImage', className:'btn-success'},
+			null,
+			'foreColor',
+			null,
+			{name:'undo', className:'btn-grey'},
+			{name:'redo', className:'btn-grey'}
+		],
+		'wysiwyg': {
+			fileUploadError: showErrorAlert
+		}
+	}).prev().addClass('wysiwyg-style2');
+
+	
+	/**
+	//make the editor have all the available height
+	$(window).on('resize.editor', function() {
+		var offset = $('#editor1').parent().offset();
+		var winHeight =  $(this).height();
+		
+		$('#editor1').css({'height':winHeight - offset.top - 10, 'max-height': 'none'});
+	}).triggerHandler('resize.editor');
+	*/
+	
+
+	$('#editor2').css({'height':'200px'}).ace_wysiwyg({
+		toolbar_place: function(toolbar) {
+			return $(this).closest('.widget-box')
+			       .find('.widget-header').prepend(toolbar)
+				   .find('.wysiwyg-toolbar').addClass('inline');
+		},
+		toolbar:
+		[
+			'bold',
+			{name:'italic' , title:'Change Title!', icon: 'ace-icon fa fa-leaf'},
+			'strikethrough',
+			null,
+			'insertunorderedlist',
+			'insertorderedlist',
+			null,
+			'justifyleft',
+			'justifycenter',
+			'justifyright'
+		],
+		speech_button: false
+	});
+	
+	
+
+
+	$('[data-toggle="buttons"] .btn').on('click', function(e){
+		var target = $(this).find('input[type=radio]');
+		var which = parseInt(target.val());
+		var toolbar = $('#editor1').prev().get(0);
+		if(which >= 1 && which <= 4) {
+			toolbar.className = toolbar.className.replace(/wysiwyg\-style(1|2)/g , '');
+			if(which == 1) $(toolbar).addClass('wysiwyg-style1');
+			else if(which == 2) $(toolbar).addClass('wysiwyg-style2');
+			if(which == 4) {
+				$(toolbar).find('.btn-group > .btn').addClass('btn-white btn-round');
+			} else $(toolbar).find('.btn-group > .btn-white').removeClass('btn-white btn-round');
+		}
+	});
+
+
+	
+
+	//RESIZE IMAGE
+	
+	//Add Image Resize Functionality to Chrome and Safari
+	//webkit browsers don't have image resize functionality when content is editable
+	//so let's add something using jQuery UI resizable
+	//another option would be opening a dialog for user to enter dimensions.
+	if ( typeof jQuery.ui !== 'undefined' && ace.vars['webkit'] ) {
+		
+		var lastResizableImg = null;
+		function destroyResizable() {
+			if(lastResizableImg == null) return;
+			lastResizableImg.resizable( "destroy" );
+			lastResizableImg.removeData('resizable');
+			lastResizableImg = null;
+		}
+
+		var enableImageResize = function() {
+			$('.wysiwyg-editor')
+			.on('mousedown', function(e) {
+				var target = $(e.target);
+				if( e.target instanceof HTMLImageElement ) {
+					if( !target.data('resizable') ) {
+						target.resizable({
+							aspectRatio: e.target.width / e.target.height,
+						});
+						target.data('resizable', true);
+						
+						if( lastResizableImg != null ) {
+							//disable previous resizable image
+							lastResizableImg.resizable( "destroy" );
+							lastResizableImg.removeData('resizable');
+						}
+						lastResizableImg = target;
+					}
+				}
+			})
+			.on('click', function(e) {
+				if( lastResizableImg != null && !(e.target instanceof HTMLImageElement) ) {
+					destroyResizable();
+				}
+			})
+			.on('keydown', function() {
+				destroyResizable();
+			});
+	    }
+
+		enableImageResize();
+
+		/**
+		//or we can load the jQuery UI dynamically only if needed
+		if (typeof jQuery.ui !== 'undefined') enableImageResize();
+		else {//load jQuery UI if not loaded
+			//in Ace demo ./components will be replaced by correct components path
+			$.getScript("assets/js/jquery-ui.custom.min.js", function(data, textStatus, jqxhr) {
+				enableImageResize()
+			});
+		}
+		*/
+	}
+
+
+});
+		</script>
 		<script type="text/javascript">
 			jQuery(function($) {
 				$('.easy-pie-chart.percentage').each(function(){
@@ -718,6 +1072,67 @@ var $document = $(document);
 
 
 </script>
+<script>
+var acc = document.getElementsByClassName("accordion");
+var i;
+
+for (i = 0; i < acc.length; i++) {
+  acc[i].onclick = function() {
+    this.classList.toggle("active");
+    var panel = this.nextElementSibling;
+    if (panel.style.maxHeight){
+      panel.style.maxHeight = null;
+    } else {
+      panel.style.maxHeight = panel.scrollHeight + "px";
+    } 
+  }
+}
+</script>
+<script>
+function addLegal() {
+	document.getElementById('demo').innerHTML = 'hjjjbvd'
+	}
+	</script>
+		<script>
+	$("#profileImage").click(function(e) {
+    $("#imageUpload").click();
+});
+
+function fasterPreview( uploader ) {
+    if ( uploader.files && uploader.files[0] ){
+          $('#profileImage').attr('src', 
+             window.URL.createObjectURL(uploader.files[0]) );
+    }
+}
+
+$("#imageUpload").change(function(){
+    fasterPreview( this );
+});
+</script>
+<script>
+
+
+var slno = 0;
+$("#ds").click(function() {
+    var dn= $("#dn").val();
+
+  
+	 var na= $("#na").val();
+	 var h= $("#h").val();
+	 var f= $("#f").val(); 
+	 var editor1= document.getElementById("doc").outerHTML;
+		
+	  
+    var new_row = "<tr><td contenteditable='true'>" + dn + "</td><td contenteditable='true'>" + na + "</td><td contenteditable='true'>" + h + "</td><td contenteditable='true'>" + f + "</td><td>" + editor1 + "</td></tr>";
+	 
+	$("#dstb").append(new_row);
+	function myDocument() {
+	 
+	}
+    return false;
+});
+
+</script>
+
 	</body>
-</html>
-								
+</html>	

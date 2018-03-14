@@ -7,13 +7,13 @@
 
 		<meta name="description" content="overview &amp; stats" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
-
+<script type= "text/javascript" src = "assets/js/countries.js"></script>
+<script type= "text/javascript" src = "countries2.js"></script>
 		<!-- bootstrap & fontawesome -->
 		<link rel="stylesheet" href="assets/css/bootstrap.min.css" />
 		<link rel="stylesheet" href="assets/font-awesome/4.5.0/css/font-awesome.min.css" />
 
 		<!-- page specific plugin styles -->
-
 		<!-- text fonts -->
 		<link rel="stylesheet" href="assets/css/fonts.googleapis.com.css" />
 
@@ -82,10 +82,80 @@
   text-align: center;
   color:white;
 }
+
+button.accordion {
+    background-color: #eee;
+    color: #444;
+    cursor: pointer;
+    padding: 18px;
+    width: 100%;
+    border: none;
+    text-align: left;
+    outline: none;
+    font-size: 17px;
+    transition: 0.4s;
+	font-weight:bolder
+}
+
+button.accordion.active, button.accordion:hover {
+    background-color:#ccdbda;
+}
+
+div.panel {
+    padding: 0 18px;
+    background-color: white;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.2s ease-out;
+}
+button {
+    font-family: inherit;
+    font-size: 18px;
+    line-height: inherit;
+    width: 73%;
+    height: 50px;
+	    background-color: #003946;
+}
+a {
+color:white;
+}
+hr {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    border-top: 1px solid #80a9d0;
+}
 .form-group {
     margin-bottom: 15px;
-    padding: 15px;
+    float: left;
+	margin-left:10px;
+	 padding-bottom: 10px;
 }
+#imageUpload
+{
+    display: none;
+}
+
+#profileImage
+{
+    cursor: pointer;
+}
+#profile-container {
+    width: 150px;
+    height: 37px;
+  
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    -ms-border-radius: 50%;
+    -o-border-radius: 50%;
+    border-radius: 50%;
+}
+tbody {
+background-color:white;
+}
+thead {
+background-color:grey;
+}
+
 </style>
 	</head>
 
@@ -108,8 +178,8 @@
 						<span class="glyphicon glyphicon-home" style="font-size: 25px; line-height:0;color:white"></span>
 					</a>
 				</li>
-			
-				<li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown"> <span class="glyphicon glyphicon-bell" style="font-size: 25px; line-height:0;color:white;></span>
+				
+				<li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown"> <span class="glyphicon glyphicon-bell" style="font-size: 25px; line-height:0; color:white;></span>
 					<span class="caret"></span></a>
 					<ul class="dropdown-menu">
 						<li><a href="#">Page 1-1</a></li>
@@ -128,9 +198,9 @@
 </div>
 					
 					
-			<ul class="nav navbar-nav navbar-right" style="margin-top:-48px;">	
+			<ul class="nav navbar-nav navbar-right" style="margin-top:-48px;color:white">	
 				<li>
-					<p style="margin-top:15px;color:white">Admin</p>
+					<p style="margin-top:15px;">Admin</p>
 				</li>
 				<li>
 					<select name="Role" style="margin-top:10px;">
@@ -142,14 +212,15 @@
 						<option value="ba">BA</option>
 					</select>
 				</li>
+					<li><a href="cog.html" style="color:black;">
+						<span class="glyphicon glyphicon-cog" style="font-size: 25px; line-height:0;color:white"></span>
+					</a>
+				</li>
 				<li><a href="password.html" style="color:black;">
 						<span class="glyphicon glyphicon-lock" style="font-size: 25px; line-height:0;color:white"></span>
 					</a>
 				</li>
-				<li><a href="cog.html" style="color:black;">
-						<span class="glyphicon glyphicon-cog" style="font-size: 25px; line-height:0;color:white"></span>
-					</a>
-				</li>
+			
 				<li class="light-blue dropdown-modal" style="margin-top:-6px;">
 					<a data-toggle="dropdown" href="#" class="dropdown-toggle">
 						<img class="nav-user-photo" src="assets/images/avatars/user.jpg" alt="Jason's Photo" />
@@ -166,8 +237,7 @@
 									
 						</li>
 
-					
-
+						
 
 							<li>
 								<a href="#">
@@ -175,6 +245,7 @@
 										Logout
 								</a>
 							</li>
+							
 					</ul>
 				</li>
 			</ul>
@@ -191,8 +262,7 @@
 					try{ace.settings.loadState('sidebar')}catch(e){}
 				</script>
 
-				
-
+		
 				<ul class="nav nav-list">
 					<li class="">
 						<a href="index.html">
@@ -273,7 +343,6 @@
 					</li>
 				</ul><!-- /.nav-list -->
 
-
 				<div class="sidebar-toggle sidebar-collapse" id="sidebar-collapse">
 					<i id="sidebar-toggle-icon" class="ace-icon fa fa-angle-double-left ace-save-state" data-icon1="ace-icon fa fa-angle-double-left" data-icon2="ace-icon fa fa-angle-double-right"></i>
 				</div>
@@ -285,10 +354,15 @@
 						<ul class="breadcrumb">
 							<li>
 								<i class="ace-icon fa fa-home home-icon"></i>
-								<a href="#">Home</a>
+								<a href="cog.html">Settings</a>
 							</li>
-							<li class="active">Dashboard</li>
+
+							<li>
+								<a href="bank.html">Bank Details</a>
+							</li>
+							
 						</ul><!-- /.breadcrumb -->
+
 
 						<div class="nav-search" id="nav-search">
 							<form class="form-search">
@@ -367,49 +441,277 @@
 								</div><!-- /.pull-left -->
 							</div><!-- /.ace-settings-box -->
 						</div><!-- /.ace-settings-container -->
+						</div>
+						<div>
+						<h3>ESI Administration For FY</h3>
+	<div class="row">
+								<div class="form-group">
+										<select class="form-control" id="form-field-select-1">Select FY<span style="color:red">*</span> </label>
+											  <option>Fy 2017-Fy 2018</option></select>
+										
+											  
+									</div>
+								
+									</div>
+						<button  data-toggle="modal" data-target="#myModal" style="width:18%;color:white" >Add ESI Slab</button>
 
-						<div class="page-header">
-							<h1>
-								Password
-								<small>
-									<i class="ace-icon fa fa-angle-double-right"></i>
-									Set new password
-								</small>
-							</h1>
-						</div><!-- /.page-header -->
-						<div class="row">
-							<div class="col-md-12" style="padding:100px;">
+  <!-- Modal -->
+  <div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog">
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Bank Details</h4>
+        </div>
+        <div class="modal-body">
+			<form>
+			<div class="row">
+			
+				<div class="col-md-6">
+				<label for="form-field-select-1" ><b>Employee Provident fund</b></label>
+				<div class="row">
+									<div class="form-group" style="padding:12px">
+										<label for="form-field-select-1">Salary Heads To Be Considered<span style="color:red">*</span> </label>
+
+										
+											<select multiple size="3" id="shtbc" class="form-control">
+		<option value="Other Earnings">Other Earnings</option>
+		<option value="Arrears">Arrears</option>
+		<option value="Basic">Basic</option>
+		<option value="Bonus">Bonus</option>
+		<option value="Conveyence Allowance">Conveyance Allowance</option>
+		<option value="DA">DA</option>
+		<option value="Education Allowance">Education Allowance</option>
+		<option value="EX GRATIA">EX GRATIA</option>
+		<option value="Gratuity">Gratuity</option>
+		<option value="HRA">HRA</option>
+		<option value="Incentives">Incentives</option>
+		<option value="PERSONAL PAY ARREARS">PERSONAL PAY ARREARS</option>
+		<option value="Leave Encashment">Leave Encashment</option>
+		<option value="LTA">LTA</option>
+		<option value="Medical Allowance">Medical Allowance</option>
+		<option value="Mobile Reimbursement">Mobile Reimbursement</option>
+		<option value="DEARNESS ALLOWANCE ARREARS">DEARNESS ALLOWANCE ARREARS</option>
+		<option value="Other Reimbursement">Other Reimbursement</option>
+		<option value="Overtime">Overtime</option>
+		<option value="BASIC ARREARS">BASIC ARREARS</option>
+		<option value="HOUSE RENT ARREARS">HOUSE RENT ARREARS</option>
+		<option value="Reimbursement">Reimbursement</option>
+		<option value="PERSONAL PAY">PERSONAL PAY</option>
+		<option value="Travel Reimbursement">Travel Reimbursement</option>
+	  	</select>
+										
+									</div>
+									</div>
+									
+									<div class="form-group">
+										<label>Financial Year<span style="color:red">*</span> </label>
+
+										<select id="o" class="form-control">
+										<option>Select Financial Year</option>
+		<option value="2017-2018">2017-2018</option>
+		<option value="2016-2017">2016-2017</option>
+		<option value="2015-2016">2015-2016</option>
+		<option value="2014-2015">2014-2016</option>
+	
+	  	</select>
+											
+										
+									</div>
+								
+									<div class="form-group">
+										<label for="form-field-select-1">Select Grade<span style="color:red">*</span> </label>
+											<select  id="sg" class="form-control">
+										<option>Select Grade</option>
+		<option value="">Singasandra</option>
+		<option value="All">RR Nagar</option>
+		<option value="1">Oman</option>
+		<option value="4">Abu Dhabi</option>
+	
+	  	</select>
+										
+										
+										
+									</div>
+										<div class="form-group">
+										<label>Select State<span style="color:red">*</span> </label>
+
+										<select  id="ss" class="form-control">
+										<option>Select State</option>
+
+			<option value="Andhra Pradesh">Andhra Pradesh</option>
+
+	<option value="Arunachal Pradesh">Arunachal Pradesh</option>
+
+	<option value="Assam">Assam</option>
+
+	<option value="Bihar">Bihar</option>
+
+	<option value="Chhattisgarh">Chhattisgarh</option>
+
+	<option value="Goa">Goa</option>
+	<option value="Gujarat">Gujarat</option>
+
+	<option value="Haryana">Haryana</option>
+
+	<option value="Himachal Pradesh">Himachal Pradesh</option>
+
+	<option value="Jammu & Kashmir">Jammu & Kashmir</option>
+
+	<option value="Jharkhand">Jharkhand</option>
+
+	<option value="Karnataka">Karnataka</option>
+
+	<option value="Kerala">Kerala</option>
+
+	<option value="Madhya Pradesh">Madhya Pradesh</option>
+
+	<option value="Maharashtra">Maharashtra</option>
+
+	<option value="Manipur">Manipur</option>
+
+	<option value="Meghalaya">Meghalaya</option>
+
+	<option value="Mizoram">Mizoram</option>
+
+	<option value="Nagaland">Nagaland</option>
+
+	<option value="Odisha">Odisha</option>
+
+	<option value="Punjab">Punjab</option>
+
+	<option value="Rajasthan">Rajasthan</option>
+
+	<option value="Sikkim">Sikkim</option>
+
+	<option value="Tamil nadu">Tamil Nadu</option>
+
+	<option value="Telangana">Telangana</option>
+
+	<option value="Tripura">Tripura</option>
+
+	<option value="Uttarakhand">Uttarakhand</option>
+
+	<option value="Uttar Pradesh">Uttar Pradesh</option>
+
+	<option value="West Bengal">West Bengal</option>
+
+
+
+
+<option value="Andaman and Nicobar Islands">Andaman and Nicobar Islands</option>
+
+<option value="Chandigarh">Chandigarh</option>
+
+<option value="Dadra and Nagar Haveli">Dadra and Nagar Haveli</option>
+
+<option value="Daman & Diu">Daman & Diu</option>
+
+<option value="The Government of NCT of Delhi">The Government of NCT of Delhi</option>
+
+<option value="Lakshadweep">Lakshadweep</option>
+
+<option value="Puducherry">Puducherry</option>
+
+	
+	  	</select>
+											
+										
+									</div>
+									
+									
+								
+									</div>
+									<div class="col-md-6">
+				<label for="form-field-select-1" ><b>Employee State Insurance Corporation</b></label>
+				<div class="form-group">
+										<label for="form-field-select-1">Employee's Contribution<span style="color:red">*</span> </label>
+
+										
+											<input type="text" class="form-control" id="ec"  required/>%
+
+									</div>
+									<div class="form-group">
+										<label>Employer's Contribution<span style="color:red">*</span> </label>
+
+										
+											<input type="text" class="form-control" id="erc"  required/>%
+										
+									</div>
+								
+									
+									
+									<div class="form-group">
+										<label for="form-field-select-1">Max Limit<span style="color:red">*</span> </label>
+
+										<input type="text" class="form-control" id="ml"  required/>Rs
+											
+										
+									</div>
+									
+									</div>
+											
+<div class="form-group">
+													<button type="submit" id="esic" class="btn btn-sm btn-success" style="    border-width: 4px;
+    font-size: 13px;
+    padding: 4px 9px;
+    line-height: 1.38;
+    width: 83px;
+    height: 37px;display:block;margin:0 auto" >
+																Submit
+																<i class="ace-icon fa fa-arrow-right icon-on-right bigger-110"></i>
+															</button>
+															</div>	
+     </div>
+		</form>
+		
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      
+      
+    </div>
+  </div>
+  </div>
+	</div>					
 							
-															<div class="space-10"></div>
-
-															<div class="form-group" >
-																<label class="col-sm-3 control-label no-padding-right" for="form-field-pass1">New Password</label>
-
-																<div class="col-sm-9">
-																	<input type="password" id="form-field-pass1" />
-																</div>
-															</div>
-
-															<div class="space-4"></div>
-
-															<div class="form-group">
-																<label class="col-sm-3 control-label no-padding-right" for="form-field-pass2">Confirm Password</label>
-
-																<div class="col-sm-9">
-																	<input type="password" id="form-field-pass2" />
-																</div>
-															</div>
-															<div class="form-group">
-																 <button type="submit" class="btn btn-default" style="    margin-left: 220px; margin-top: 35px;">Submit</button>
-																
-															</div>
-															</div>
-															</div>
-															</div>
-															</div>
-															</div>
-															</div>
-														
+							
+							<div class="row" style="padding:20px;
+    height: 400px;
+    overflow: scroll;">
+							<div style="overflow-x:auto;">
+							
+							 <table class="table controls controls-row">
+								<thead>
+									<tr>
+										<th rowspan="2" style="padding-bottom:20px">State</option>
+										<th rowspan="2" style="padding-bottom:20px">Financial year</th>
+										<th rowspan="2" style="padding-bottom:20px"> Level</th>
+										<th colspan="3"> ESI</th>
+										<th colspan="4" rowspan="4" style="padding-bottom:20px">Salary Heads</th>
+										
+									</tr>
+									<tr>
+										<th>Employee(%)</th>
+										
+										<th>Employer(%)</th>
+										<th>Max Limit(Rs)</th>
+										</tr>
+								</thead>
+								<tbody id="esictb">
+								</tbody>
+							</table>
+							
+							</div>
+							</div>
+							
+								
+			
+									</div>
+									</div>
+									</div>
 						<div class="footer">
 				<div class="footer-inner">
 					<div class="footer-content">
@@ -440,7 +742,14 @@
 				<i class="ace-icon fa fa-angle-double-up icon-only bigger-110"></i>
 			</a>
 		</div><!-- /.main-container -->
-
+		<script language="javascript">
+				populateCountries("country", "state");
+				populateCountries("country1", "state1");
+			</script>
+ <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
+	<script type="text/javascript" src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
 		<!-- basic scripts -->
 
 		<!--[if !IE]> -->
@@ -451,12 +760,14 @@
 		<!--[if IE]>
 <script src="assets/js/jquery-1.11.3.min.js"></script>
 <![endif]-->
+ 
 		<script type="text/javascript">
 			if('ontouchstart' in document.documentElement) document.write("<script src='assets/js/jquery.mobile.custom.min.js'>"+"<"+"/script>");
 		</script>
 		<script src="assets/js/bootstrap.min.js"></script>
 
 		<!-- page specific plugin scripts -->
+
 
 		<!--[if lte IE 8]>
 		  <script src="assets/js/excanvas.min.js"></script>
@@ -718,6 +1029,64 @@ var $document = $(document);
 
 
 </script>
+<script>
+var acc = document.getElementsByClassName("accordion");
+var i;
+
+for (i = 0; i < acc.length; i++) {
+  acc[i].onclick = function() {
+    this.classList.toggle("active");
+    var panel = this.nextElementSibling;
+    if (panel.style.maxHeight){
+      panel.style.maxHeight = null;
+    } else {
+      panel.style.maxHeight = panel.scrollHeight + "px";
+    } 
+  }
+}
+</script>
+<script>
+function addLegal() {
+	document.getElementById('demo').innerHTML = 'hjjjbvd'
+	}
+	</script>
+		<script>
+	$("#profileImage").click(function(e) {
+    $("#imageUpload").click();
+});
+
+function fasterPreview( uploader ) {
+    if ( uploader.files && uploader.files[0] ){
+          $('#profileImage').attr('src', 
+             window.URL.createObjectURL(uploader.files[0]) );
+    }
+}
+
+$("#imageUpload").change(function(){
+    fasterPreview( this );
+});
+</script>
+<script>
+
+
+var slno = 0;
+$("#esic").click(function() {
+    var shtbc= $("#shtbc").val();
+
+  
+	 var o= $("#o").val();
+	 var sg= $("#sg").val();
+	 var ss= $("#ss").val(); 
+	 var ec= $("#ec").val(); 
+	 var erc= $("#erc").val(); 
+	 var ml= $("#ml").val();
+	
+	  
+    var new_row = "<tr><td  contenteditable='true'>" + ss + "</td><td contenteditable='true'>" + o + "</td><td contenteditable='true'>" + sg + "</td><td contenteditable='true'>" + ss + "</td><td contenteditable='true'>" + ec + "</td><td contenteditable='true'>" + erc + "</td><td contenteditable='true'>" + ml + "</td><td contenteditable='true'>" + shtbc + "</td></tr>";
+    $("#esictb").append(new_row);
+    return false;
+});
+</script>
+
 	</body>
-</html>
-								
+</html>	

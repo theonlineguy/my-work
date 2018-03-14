@@ -11,6 +11,7 @@
 		<!-- bootstrap & fontawesome -->
 		<link rel="stylesheet" href="assets/css/bootstrap.min.css" />
 		<link rel="stylesheet" href="assets/font-awesome/4.5.0/css/font-awesome.min.css" />
+		<link rel="stylesheet" href="assets/css/tree.css" />
 
 		<!-- page specific plugin styles -->
 
@@ -29,7 +30,8 @@
 		<!--[if lte IE 9]>
 		  <link rel="stylesheet" href="assets/css/ace-ie.min.css" />
 		<![endif]-->
-
+ 
+	<link rel="stylesheet" href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css">
 		<!-- inline styles related to this page -->
 
 		<!-- ace settings handler -->
@@ -41,38 +43,48 @@
 		<script src="assets/js/html5shiv.min.js"></script>
 		<script src="assets/js/respond.min.js"></script>
 		<![endif]-->
+		<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.10.16/rg-1.0.2/sl-1.2.3/datatables.min.css"/>
+ 
+<script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.10.16/rg-1.0.2/sl-1.2.3/datatables.min.js"></script>
 		<style>
 		.btn-primary, .btn-primary.focus, .btn-primary:focus {
     background-color: #1962a0!important;
     border-color: #428BCA;
 }
-@media screen and (max-width: 900px) {
-    ul.nav nav-list {
-        width: 100%;
-        height: auto;
-        position: relative;
-    }
-    ul.nav nav-list li a {
-        float: left;
-        padding: 15px;
-    }
-    div.content {margin-left: 0;}
-}
-
-@media screen and (max-height: 450px) {
-  .sidenav {padding-top: 15px;}
-  .sidenav a {font-size: 18px;}
-}
-@import url(https://fonts.googleapis.com/css?family=Orbitron);
-
-@import url(https://fonts.googleapis.com/css?family=Orbitron);
-
-* {
-  -webkit-box-sizing: border-box;
-  -moz-box-sizing: border-box;
+									* {
   box-sizing: border-box;
 }
 
+#myInput {
+  background-image: url('/css/searchicon.png');
+  background-position: 10px 10px;
+  background-repeat: no-repeat;
+  width: 11%;
+  font-size: 16px;
+  padding: 12px 20px 12px 40px;
+  border: 1px solid #ddd;
+  margin-bottom: 12px;
+}
+
+#myTable {
+  border-collapse: collapse;
+  width: 100%;
+  border: 1px solid #ddd;
+  font-size: 13px;
+}
+
+#myTable th, #myTable td {
+  text-align: left;
+  padding: 12px;
+}
+
+#myTable tr {
+  border-bottom: 1px solid #ddd;
+}
+
+#myTable tr.header, #myTable tr:hover {
+  background-color: #f1f1f1;
+}
 .clock {
   top:30%;
   background-color: #3c434c;
@@ -80,7 +92,6 @@
   height:50px;
   margin:auto;
   padding:15px;
-  
 }
 .clock div {
   display:inline-block;
@@ -91,14 +102,14 @@
   color:white;
 }
 button {
-    width: 50%;
+    width: 16%;
     height: 70px;
-    background-color: #438eb9;
-	color:black;
+    background-color:#003846;
+	font-size:18px;
+	font-weight:bolder;
+	color:white
 }
-button:hover {
-	background-color:#e4e4e4;
-	}
+
 	div.tab {
     overflow: hidden;
     border: 1px solid #ccc;
@@ -115,24 +126,25 @@ div.tab button {
     padding: 14px 16px;
     transition: 0.3s;
     font-size: 17px;
+	color:black
 }
 
 /* Change background color of buttons on hover */
 div.tab button:hover {
-    background-color: #ddd;
+    background-color: #ccd8da
 }
 
 /* Create an active/current tablink class */
 div.tab button.active {
-    background-color: #ccc;
+    background-color:#ccd8da
 }
 .tabcontent {
     display: none;
     padding: 6px 12px;
     border: 1px solid #ccc;
     border-top: none;
-	}
-	table {
+}
+table {
     font-family: arial, sans-serif;
     border-collapse: collapse;
     width: 100%;
@@ -144,14 +156,13 @@ td, th {
     padding: 8px;
 }
 
-tr:nth-child(even) {
-    background-color: #dddddd;
-}
+
 </style>
 	</head>
 
 	<body class="no-skin">
-	<nav class="navbar navbar-default" style=" background-color:#438EB9;">
+	
+		<nav class="navbar navbar-default" style=" background-color:#003846;">
 		<div class="container-fluid">
 			<ul class="nav navbar-nav">
 				<ul class="navbar-header">
@@ -166,14 +177,11 @@ tr:nth-child(even) {
 					</button>
 				</ul>
 				<li><a href="index.html" style="color:black;">
-						<span class="glyphicon glyphicon-home" style="font-size: 25px; line-height:0;"></span>
+						<span class="glyphicon glyphicon-home" style="font-size: 25px; line-height:0;color:white"></span>
 					</a>
 				</li>
-				<li><a href="index.html" style="color:black;">
-						<span class="glyphicon glyphicon-book" style="font-size: 25px; line-height:0;"></span>
-					</a>
-				</li>
-				<li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown"> <span class="glyphicon glyphicon-bell" style="font-size: 25px; line-height:0;></span>
+				
+				<li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown"> <span class="glyphicon glyphicon-bell" style="font-size: 25px; line-height:0;color:white;></span>
 					<span class="caret"></span></a>
 					<ul class="dropdown-menu">
 						<li><a href="#">Page 1-1</a></li>
@@ -182,19 +190,19 @@ tr:nth-child(even) {
 					</ul>
 				</li>
 			</ul>	
-			<div class="clock" style="color:white;">
+				<div class="clock">
       <div class="hours"></div><!--
    --><div class="minutes"></div><!--
     --><div class="seconds"></div><!--
     --><div class="twelvehr"></div>
 </div>
-					
 			<ul class="nav navbar-nav navbar-right" style="margin-top:-48px;">	
 				<li>
-					<p style="margin-top:15px;">Admin</p>
+					<p style="margin-top:15px;color:white">Admin</p>
 				</li>
 				<li>
 					<select name="Role" style="margin-top:10px;">
+					<option value="Role">Role</option>
 						<option value="finance">FINANCE</option>
 						<option value="redmine">Redmine</option>
 						<option value="java">Java Developer</option>
@@ -202,15 +210,19 @@ tr:nth-child(even) {
 						<option value="ba">BA</option>
 					</select>
 				</li>
-				<li><a href="index.html" style="color:black;">
+					<li><a href="cog.html" style="color:white;">
+						<span class="glyphicon glyphicon-cog" style="font-size: 25px; line-height:0;"></span>
+					</a>
+				</li>
+				<li><a href="password.html" style="color:white;">
 						<span class="glyphicon glyphicon-lock" style="font-size: 25px; line-height:0;"></span>
 					</a>
 				</li>
-				<li class="light-blue dropdown-modal" style="margin-top:-8px;">
+				<li class="light-blue dropdown-modal" style="margin-top:-6px;">
 					<a data-toggle="dropdown" href="#" class="dropdown-toggle">
 						<img class="nav-user-photo" src="assets/images/avatars/user.jpg" alt="Jason's Photo" />
 						<span class="user-info">
-							<small style=color:black;">Welcome,
+							<small style=color:white;">Welcome,
 									Jason</small>
 						</span>
 
@@ -222,21 +234,18 @@ tr:nth-child(even) {
 									
 						</li>
 
-						<li>
-							<a href="profile.html">
-								<i class="ace-icon fa fa-user"></i>
-									Profile
-							</a>
-						</li>
-
-						<li class="divider"></li>
+					
 
 							<li>
-								<a href="#">
+								<a href="login.html">
 									<i class="ace-icon fa fa-power-off"></i>
 										Logout
 								</a>
 							</li>
+							<li><a href="index.html" style="color:black;">
+						<img src="assets/images/ebs_logo-1.png">
+					</a>
+				</li>
 					</ul>
 				</li>
 			</ul>
@@ -252,38 +261,10 @@ tr:nth-child(even) {
 				<script type="text/javascript">
 					try{ace.settings.loadState('sidebar')}catch(e){}
 				</script>
+					
+			
 
-				<div class="sidebar-shortcuts" id="sidebar-shortcuts">
-					<div class="sidebar-shortcuts-large" id="sidebar-shortcuts-large">
-						<button class="btn btn-success">
-							<i class="ace-icon fa fa-signal"></i>
-						</button>
-
-						<button class="btn btn-info">
-							<i class="ace-icon fa fa-pencil"></i>
-						</button>
-
-						<button class="btn btn-warning">
-							<i class="ace-icon fa fa-users"></i>
-						</button>
-
-						<button class="btn btn-danger">
-							<i class="ace-icon fa fa-cogs"></i>
-						</button>
-					</div>
-
-					<div class="sidebar-shortcuts-mini" id="sidebar-shortcuts-mini">
-						<span class="btn btn-success"></span>
-
-						<span class="btn btn-info"></span>
-
-						<span class="btn btn-warning"></span>
-
-						<span class="btn btn-danger"></span>
-					</div>
-				</div><!-- /.sidebar-shortcuts -->
-
-				<ul class="nav nav-list">
+			<ul class="nav nav-list">
 					<li class="">
 						<a href="index.html">
 							<i class="menu-icon fa fa-tachometer"></i>
@@ -293,14 +274,14 @@ tr:nth-child(even) {
 						<b class="arrow"></b>
 					</li>
 					<li class="">
-						<a href="calendar.html">
-							<i class="menu-icon fa fa-calendar"></i>
+						<a href="report.html">
+							<i class="menu-icon fa fa-line-chart"></i>
 
 							<span class="menu-text">
-								Calendar
+								Reports
 
 								<span class="badge badge-transparent tooltip-error" title="2 Important Events">
-								
+									
 								</span>
 							</span>
 						</a>
@@ -308,10 +289,10 @@ tr:nth-child(even) {
 						<b class="arrow"></b>
 					</li>
 					<li class="">
-						<a href="my pay.html">
-							<i class="menu-icon fa fa-money" aria-hidden="true"></i>
+						<a href="employee.html">
+							<i class="menu-icon fa fa-users" aria-hidden="true"></i>
 							<span class="menu-text">
-								My Pay
+								Employee
 
 								
 							</span>
@@ -320,10 +301,10 @@ tr:nth-child(even) {
 						<b class="arrow"></b>
 					</li>
 					<li class="">
-						<a href="leave.html">
-							<i class="menu-icon fa fa-money" aria-hidden="true"></i>
+						<a href="time.html">
+							<i class="menu-icon fa fa-calendar" aria-hidden="true"></i>
 							<span class="menu-text">
-								Leave
+								Time & Attendence
 
 								
 							</span>
@@ -335,7 +316,7 @@ tr:nth-child(even) {
 						<a href="travel.html">
 							<i class="menu-icon fa fa-plane" aria-hidden="true"></i>
 							<span class="menu-text">
-								Travel
+								Leave
 
 								
 							</span>
@@ -343,11 +324,11 @@ tr:nth-child(even) {
 
 						<b class="arrow"></b>
 					</li>
-					<li class="">
-						<a href="reimbruisment.html">
-							<i class="menu-icon fa fa-plane" aria-hidden="true"></i>
+						<li class="">
+						<a href="pay.html">
+							<i class="menu-icon fa fa-money" aria-hidden="true"></i>
 							<span class="menu-text">
-								Reimbursement
+								Pay
 
 								
 							</span>
@@ -355,8 +336,10 @@ tr:nth-child(even) {
 
 						<b class="arrow"></b>
 					</li>
-
-					
+					<li><a href="index.html" style="color:black;">
+						<img src="assets/images/ebs_logo-1.png">
+					</a>
+				</li>
 						</ul>
 					</li>
 				</ul><!-- /.nav-list -->
@@ -365,16 +348,15 @@ tr:nth-child(even) {
 					<i id="sidebar-toggle-icon" class="ace-icon fa fa-angle-double-left ace-save-state" data-icon1="ace-icon fa fa-angle-double-left" data-icon2="ace-icon fa fa-angle-double-right"></i>
 				</div>
 			</div>
-
 			<div class="main-content">
-				<div class="main-content-inner">
+				<div class="main-inner-content">
 					<div class="breadcrumbs ace-save-state" id="breadcrumbs">
 						<ul class="breadcrumb">
 							<li>
 								<i class="ace-icon fa fa-home home-icon"></i>
 								<a href="#">Home</a>
 							</li>
-							<li class="active">Reimbursement</li>
+							<li class="active">My Pay</li>
 						</ul><!-- /.breadcrumb -->
 
 						<div class="nav-search" id="nav-search">
@@ -386,224 +368,140 @@ tr:nth-child(even) {
 							</form>
 						</div><!-- /.nav-search -->
 					</div>
-					<div class="row">
+					<div class="page-header">
+							<h1>
+								Employee
+								<small>
+									<i class="ace-icon fa fa-angle-double-right"></i>
+									Stats & Info
+								</small>
+							</h1>
+						</div><!-- /.page-header -->
+  
+<div class="container-fluid">
+<h3>PayRoll Setting</h3>
+		<div class="row">
+						
+								<div class="form-group">
+										<select class="form-control" id="form-field-select-1">Select Organization<span style="color:red">*</span> </label>
+											  <option>Select Organization</option></select>
+										
+											  
+									</div>
+									</div>
+						<button  data-toggle="modal" data-target="#myModal" style="width:18%;color:white" >Add New PayRoll Setting</button>
+
+  <!-- Modal -->
+  <div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog">
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Bank Details</h4>
+        </div>
+        <div class="modal-body">
+			<form>
+			<div class="row">
+			
+			
+				<div class="form-group">
+										<label for="form-field-select-1">Income From<span style="color:red">*</span> </label>
+
+										
+											<input type="text" class="form-control" id="if"  required/>
+
+									</div>
+									<div class="form-group">
+										<label>Income To<span style="color:red">*</span> </label>
+
+										
+											<input type="text" class="form-control" id="it"  required/>
+										
+									</div>
+								
+									<div class="form-group">
+										<label for="form-field-select-1">Deduction Amount per Pay Cycle<span style="color:red">*</span> </label>
+
+										
+											<input type="text" class="form-control" id="dappc"  required/>
+										
+									</div>
+										<div class="form-group">
+										<label>Total Deduction Amount<span style="color:red">*</span> </label>
+
+										
+											<input type="text" class="form-control" id="tda"  required/>
+										
+									</div>
+									
+									<div class="form-group">
+										<label for="form-field-select-1">Select State<span style="color:red">*</span> </label>
+
+										
+											<select class="form-control" id="ss"  required>
+												<option value="monthly">Monthly</option>
+												<option value="yearly">Yearly</option>
+											</select>	
+										
+									</div>
+								
+									
+								
+									</div>
+									
+											
+<div class="form-group">
+													<button type="submit" id="pt" class="btn btn-sm btn-success" style="    border-width: 4px;
+    font-size: 13px;
+    padding: 4px 9px;
+    line-height: 1.38;
+    width: 83px;
+    height: 37px;display:block;margin:0 auto" >
+																Submit
+																<i class="ace-icon fa fa-arrow-right icon-on-right bigger-110"></i>
+															</button>
+															</div>	
+     
+		</form>
+		
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+  </div>
+  	<div class="row">
 							<div class="col-md-12">
-								<div class="tab"> 
-									
 								
-									
-									
-									<button class="tablinks" onclick="openButton(event, 'Pay')" id="defaultOpen">Pay</button>
-									
+									<div style="overflow-x:auto;">	
+									<table id="example1">
+		<thead style="background-color:#ccc"><tr>
+<th class="center">
+									<label class="pos-rel">
+										<input type="checkbox" id="checkAlm"class="ace" />
+										<span class="lbl"></span>
+									</label>
+								</th>																						
+								<th>sl no</th>
+								<th>Income From</th>
+								<th>Income To</th>
+								<th>Deduction Amount Per Pay Cycle</th>
+								<th>Total Deduction Amount</th>
+								<th>Select State</th>
 								
-									<button class="tablinks" onclick="openButton(event, 'TDS & Variables')">TDS & Variables</button>
-									
-										
-								</div>
-								
-							</div>
-						</div>	
-						<div id="Pay" class="tabcontent" style="margin-top: 60px;">
-							<div class="row">
-								<div class="col-md-12">
-									<button style="width:13%">Salary</button>
-								</div>
-							</div>
-							
-									<div class="row">
-								<div class="col-md-12">
-							
-									<form style="  border: 1px solid #aaa; padding:15px;">
-										
-											<div class="col-md-2" >
-												<p>Organization<select>
-												<option>Org-1</option>
-												<option>Org-2</option>
-												</select></p>
-											</div>
-											<div class="col-md-2">								
-												<p>Location<select>
-												<option>Singasandra</option>
-												<option>RR Nagar</option>
-												<option>Oman</option>
-												<option>Adu Dhabi</option>
-												</select></p>
-											</div>
-											<div class="col-md-2">
-												<p>Pay Cycle<select>
-												<option>Finance</option>
-												<option>Java</option>
-												<option>UI</option>
-												<option>BA</option>
-												<option>Redmine</option>
-												</select></p>
-											</div>
-											<div class="col-md-2" >
-												<p>Choose Bank<select>
-												<option>2015</option>
-												<option>2016</option>
-												<option>2017</option>
-												<option>2018</option>
-												</select></p>
-											</div>	
-													
-											<input type="button" name="submit" value="Pay">	
-									</form>	
-								</div>
-							</div>
-							<div class="row">
-								<div class="col-md-12" style="padding:100px;">
-									<table id="myTableOne">
-										<tr class="header">
-											<th class="center">
-												<label class="pos-rel">
-													<input type="checkbox" class="ace" />
-													<span class="lbl"></span>
-												</label>
-											</th>
-											<th>Emp Id</th>
-											<th >Emp-Name</th>
-											<th >Status</th>
-											<th>Gross</th>
-											<th>Net</th>
-											<th>Basic</th>
-											<th>DA</th>
-											<th>HRA</th>
-											<th>Allowance</th>
-											<th>PT</th>
-											<th>PF</th>
-											
-											</tr>
-										<tr>
-											<td class="center">
-												<label class="pos-rel">
-													<input type="checkbox" class="ace" />
-													<span class="lbl"></span>
-												</label>
-											</td>
-											<td>11</td>
-												<td>Veena Saju</td>
-											<td>Paid</td>
-											<td>40000</td>
-											<td>30</td>
-											<td>21</td>
-											<td>5095</td>
-											<td>5000</td>
-											<td>6000</td>
-											<td>200</td>
-											<td>3600</td>
-											
-										</tr>
-									
-									
-									</table>
-								</div>	
-							</div>	
-						</div>
-						<div id="TDS & Variables" class="tabcontent" style="margin-top: 60px;">
-							<div class="row">
-								<div class="col-md-12">
-									<button style="width:13%;">TDS & Variable</button>
-								</div>
-							</div>	
-							<div class="row">
-								<div class="col-md-12">
-							
-									<form style="  border: 1px solid #aaa; padding:15px;">
-										
-											<div class="col-md-2" >
-												<p>Organization<select>
-												<option>Org-1</option>
-												<option>Org-2</option>
-												</select></p>
-											</div>
-											<div class="col-md-2">								
-												<p>Location<select>
-												<option>Singasandra</option>
-												<option>RR Nagar</option>
-												<option>Oman</option>
-												<option>Adu Dhabi</option>
-												</select></p>
-											</div>
-											<div class="col-md-2">
-												<p>Pay Cycle<select>
-												<option>Finance</option>
-												<option>Java</option>
-												<option>UI</option>
-												<option>BA</option>
-												<option>Redmine</option>
-												</select></p>
-											</div>
-											<div class="col-md-2" >
-												<p>Grade<select>
-												<option>Singasandra</option>
-												<option>RR Nagar</option>
-												<option>Oman</option>
-												<option>Adu Dhabi</option>
-												</select></p>
-											</div>
-											<div class="col-md-2" >
-												<p>Select Salary Head<select>
-												<option>Singasandra</option>
-												<option>RR Nagar</option>
-												<option>Oman</option>
-												<option>Adu Dhabi</option>
-												</select></p>
-											</div>
-													
-											<input type="button" name="submit" value="Submit">	
-									</form>	
-								</div>
-							</div>	
-							<div class="row">
-								<div class="col-md-12" style="padding:100px;">
-									<table id="myTableOne">
-										<tr class="header">
-											<th class="center">
-												<label class="pos-rel">
-													<input type="checkbox" class="ace" />
-													<span class="lbl"></span>
-												</label>
-											</th>
-											<th>Emp Code</th>
-											<th >Emp-Name</th>
-											<th >Variable Amount</th>
-											<th>Action</th>
-											
-											
-											</tr>
-										<tr>
-											<td class="center">
-												<label class="pos-rel">
-													<input type="checkbox" class="ace" />
-													<span class="lbl"></span>
-												</label>
-											</td>
-											<td>11</td>
-												<td>Veena Saju</td>
-											<td>1000</td>
-											<td>Updated</td>
-											
-											
-										</tr>
-									
-									
-									</table>
-								</div>	
-							</div>	
-							<div class="row">
-								<div class="col-md-12">
-								<div style="float:right; border:1px solid #ccc; padding:15px;">
-									<h3 style="background-color:#ccc">Bulk Upload</h3>
-									<input type="file" id="myFile">
-									<input type="button" name="submit" value="submit">
-								</div>	
+		</thead>
+		<tbody id="pttb">
+	
+		</tbody>	
+	</table>
+	</div>
 							</div>
 						</div>
-					</div>		
-							
-								
-		<div class="footer">
+	<div class="footer">
 				<div class="footer-inner">
 					<div class="footer-content">
 						<span class="bigger-120">
@@ -628,7 +526,16 @@ tr:nth-child(even) {
 					</div>
 				</div>
 			</div>
-			<script src="assets/js/jquery-2.1.4.min.js"></script>
+
+			<a href="#" id="btn-scroll-up" class="btn-scroll-up btn btn-sm btn-inverse">
+				<i class="ace-icon fa fa-angle-double-up icon-only bigger-110"></i>
+			</a>
+		</div><!-- /.main-container -->
+
+		<!-- basic scripts -->
+
+		<!--[if !IE]> -->
+	<script src="assets/js/jquery-2.1.4.min.js"></script>
 
 		<!-- <![endif]-->
 
@@ -641,7 +548,12 @@ tr:nth-child(even) {
 		<script src="assets/js/bootstrap.min.js"></script>
 
 		<!-- page specific plugin scripts -->
-
+ <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+   <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
+	<script type="text/javascript" src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
 		<!--[if lte IE 8]>
 		  <script src="assets/js/excanvas.min.js"></script>
 		<![endif]-->
@@ -1154,5 +1066,76 @@ function openButton(evt, cityName) {
 }
 document.getElementById("defaultOpen").click();
 </script>
+
+		<script>
+	$(document).ready(function() {
+    $('#example1').DataTable();
+} );
+$('.dataTables_empty').parent().parent().remove();
+
+		</script>
+				
+		<script>
+		$('#checkAll').change(function () {
+    $('tbody tr td input[type="checkbox"]').prop('checked', $(this).prop('checked'));
+});
+</script>
+<script>
+		$('#checkAlm').change(function () {
+    $('tbody tr td input[type="checkbox"]').prop('checked', $(this).prop('checked'));
+});
+</script>
+<script>
+		$('#checkAln').change(function () {
+    $('tbody tr td input[type="checkbox"]').prop('checked', $(this).prop('checked'));
+});
+</script>
+<script type="text/javascript">
+			if('ontouchstart' in document.documentElement) document.write("<script src='assets/js/jquery.mobile.custom.min.js'>"+"<"+"/script>");
+		</script>
+		<script src="assets/js/bootstrap.min.js"></script>
+		
+<script>
+
+
+var slno = 0;
+$("#pt").click(function() {
+    var inf = $("#inf").val();
+    var it = $("#it").val();
+	 var dappc= $("#dappc").val();
+	 var tda= $("#tda").val();
+	  var ss= $("#ss").val();
+    var new_row = "<tr><td>" + slno + "</td><td contenteditable='true'>" + inf + "</td><td contenteditable='true'>" + it + "</td><td contenteditable='true'>" + dappc + "</td><td contenteditable='true'>" + tda + "</td><td contenteditable='true'>" + ss + "</td></tr>";
+    $("#pttb").append(new_row);
+    return false;
+});
+</script>
+		<!-- page specific plugin scripts -->
+
+		<!--[if lte IE 8]>
+		  <script src="assets/js/excanvas.min.js"></script>
+		<![endif]-->
+		<script src="assets/js/jquery-ui.custom.min.js"></script>
+		<script src="assets/js/jquery.ui.touch-punch.min.js"></script>
+		<script src="assets/js/chosen.jquery.min.js"></script>
+		<script src="assets/js/spinbox.min.js"></script>
+		<script src="assets/js/bootstrap-datepicker.min.js"></script>
+		<script src="assets/js/bootstrap-timepicker.min.js"></script>
+		<script src="assets/js/moment.min.js"></script>
+		<script src="assets/js/daterangepicker.min.js"></script>
+		<script src="assets/js/bootstrap-datetimepicker.min.js"></script>
+		<script src="assets/js/bootstrap-colorpicker.min.js"></script>
+		<script src="assets/js/jquery.knob.min.js"></script>
+		<script src="assets/js/autosize.min.js"></script>
+		<script src="assets/js/jquery.inputlimiter.min.js"></script>
+		<script src="assets/js/jquery.maskedinput.min.js"></script>
+		<script src="assets/js/bootstrap-tag.min.js"></script>
+
+		<!-- ace scripts -->
+		<script src="assets/js/ace-elements.min.js"></script>
+		<script src="assets/js/ace.min.js"></script>
+
+		<!-- inline scripts related to this page -->
+		
 	</body>
 </html>

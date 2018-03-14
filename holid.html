@@ -7,7 +7,8 @@
 
 		<meta name="description" content="overview &amp; stats" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
-
+<script type= "text/javascript" src = "assets/js/countries.js"></script>
+<script type= "text/javascript" src = "countries2.js"></script>
 		<!-- bootstrap & fontawesome -->
 		<link rel="stylesheet" href="assets/css/bootstrap.min.css" />
 		<link rel="stylesheet" href="assets/font-awesome/4.5.0/css/font-awesome.min.css" />
@@ -82,10 +83,80 @@
   text-align: center;
   color:white;
 }
+
+button.accordion {
+    background-color: #eee;
+    color: #444;
+    cursor: pointer;
+    padding: 18px;
+    width: 100%;
+    border: none;
+    text-align: left;
+    outline: none;
+    font-size: 17px;
+    transition: 0.4s;
+	font-weight:bolder
+}
+
+button.accordion.active, button.accordion:hover {
+    background-color:#ccdbda;
+}
+
+div.panel {
+    padding: 0 18px;
+    background-color: white;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.2s ease-out;
+}
+button {
+    font-family: inherit;
+    font-size: 18px;
+    line-height: inherit;
+    width: 73%;
+    height: 50px;
+	    background-color: #003946;
+}
+a {
+color:white;
+}
+hr {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    border-top: 1px solid #80a9d0;
+}
 .form-group {
     margin-bottom: 15px;
-    padding: 15px;
+    float: left;
+	margin-left:10px;
+	 padding-bottom: 10px;
 }
+#imageUpload
+{
+    display: none;
+}
+
+#profileImage
+{
+    cursor: pointer;
+}
+#profile-container {
+    width: 150px;
+    height: 37px;
+  
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    -ms-border-radius: 50%;
+    -o-border-radius: 50%;
+    border-radius: 50%;
+}
+tbody {
+background-color:white;
+}
+thead {
+background-color:grey;
+}
+
 </style>
 	</head>
 
@@ -108,8 +179,8 @@
 						<span class="glyphicon glyphicon-home" style="font-size: 25px; line-height:0;color:white"></span>
 					</a>
 				</li>
-			
-				<li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown"> <span class="glyphicon glyphicon-bell" style="font-size: 25px; line-height:0;color:white;></span>
+				
+				<li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown"> <span class="glyphicon glyphicon-bell" style="font-size: 25px; line-height:0; color:white;></span>
 					<span class="caret"></span></a>
 					<ul class="dropdown-menu">
 						<li><a href="#">Page 1-1</a></li>
@@ -128,9 +199,9 @@
 </div>
 					
 					
-			<ul class="nav navbar-nav navbar-right" style="margin-top:-48px;">	
+			<ul class="nav navbar-nav navbar-right" style="margin-top:-48px;color:white">	
 				<li>
-					<p style="margin-top:15px;color:white">Admin</p>
+					<p style="margin-top:15px;">Admin</p>
 				</li>
 				<li>
 					<select name="Role" style="margin-top:10px;">
@@ -142,14 +213,15 @@
 						<option value="ba">BA</option>
 					</select>
 				</li>
+					<li><a href="cog.html" style="color:black;">
+						<span class="glyphicon glyphicon-cog" style="font-size: 25px; line-height:0;color:white"></span>
+					</a>
+				</li>
 				<li><a href="password.html" style="color:black;">
 						<span class="glyphicon glyphicon-lock" style="font-size: 25px; line-height:0;color:white"></span>
 					</a>
 				</li>
-				<li><a href="cog.html" style="color:black;">
-						<span class="glyphicon glyphicon-cog" style="font-size: 25px; line-height:0;color:white"></span>
-					</a>
-				</li>
+			
 				<li class="light-blue dropdown-modal" style="margin-top:-6px;">
 					<a data-toggle="dropdown" href="#" class="dropdown-toggle">
 						<img class="nav-user-photo" src="assets/images/avatars/user.jpg" alt="Jason's Photo" />
@@ -166,8 +238,7 @@
 									
 						</li>
 
-					
-
+						
 
 							<li>
 								<a href="#">
@@ -175,6 +246,7 @@
 										Logout
 								</a>
 							</li>
+							
 					</ul>
 				</li>
 			</ul>
@@ -191,8 +263,7 @@
 					try{ace.settings.loadState('sidebar')}catch(e){}
 				</script>
 
-				
-
+		
 				<ul class="nav nav-list">
 					<li class="">
 						<a href="index.html">
@@ -273,7 +344,6 @@
 					</li>
 				</ul><!-- /.nav-list -->
 
-
 				<div class="sidebar-toggle sidebar-collapse" id="sidebar-collapse">
 					<i id="sidebar-toggle-icon" class="ace-icon fa fa-angle-double-left ace-save-state" data-icon1="ace-icon fa fa-angle-double-left" data-icon2="ace-icon fa fa-angle-double-right"></i>
 				</div>
@@ -285,10 +355,15 @@
 						<ul class="breadcrumb">
 							<li>
 								<i class="ace-icon fa fa-home home-icon"></i>
-								<a href="#">Home</a>
+								<a href="cog.html">Settings</a>
 							</li>
-							<li class="active">Dashboard</li>
+
+							<li>
+								<a href="bank.html">Bank Details</a>
+							</li>
+							
 						</ul><!-- /.breadcrumb -->
+
 
 						<div class="nav-search" id="nav-search">
 							<form class="form-search">
@@ -367,49 +442,206 @@
 								</div><!-- /.pull-left -->
 							</div><!-- /.ace-settings-box -->
 						</div><!-- /.ace-settings-container -->
+						</div>
+						<div>
+						<h3>Holidays</h3>
+							<div class="row">
+								<div class="form-group">
+										<select class="form-control" id="form-field-select-1">Financial Year<span style="color:red">*</span> </label>
+											  <option>01/01/2017-31/12/2017</option></select>
+										
+											  
+									</div>
+									<div class="form-group">
+										<select class="form-control" id="form-field-select-1">Organization<span style="color:red">*</span> </label>
+											  <option>Select Organization</option></select>
+										
+											  
+									</div>
+									</div>
+						<button type="button"  data-toggle="modal" data-target="#myModal" style="width:10%;color:white">Add New Holiday</button>
 
-						<div class="page-header">
-							<h1>
-								Password
-								<small>
-									<i class="ace-icon fa fa-angle-double-right"></i>
-									Set new password
-								</small>
-							</h1>
-						</div><!-- /.page-header -->
-						<div class="row">
-							<div class="col-md-12" style="padding:100px;">
+  <!-- Modal -->
+  <div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog">
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Add New Holiday</h4>
+        </div>
+        <div class="modal-body">
+			<form>
 							
-															<div class="space-10"></div>
+			<div class="row">
+				<div class="form-group">
+										<label for="form-field-select-1"> Holiday Name<span style="color:red">*</span> </label>
 
-															<div class="form-group" >
-																<label class="col-sm-3 control-label no-padding-right" for="form-field-pass1">New Password</label>
+										
+											<input type="text" class="form-control" id="hn"  required/>
 
-																<div class="col-sm-9">
-																	<input type="password" id="form-field-pass1" />
-																</div>
-															</div>
+									</div>
+									<div class="form-group">
+										<label>Date<span style="color:red">*</span> </label>
 
-															<div class="space-4"></div>
+										
+											<input type="date" class="form-control" id="date"  required/>
+										
+									</div>
+									<div class="form-group">
+										<label for="form-field-select-1">Holiday Type<span style="color:red">*</span> </label>
 
-															<div class="form-group">
-																<label class="col-sm-3 control-label no-padding-right" for="form-field-pass2">Confirm Password</label>
+										
+											<input type="text" class="form-control" id="ht"  required/>
+										
+									</div>
+								
+								</div>
+						
+									
+	<div class="row">										
+<div class="form-group">
+													<button type="submit" id="h" class="btn btn-sm btn-success" style="    border-width: 4px;
+    font-size: 13px;
+    padding: 4px 9px;
+    line-height: 1.38;
+    width: 83px;
+    height: 37px;display:block;margin:0 auto" >
+																Submit
+																<i class="ace-icon fa fa-arrow-right icon-on-right bigger-110"></i>
+															</button>
+															</div>	
+     </div>
+		</form>
+		
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+  </div>
+						
+							
+							
+							<div class="row" style="padding:20px;
+    height: 200px;
+    overflow: scroll;">
+							<div style="overflow-x:auto;">
+							
+							 <table class="table controls controls-row">
+								<thead>
+									<tr>
+										<th>S.no</th>
+										<th>Holiday Name</th>
+										<th> Date</th>
+										<th>Holiday Type</th>
+										<th>Action</th>
+										
+									</tr>
+								</thead>
+								<tbody id="htb">
+								</tbody>
+							</table>
+							
+							</div>
+							</div>
+				<hr />
+						<button type="button" id="dis" data-toggle="modal" data-target="#myModal1" style="width:10%;color:white;height:10%" disabled>Add New Optional Holiday</button>
 
-																<div class="col-sm-9">
-																	<input type="password" id="form-field-pass2" />
-																</div>
-															</div>
-															<div class="form-group">
-																 <button type="submit" class="btn btn-default" style="    margin-left: 220px; margin-top: 35px;">Submit</button>
-																
-															</div>
-															</div>
-															</div>
-															</div>
-															</div>
-															</div>
-															</div>
-														
+  <!-- Modal -->
+  <div class="modal fade" id="myModal1" role="dialog">
+    <div class="modal-dialog">
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Add New Optional Holiday</h4>
+        </div>
+        <div class="modal-body">
+			<form>
+							
+			<div class="row">
+				<div class="form-group">
+										<label for="form-field-select-1"> Holiday Name<span style="color:red">*</span> </label>
+
+										
+											<input type="text" class="form-control" id="hn1"  required/>
+
+									</div>
+									<div class="form-group">
+										<label>Date<span style="color:red">*</span> </label>
+
+										
+											<input type="date" class="form-control" id="date1"  required/>
+										
+									</div>
+									<div class="form-group">
+										<label for="form-field-select-1">Holiday Type<span style="color:red">*</span> </label>
+
+										
+											<input type="text" class="form-control" id="ht1"  required/>
+										
+									</div>
+								
+								</div>
+						
+									
+	<div class="row">										
+<div class="form-group">
+													<button type="submit" id="h1" class="btn btn-sm btn-success" style="    border-width: 4px;
+    font-size: 13px;
+    padding: 4px 9px;
+    line-height: 1.38;
+    width: 83px;
+    height: 37px;display:block;margin:0 auto" >
+																Submit
+																<i class="ace-icon fa fa-arrow-right icon-on-right bigger-110"></i>
+															</button>
+															</div>	
+     </div>
+		</form>
+		
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+  </div>
+						
+							
+							
+							<div class="row" style="padding:20px;
+    height: 200px;
+    overflow: scroll;">
+							<div style="overflow-x:auto;">
+							
+							 <table class="table controls controls-row">
+								<thead>
+									<tr>
+										<th>S.no</th>
+										<th>Holiday Name</th>
+										<th> Date</th>
+										<th>Holiday Type</th>
+										<th>Action</th>
+										
+									</tr>
+								</thead>
+								<tbody id="htb1">
+								</tbody>
+							</table>
+							
+							</div>
+							</div>
+			
+									</div>
+									</div>
+									</div>
 						<div class="footer">
 				<div class="footer-inner">
 					<div class="footer-content">
@@ -440,6 +672,10 @@
 				<i class="ace-icon fa fa-angle-double-up icon-only bigger-110"></i>
 			</a>
 		</div><!-- /.main-container -->
+		<script language="javascript">
+				populateCountries("country", "state");
+				populateCountries("country1", "state1");
+			</script>
 
 		<!-- basic scripts -->
 
@@ -451,12 +687,14 @@
 		<!--[if IE]>
 <script src="assets/js/jquery-1.11.3.min.js"></script>
 <![endif]-->
+ 
 		<script type="text/javascript">
 			if('ontouchstart' in document.documentElement) document.write("<script src='assets/js/jquery.mobile.custom.min.js'>"+"<"+"/script>");
 		</script>
 		<script src="assets/js/bootstrap.min.js"></script>
 
 		<!-- page specific plugin scripts -->
+
 
 		<!--[if lte IE 8]>
 		  <script src="assets/js/excanvas.min.js"></script>
@@ -718,6 +956,116 @@ var $document = $(document);
 
 
 </script>
+<script>
+var acc = document.getElementsByClassName("accordion");
+var i;
+
+for (i = 0; i < acc.length; i++) {
+  acc[i].onclick = function() {
+    this.classList.toggle("active");
+    var panel = this.nextElementSibling;
+    if (panel.style.maxHeight){
+      panel.style.maxHeight = null;
+    } else {
+      panel.style.maxHeight = panel.scrollHeight + "px";
+    } 
+  }
+}
+</script>
+<script>
+function addLegal() {
+	document.getElementById('demo').innerHTML = 'hjjjbvd'
+	}
+	</script>
+		<script>
+	$("#profileImage").click(function(e) {
+    $("#imageUpload").click();
+});
+
+function fasterPreview( uploader ) {
+    if ( uploader.files && uploader.files[0] ){
+          $('#profileImage').attr('src', 
+             window.URL.createObjectURL(uploader.files[0]) );
+    }
+}
+
+$("#imageUpload").change(function(){
+    fasterPreview( this );
+});
+</script>
+<script>
+
+
+var slno = 0;
+$("#h").click(function() {
+$("#dis").removeAttr('disabled');
+var inpObj = document.getElementById("hn");
+var inpObj1 = document.getElementById("date");
+var inpObj2 = document.getElementById("ht");
+if(!inpObj.checkValidity()){
+    alert('enter the required fields')
+	}
+	else if(!inpObj1.checkValidity()){
+	
+    alert('enter the required fields')
+	
+	}
+	else if(!inpObj2.checkValidity()){
+	
+    alert('enter the required fields')
+	
+	}
+	else
+	{
+    var hn= $("#hn").val();
+    var date = $("#date").val();
+	 var ht = $("#ht").val();
+	
+    var new_row = "<tr><td>" + ++slno + "</td><td contenteditable='true'>" + hn + "</td><td contenteditable='true'>" + date + "</td><td contenteditable='true'>" + ht + "</td><td><i onclick='myFunctionDel()' class='fa fa-trash-o' aria-hidden='true'  style='   width: 25px;  height: 25px;'></i></td></tr>";
+    $("#htb").append(new_row);
+    return false;
+	}
+});
+var sllno = 0;
+$("#h1").click(function() {
+var inpObj = document.getElementById("hn1");
+var inpObj1 = document.getElementById("date1");
+var inpObj2 = document.getElementById("ht1");
+if(!inpObj.checkValidity()){
+    alert('enter the required fields')
+	}
+	else if(!inpObj1.checkValidity()){
+	
+    alert('enter the required fields')
+	
+	}
+	else if(!inpObj2.checkValidity()){
+	
+    alert('enter the required fields')
+	
+	}
+	else
+	{
+    var hn1= $("#hn1").val();
+    var date1 = $("#date1").val();
+	 var ht1 = $("#ht1").val();
+	
+    var new_row = "<tr><td>" + ++sllno + "</td><td contenteditable='true'>" + hn1 + "</td><td contenteditable='true'>" + date1 + "</td><td contenteditable='true'>" + ht1 + "</td><td><i onclick='myFunctionDel1()' class='fa fa-trash-o' aria-hidden='true'  style='   width: 25px;  height: 25px;'></i></td></tr>";
+    $("#htb1").append(new_row);
+    return false;
+	}
+});
+function myFunctionDel() {
+    var table = document.getElementById("htb");
+    var row = table.deleteRow(-1);
+}
+function myFunctionDel1() {
+    var table = document.getElementById("htb1");
+    var row = table.deleteRow(-1);
+}
+</script>
+<script>
+
+</script>
 	</body>
-</html>
-								
+</html>		
