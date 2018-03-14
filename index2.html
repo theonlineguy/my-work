@@ -3,7 +3,7 @@
 	<head>
 		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 		<meta charset="utf-8" />
-		<title>Full Calendar</title>
+		<title>Manager View</title>
 
 		<meta name="description" content="with draggable and editable events" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
@@ -11,6 +11,7 @@
 		<!-- bootstrap & fontawesome -->
 		<link rel="stylesheet" href="assets/css/bootstrap.min.css" />
 		<link rel="stylesheet" href="assets/font-awesome/4.5.0/css/font-awesome.min.css" />
+		<link rel="stylesheet" href="assets/css/tree.css" />
 
 		<!-- page specific plugin styles -->
 		<link rel="stylesheet" href="assets/css/jquery-ui.custom.min.css" />
@@ -43,6 +44,16 @@
 		<script src="assets/js/html5shiv.min.js"></script>
 		<script src="assets/js/respond.min.js"></script>
 		<![endif]-->
+		
+
+<script src="tableexport/jspdf/jspdf.js"></script>
+	 
+    <script type="text/javascript" src="tableexport/from_html.js"></script>
+    <script type="text/javascript" src="tableexport/split_text_to_size.js"></script>
+    <script type="text/javascript" src="tableexport/standard_fonts_metrics.js"></script>
+    <script type="text/javascript" src="tableexport/cell.js"></script>
+    <script type="text/javascript" src="tableexport/FileSaver.js"></script>
+
 		<style>
 		.clock {
   top:30%;
@@ -59,6 +70,66 @@
   height: 100%;
   text-align: center;
   color:white;
+}
+.tab {
+    overflow: hidden;
+    border: 1px solid #ccc;
+    background-color: #f1f1f1;
+}
+
+/* Style the buttons inside the tab */
+.tab button {
+    background-color: inherit;
+    float: left;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    padding: 14px 16px;
+    transition: 0.3s;
+    font-size: 17px;
+	width:50%;
+}
+
+/* Change background color of buttons on hover */
+.tab button:hover {
+    background-color: #ddd;
+}
+
+
+
+/* Style the tab content */
+.tabcontent {
+    display: none;
+    padding: 6px 12px;
+    border: 1px solid #ccc;
+    border-top: none;
+}
+td, th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+}
+div.tab button.active {
+    background-color: #ccdbda;
+}
+.tableheader {
+	background-color:#ddd;
+	}
+	tr {
+	background-color:white;
+	}
+	table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+}
+button {
+    width: 33%;
+    height: 70px;
+     background-color: #023945;
+   
+	    font-size: 18px;
+    font-weight: bolder;
 }
 </style>
 	</head>
@@ -159,106 +230,11 @@
 				try{ace.settings.loadState('main-container')}catch(e){}
 			</script>
 
-						<div id="sidebar" class="sidebar      h-sidebar                navbar-collapse collapse          ace-save-state">
-				<script type="text/javascript">
-					try{ace.settings.loadState('sidebar')}catch(e){}
-				</script>
-
-				
-				<ul class="nav nav-list">
-					<li class="">
-						<a href="index2.html">
-							<i class="menu-icon fa fa-tachometer"></i>
-							<span class="menu-text"> Dashboard </span>
-						</a>
-
-						<b class="arrow"></b>
-					</li>
-					<li class="">
-						<a href="calendar.html">
-							<i class="menu-icon fa fa-calendar"></i>
-
-							<span class="menu-text">
-								Calendar
-
-								<span class="badge badge-transparent tooltip-error" title="2 Important Events">
-								
-								</span>
-							</span>
-						</a>
-
-						<b class="arrow"></b>
-					</li>
-					<li class="">
-						<a href="my pay.html">
-							<i class="menu-icon fa fa-money" aria-hidden="true"></i>
-							<span class="menu-text">
-								My Pay
-
-								
-							</span>
-						</a>
-
-						<b class="arrow"></b>
-					</li>
-					<li class="">
-						<a href="leave.html">
-							<i class="menu-icon fa fa-money" aria-hidden="true"></i>
-							<span class="menu-text">
-								Leave
-
-								
-							</span>
-						</a>
-
-						<b class="arrow"></b>
-					</li>
-					<li class="">
-						<a href="travel.html">
-							<i class="menu-icon fa fa-plane" aria-hidden="true"></i>
-							<span class="menu-text">
-								Travel
-
-								
-							</span>
-						</a>
-
-						<b class="arrow"></b>
-					</li>
-						<li class="">
-						<a href="reimbruisment.html">
-							<i class="menu-icon fa fa-money" aria-hidden="true"></i>
-							<span class="menu-text">
-								Reimbursement
-
-								
-							</span>
-						</a>
-
-						<b class="arrow"></b>
-					</li>
-					<li><a href="index2.html" style="color:black;">
-						<img src="assets/images/ebs_logo-1.png">
-					</a>
-				</li>
-						</ul>
-					</li>
-				</ul><!-- /.nav-list -->
-
-				<div class="sidebar-toggle sidebar-collapse" id="sidebar-collapse">
-					<i id="sidebar-toggle-icon" class="ace-icon fa fa-angle-double-left ace-save-state" data-icon1="ace-icon fa fa-angle-double-left" data-icon2="ace-icon fa fa-angle-double-right"></i>
-				</div>
-			</div>
+						
 			<div class="main-content">
 				<div class="main-content-inner">
 					<div class="breadcrumbs ace-save-state" id="breadcrumbs">
-						<ul class="breadcrumb">
-							<li>
-								<i class="ace-icon fa fa-home home-icon"></i>
-								<a href="#">Home</a>
-							</li>
-							<li class="active">Dashboard</li>
-						</ul><!-- /.breadcrumb -->
+						
 
 						<div class="nav-search" id="nav-search">
 							<form class="form-search">
@@ -338,120 +314,1306 @@
 							</div><!-- /.ace-settings-box -->
 						</div><!-- /.ace-settings-container -->
 
-						<div class="page-header">
-							<h1>
-								Dashboard
-								<small>
-									<i class="ace-icon fa fa-angle-double-right"></i>
-									overview &amp; stats
-								</small>
-							</h1>
-						</div><!-- /.page-header -->
-
-						<div id="user-profile-1" class="user-profile row">
-										<div class="col-xs-12 col-sm-3 center">
-											<div>
-												<span class="profile-picture">
-													<img id="avatar" class="editable img-responsive" alt="Alex's Avatar" src="assets/images/avatars/profile-pic.jpg" />
-												</span>
-
-												<div class="space-4"></div>
-
-												<div class="width-80 label label-info label-xlg arrowed-in arrowed-in-right">
-													<div class="inline position-relative">
-														<a href="#" class="user-title-label dropdown-toggle" data-toggle="dropdown">
-
-															<span class="white">Alex M. Doe</span>
-														</a>
-
-														
-													</div>
-												</div>
-											</div>
-
-											<div class="space-6"></div>
-
-											
-
-
-											<div class="hr hr16 dotted"></div>
-										</div>
-
-										<div class="col-xs-12 col-sm-9">
-											
-											<div class="space-12"></div>
-
-											<div class="profile-user-info profile-user-info-striped">
-												<div class="profile-info-row">
-													<div class="profile-info-name"> Name </div>
-
-													<div class="profile-info-value">
-														<span class="editable" id="username">alexdoe</span>
-													</div>
-												</div>
-												<div class="profile-info-row">
-													<div class="profile-info-name"> Designation </div>
-
-													<div class="profile-info-value">
-														<span class="editable" id="designation">Developer</span>
-													</div>
-												</div>
-										<div class="profile-info-row">
-													<div class="profile-info-name"> Level </div>
-
-													<div class="profile-info-value">
-														<span class="editable" id="username">bm2</span>
-													</div>
-												</div>
-												<div class="profile-info-row">
-													<div class="profile-info-name"> Department </div>
-
-													<div class="profile-info-value">
-														<span class="editable" id="username">IT</span>
-													</div>
-												</div>
-												<div class="profile-info-row">
-													<div class="profile-info-name"> Location </div>
-
-													<div class="profile-info-value">
-														<i class="fa fa-map-marker light-orange bigger-110"></i>
-														<span class="editable" id="country">India</span>
-														<span class="editable" id="city">Bangalore</span>
-													</div>
-												</div>
-
-												<div class="profile-info-row">
-													<div class="profile-info-name"> Organization</div>
-
-													<div class="profile-info-value">
-														<span class="editable" id="age">EBS</span>
-													</div>
-												</div>
-
-												<div class="profile-info-row">
-													<div class="profile-info-name"> Reporting Manager</div>
-
-													<div class="profile-info-value">
-														<span class="editable" id="signup">......</span>
-													</div>
-												</div>
-
-											
-											</div>
-
-											<div class="space-20"></div>
-
-											
-
-										
-
-											<div class="space-6"></div>
-
-											
-										</div>
+						<div class="tab">
+							<button class="tablinks" onclick="openCity(event, 'Team Information')" id="defaultOpen">Team Information</button>
+							<button class="tablinks" onclick="openCity(event, 'Request')">Request</button>
+							
+						</div>
+							<div id="Team Information" class="tabcontent">
+							<div class="tab">
+								<button class="tablinksOne" onclick="openCityOne(event, 'Team Structure')" style="width:20%" id="defaultOpenOne">Team Structure</button>
+							<button class="tablinksOne" onclick="openCityOne(event, 'Real Timings')" style="width:20%">Real Timings</button>
+							<button class="tablinksOne" onclick="openCityOne(event, 'Leave Calendar')" style="width:20%">Leave Calendar</button>
+							<button class="tablinksOne" onclick="openCityOne(event, 'Shifts')" style="width:20%">Shifts</button>
+							<button class="tablinksOne" onclick="openCityOne(event, 'Manage Shifts')" style="width:20%">Manage Shifts</button>
+							</div>
+							<div id="Team Structure" class="tabcontentOne">
+								<div class="row">
+								<div class="col-md-12">
+									<div class="tree">
+										<ul style="    margin: 0px 0 -8px -46px;">
+											<li>
+												<a href="#"><img src="http://placehold.it/110x110" alt="CEO">
+												CEO</a>
+												<ul>
+													<li><a href="#"><img src="http://placehold.it/110x110" alt="CFO">CFO</a>
+														<ul>
+															<li><a href="#"><img src="http://placehold.it/25x25" alt="">Employee</img></a>
+															</li>
+															<li><a href="#"><img src="http://placehold.it/25x25" alt="">Employee</img></a></li>
+															<li><a href="#"><img src="http://placehold.it/25x25" alt="">Employee</img></a></li>
+															<li><a href="#"><img src="http://placehold.it/25x25" alt="">Employee</img></a></li>
+															<li><a href="#"><img src="http://placehold.it/25x25" alt="">Employee</img></a></li>
+														</ul>
+													</li>
+													<li><a href="#"><img src="http://placehold.it/110x110" alt="">VP Bus Dev</a>
+														<ul>
+															<li><a href="#"><img src="http://placehold.it/25x25" alt="">Employee</img></a></li>
+															<li><a href="#"><img src="http://placehold.it/25x25" alt="">Employee</img></a></li>
+															<li><a href="#"><img src="http://placehold.it/25x25" alt="">Employee</img></a></li>
+															<li><a href="#"><img src="http://placehold.it/25x25" alt="">Employee</img></a></li>
+															<li><a href="#"><img src="http://placehold.it/25x25" alt="">Employee</img></a></li>
+															<li><a href="#"><img src="http://placehold.it/25x25" alt="">Employee</img></a></li>
+															<li><a href="#"><img src="http://placehold.it/25x25" alt="">Employee</img></a></li>
+															<li><a href="#"><img src="http://placehold.it/25x25" alt="">Employee</img></a></li>
+															<li><a href="#"><img src="http://placehold.it/25x25" alt="">Employee</img></a></li>
+															<li><a href="#"><img src="http://placehold.it/25x25" alt="">Employee</img></a></li>
+														</ul>
+													</li>
+													<li><a href="#"><img src="http://placehold.it/110x110" alt="" />VP Div A</a>
+														<ul>
+															<li><a href="#"><img src="http://placehold.it/25x25" alt="">Employee</img></a></li>
+															<li><a href="#"><img src="http://placehold.it/25x25" alt="">Employee</img></a></li>
+															<li><a href="#"><img src="http://placehold.it/25x25" alt="">Employee</img></a></li>
+															<li><a href="#"><img src="http://placehold.it/25x25" alt="">Employee</img></a></li>
+															<li><a href="#"><img src="http://placehold.it/25x25" alt="">Employee</img></a></li>
+															<li><a href="#"><img src="http://placehold.it/25x25" alt="">Employee</img></a></li>
+															<li><a href="#"><img src="http://placehold.it/25x25" alt="">Employee</img></a></li>
+															<li><a href="#"><img src="http://placehold.it/25x25" alt="">Employee</img></a></li>
+															<li><a href="#"><img src="http://placehold.it/25x25" alt="">Employee</img></a></li>
+															<li><a href="#"><img src="http://placehold.it/25x25" alt="">Employee</img></a></li>
+															<li><a href="#"><img src="http://placehold.it/25x25" alt="">Employee</img></a></li>
+															<li><a href="#"><img src="http://placehold.it/25x25" alt="">Employee</img></a></li>
+														</ul>
+													</li>
+													<li><a href="#"><img src="http://placehold.it/110x110" alt="" />VP Div B</a>
+														<ul>
+															<li><a href="#"><img src="http://placehold.it/25x25" alt="">Employee</img></a></li>
+															<li><a href="#"><img src="http://placehold.it/25x25" alt="">Employee</img></a></li>
+															<li><a href="#"><img src="http://placehold.it/25x25" alt="">Employee</img></a></li>
+															<li><a href="#"><img src="http://placehold.it/25x25" alt="">Employee</img></a></li>
+															<li><a href="#"><img src="http://placehold.it/25x25" alt="">Employee</img></a></li>
+															<li><a href="#"><img src="http://placehold.it/25x25" alt="">Employee</img></a></li>
+															<li><a href="#"><img src="http://placehold.it/25x25" alt="">Employee</img></a></li>
+														</ul>
+													</li>
+													<li><a href="#"><img src="http://placehold.it/110x110" alt="">VP Div C</a>
+														<ul>
+															<li><a href="#"><img src="http://placehold.it/25x25" alt="">Employee</img></a></li>
+															<li><a href="#"><img src="http://placehold.it/25x25" alt="">Employee</img></a></li>
+															<li><a href="#"><img src="http://placehold.it/25x25" alt="">Employee</img></a></li>
+															<li><a href="#"><img src="http://placehold.it/25x25" alt="">Employee</img></a></li>
+															<li><a href="#"><img src="http://placehold.it/25x25" alt="">Employee</img></a></li>
+														</ul>
+													</li>
+													<li><a href="#"><img src="http://placehold.it/110x110" alt="VP HR">VP HR</a>
+														<ul>
+															<li><a href="#"><img src="http://placehold.it/25x25" alt="">Employee</img></a></li>
+															<li><a href="#"><img src="http://placehold.it/25x25" alt="">Employee</img></a></li>
+															<li><a href="#"><img src="http://placehold.it/25x25" alt="">Employee</img></a></li>
+															<li><a href="#"><img src="http://placehold.it/25x25" alt="">Employee</img></a></li>
+															<li><a href="#"><img src="http://placehold.it/25x25" alt="">Employee</img></a></li>
+														</ul>
+													</li>
+												</ul>
+											</li>
+										</ul>
 									</div>
 								</div>
+							</div>	
+							</div>
+							<div id="Real Timings" class="tabcontentOne">
+							
+																<div class="row" style="padding:60px">
+								<div class="col-md-12" style="border:1px solid #ccc;padding:15px">
+									
+									<form >
+														
+														<div class="col-md-2">
+															<label for="form-field-select-1">Organization</label>
+															
+															<select class="form-control" id="form-field-select-1">
+																<option value=""></option>
+																<option value="AL">Org-1</option>
+																<option value="AK">Org-2</option>
+																
+																
+														
+															</select>
+														</div>
+														<div class="col-md-2">
+															<label for="form-field-select-1">Location</label>
+														
+															<select class="form-control" id="form-field-select-1">
+																<option value=""></option>
+																<option value="AL">Singasandra</option>
+																<option value="AK">RR Nagar</option>
+																<option value="AZ">Abu Dhabi</option>
+																<option value="AR">Oman</option>
+																
+														
+															</select>
+													</div>
+														
+												
+													
+														
+																<div class="col-md-2">
+															<label for="id-date-picker-1">From Date</label>
+
+														<div class="row">
+															<div class="col-xs-8 col-sm-11">
+																<div class="input-group">
+																	<input class="form-control date-picker" id="id-date-picker-1" type="text" data-date-format="dd-mm-yyyy" />
+																	<span class="input-group-addon">
+																		<i class="fa fa-calendar bigger-110"></i>
+																	</span>
+																</div>
+															</div>
+														</div>
+															</div>
+															<div class="col-md-2">
+															<label for="id-date-picker-1">To Date</label>
+
+														<div class="row">
+															<div class="col-xs-8 col-sm-11">
+																<div class="input-group">
+																	<input class="form-control date-picker" id="id-date-picker-1" type="text" data-date-format="dd-mm-yyyy" />
+																	<span class="input-group-addon">
+																		<i class="fa fa-calendar bigger-110"></i>
+																	</span>
+																</div>
+															</div>
+														</div>
+															</div>
+														
 	
+														<button type="button" class="btn btn-sm btn-success" style="    border-width: 4px;
+    font-size: 13px;
+    padding: 4px 9px;
+    line-height: 1.38;
+    width: 83px;
+    height: 37px;
+    margin-top: 24px;">
+																Search
+																<i class="ace-icon fa fa-arrow-right icon-on-right bigger-110"></i>
+															</button>	
+														
+														</form>
+								</div>
+							</div>
+							<div class="row" style="padding:60px">
+								<div class="col-md-12" >
+								<div style="overflow-x:auto;">	
+									<table id="myTable">
+										<tr class="tableheader">
+											
+											
+											<th >Emp Name</th>
+											<th>31-Dec</th>
+											<th>30-Dec</th>
+											<th>29-Dec</th>
+											<th>28-Dec</th>
+											
+										</tr>
+										<tr>
+											
+											
+											<td>Monika</td>
+											<th>9:10</th>
+											<th>9:25</th>
+											<th>9:45</th>
+											<th>9:60</th>
+											
+										</tr>
+										<tr>
+											
+											
+											<td>Suhas</td>
+											<th>9:15</th>
+											<th>9:18</th>
+											<th>9:21</th>
+											<th>9:30</th>
+											
+										</tr>
+									</table>
+									</div>
+								</div>	
+							</div>
+							</div>
+						<div id="Leave Calendar" class="tabcontentOne" >
+						
+													<div class="row" style="padding:15px;">
+								<div class="col-md-12">
+							
+								<form style="border:1px solid #ccc;padding:15px">
+														<div class="col-md-2">
+															<label for="form-field-select-1">Organization</label>
+															
+															<select class="form-control" id="form-field-select-1">
+																<option value=""></option>
+																<option value="AL">Org-1</option>
+																<option value="AK">Org-2</option>
+																
+																
+														
+															</select>
+														</div>
+														<div class="col-md-2">
+															<label for="form-field-select-1">Location</label>
+														
+															<select class="form-control" id="form-field-select-1">
+																<option value=""></option>
+																<option value="AL">Singasandra</option>
+																<option value="AK">RR Nagar</option>
+																<option value="AZ">Abu Dhabi</option>
+																<option value="AR">Oman</option>
+																
+														
+															</select>
+													</div>
+														<div class="col-md-2">
+															<label for="form-field-select-1">Department</label>
+														
+															<select class="form-control" id="form-field-select-1">
+																<option value=""></option>
+																<option value="AL">Singasandra</option>
+																<option value="AK">RR Nagar</option>
+																<option value="AZ">Abu Dhabi</option>
+																<option value="AR">Oman</option>
+																
+														
+															</select>
+														</div>
+													<div class="col-md-2">
+															<label for="form-field-select-1">Financial Year</label>
+														
+															<select class="form-control" id="form-field-select-1">
+																<option value=""></option>
+																<option>2015</option>
+																<option>2016</option>
+																<option>2017</option>
+																<option>2018</option>
+																
+														
+															</select>
+														</div>
+														<div class="col-md-2">
+															<label for="form-field-select-1">Month</label>
+														
+															<select class="form-control" id="form-field-select-1">
+																<option value=""></option>
+																<option>January</option>
+												<option>February</option>
+												<option>March</option>
+												<option>April</option>
+												<option>May</option>
+												<option>June</option>
+												<option>July</option>
+												<option>August</option>
+												<option>September</option>
+												<option>October</option>
+												<option>November</option>
+												<option>December</option>
+																
+														
+															</select>
+														</div>
+														<div class="col-md-2">
+															<label for="form-field-select-1">Grade</label>
+														
+															<select class="form-control" id="form-field-select-1">
+																<option value=""></option>
+																<option>Full Time</option>
+																<option>Part Time</option>
+																<option>Comtractual</option>
+																<option>Consultant</option>
+																
+														
+															</select>
+														</div>
+												<input type="button" onclick="tableToExcel('myTableOne', 'W3C Example Table')" value="Export to Excel">
+												  <input type="button" id="exportpdf" value="Download PDF">
+														<button type="button" class="btn btn-sm btn-success" style="    border-width: 4px;
+    font-size: 13px;
+    padding: 4px 9px;
+    line-height: 1.38;
+    width: 83px;
+    height: 37px;
+    margin-top: 10px;">
+																Search
+																<i class="ace-icon fa fa-arrow-right icon-on-right bigger-110"></i>
+															</button>	
+														
+														</form>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-md-12" >
+								<div style="overflow-x:auto;">
+								<div id="table">								
+									<table id="myTableOne">
+										<tr class="tableheader">
+											<th class="center">
+												<label class="pos-rel">
+													<input type="checkbox" id="checkAll" class="ace" />
+													<span class="lbl"></span>
+												</label>
+											</th>
+											<th >Emp Code</th>
+											<th >Emp Name</th>
+											<th>1</th>
+											<th>2</th>
+											<th>3</th>
+											<th>4</th>
+											<th>5</th>
+											<th>5</th>
+											<th>6</th>
+											<th>7</th>
+											<th>8</th>
+											<th>9</th>
+											<th>10</th>
+											<th>11</th>
+											<th>12</th>
+											<th>13</th>
+											<th>14</th>
+											<th>15</th>
+											<th>16</th>
+											<th>17</th>
+											<th>18</th>
+											<th>19</th>
+											<th>20</th>
+											<th>21</th>
+											<th>22</th>
+											<th>23</th>
+											<th>24</th>
+											<th>25</th>
+											<th>26</th>
+											<th>27</th>
+											<th>28</th>
+											<th>29</th>
+											<th>30</th>
+										</tr>
+										<tr>
+											<td class="center">
+												<label class="pos-rel">
+													<input type="checkbox" class="ace" />
+													<span class="lbl"></span>
+												</label>
+											</td>
+											<td>1122</td>
+											<td>Veena</td>
+											<th>p</th>
+											<th>p</th>
+											<th>p</th>
+											<th>p</th>
+											<th>p</th>
+											<th>w/o</th>
+											<th>el</th>
+											<th>cl</th>
+											<th>p</th>
+											<th>p</th>
+											<th>p</th>
+											<th>p</th>
+											<th>p</th>
+											<th>p</th>
+											<th>p</th>
+											<th>p</th>
+											<th>p</th>
+											<th>w/o</th>
+											<th>p</th>
+											<th>p</th>
+											<th>p</th>
+											<th>p</th>
+											<th>p</th>
+											<th>p</th>
+											<th>p</th>
+											<th>w/o</th>
+											<th>p</th>
+											<th>p</th>
+											<th>p</th>
+											<th>p</th>
+											<th>p</th>
+										</tr>
+										<tr>
+											<td class="center">
+												<label class="pos-rel">
+													<input type="checkbox" class="ace" />
+													<span class="lbl"></span>
+												</label>
+											</td>
+											<td>2000</td>
+											<td>Monika</td>
+											<th>p</th>
+											<th>p</th>
+											<th>p</th>
+											<th>p</th>
+											<th>p</th>
+											<th>w/o</th>
+											<th>el</th>
+											<th>cl</th>
+											<th>p</th>
+											<th>p</th>
+											<th>p</th>
+											<th>p</th>
+											<th>p</th>
+											<th>p</th>
+											<th>p</th>
+											<th>p</th>
+											<th>p</th>
+											<th>w/o</th>
+											<th>p</th>
+											<th>p</th>
+											<th>p</th>
+											<th>p</th>
+											<th>p</th>
+											<th>p</th>
+											<th>p</th>
+											<th>w/o</th>
+											<th>p</th>
+											<th>p</th>
+											<th>p</th>
+											<th>p</th>
+											<th>p</th>
+										</tr>
+									</table>
+									</div>
+									</div>
+								</div>	
+							</div>
+							</div>
+							<div id="Shifts" class="tabcontentOne">
+								<div class="row" style="padding:15px;">
+								<div class="col-md-12" style="    border: 1px solid #ccc;
+    padding: 15px;">
+									
+										<form >
+														<div class="col-md-2">
+															<label for="form-field-select-1">Organization</label>
+															
+															<select class="form-control" id="form-field-select-1">
+																<option value=""></option>
+																<option value="AL">Org-1</option>
+																<option value="AK">Org-2</option>
+																
+																
+														
+															</select>
+														</div>
+														<div class="col-md-2">
+															<label for="form-field-select-1">Location</label>
+														
+															<select class="form-control" id="form-field-select-1">
+																<option value=""></option>
+																<option value="AL">Singasandra</option>
+																<option value="AK">RR Nagar</option>
+																<option value="AZ">Abu Dhabi</option>
+																<option value="AR">Oman</option>
+																
+														
+															</select>
+													</div>
+														<div class="col-md-2">
+															<label for="form-field-select-1">Department</label>
+														
+															<select class="form-control" id="form-field-select-1">
+																<option value=""></option>
+																<option value="AL">Singasandra</option>
+																<option value="AK">RR Nagar</option>
+																<option value="AZ">Abu Dhabi</option>
+																<option value="AR">Oman</option>
+																
+														
+															</select>
+														</div>
+												
+														<div class="col-md-2">
+															<label for="form-field-select-1">Choose Year</label>
+														
+															<select class="form-control" id="form-field-select-1">
+																<option value=""></option>
+																<option>2015</option>
+																<option>2016</option>
+																<option>2017</option>
+																<option>2018</option>
+															</select>
+														</div>
+														<div class="col-md-2">
+															<label for="form-field-select-1">Choose Month</label>
+														
+															<select class="form-control" id="form-field-select-1">
+																<option value=""></option>
+																<option>January</option>
+																<option>February</option>
+																<option>March</option>
+																<option>April</option>
+																<option>May</option>
+																<option>June</option>
+																<option>July</option>
+																<option>August</option>
+																<option>September</option>
+																<option>October</option>
+																<option>November</option>
+																<option>December</option>
+																
+																
+														
+															</select>
+														</div>
+												
+		<input type="button" onclick="tableToExcelOne('myTableTwo', 'W3C Example Table')" value="Export to Excel">
+														<button type="button" class="btn btn-sm btn-success" style="    border-width: 4px;
+    font-size: 13px;
+    padding: 4px 9px;
+    line-height: 1.38;
+    width: 83px;
+    height: 37px;
+    margin-top: 24px;">
+																Submit
+																<i class="ace-icon fa fa-arrow-right icon-on-right bigger-110"></i>
+															</button>	
+														
+														</form>
+								</div>
+							</div>
+							<div class="row" style="padding:60px">
+								<div class="col-md-12" >
+								<div style="overflow-x:auto;">	
+									<table id="myTableTwo">
+										<tr class="tableheader">
+											
+											
+											<th rowspan="2" >Emp Name</th>
+											<th rowspan="2">Dept</th>
+											<th>Friday</th>
+											<th>Saturday</th>
+											<th>Sunday</th>
+											<th>Monday</th>
+											<th>Tuesday</th>
+											<th>Wednesday</th>
+											<th>Thursday</th>
+											
+										</tr>
+										<tr>
+											<th>IN | OUT</th>
+											<th>IN | OUT</th>
+											<th>IN | OUT</th>
+											<th>IN | OUT</th>
+											<th>IN | OUT</th>
+											<th>IN | OUT</th>
+											<th>IN | OUT</th>
+										<tr>
+											
+											
+											<td>Monika</td>
+											<td>Presales</td>
+											<th>9:10|6:30</th>
+											<th>W/O</th>
+											<th></th>
+											<th>9:50|6:50</th>
+											<th>9:12|6:12</th>
+											<th></th>
+											<th></th>
+										</tr>
+										<tr>
+											
+											
+											<td>Suhas</td>
+											<td>Buisness Analyst</td>
+											<th>9:10|6:30</th>
+											<th>W/O</th>
+											<th></th>
+											<th>9:50|6:50</th>
+											<th>9:12|6:12</th>
+											<th></th>
+											<th></th>
+										</tr>
+									</table>
+									</div>
+								</div>	
+							</div>
+							</div>
+							<div id="Manage Shifts" class="tabcontentOne">
+								<div class="row">
+								<div class="col-md-12" style="  padding:15px;">
+									<button style="width:13%;color:white" disabled>Employee Roaster</button>
+								</div>
+							</div>
+							<div class="row" style="padding:15px;">
+								<div class="col-md-12" style="  border: 1px solid #ccc;padding:15px;">
+									<h3>Step-1</h3>
+										<form >
+														<div class="col-md-2">
+															<label for="form-field-select-1">Organization</label>
+															
+															<select class="form-control" id="form-field-select-1">
+																<option value=""></option>
+																<option value="AL">Org-1</option>
+																<option value="AK">Org-2</option>
+																
+																
+														
+															</select>
+														</div>
+														<div class="col-md-2">
+															<label for="form-field-select-1">Location</label>
+														
+															<select class="form-control" id="form-field-select-1">
+																<option value=""></option>
+																<option value="AL">Singasandra</option>
+																<option value="AK">RR Nagar</option>
+																<option value="AZ">Abu Dhabi</option>
+																<option value="AR">Oman</option>
+																
+														
+															</select>
+													</div>
+														<div class="col-md-2">
+															<label for="form-field-select-1">Department</label>
+														
+															<select class="form-control" id="form-field-select-1">
+																<option value=""></option>
+																<option value="AL">Singasandra</option>
+																<option value="AK">RR Nagar</option>
+																<option value="AZ">Abu Dhabi</option>
+																<option value="AR">Oman</option>
+																
+														
+															</select>
+														</div>
+												
+													
+														<div class="col-md-2">
+															<label for="form-field-select-1">Grade</label>
+														
+															<select class="form-control" id="form-field-select-1">
+																<option value=""></option>
+																<option>Full Time</option>
+																<option>Part Time</option>
+																<option>Comtractual</option>
+																<option>Consultant</option>
+																
+														
+															</select>
+														</div>
+																<div class="col-md-2">
+															<label for="id-date-picker-1">From Date</label>
+
+														<div class="row">
+															<div class="col-xs-8 col-sm-11">
+																<div class="input-group">
+																	<input class="form-control date-picker" id="id-date-picker-1" type="text" data-date-format="dd-mm-yyyy" />
+																	<span class="input-group-addon">
+																		<i class="fa fa-calendar bigger-110"></i>
+																	</span>
+																</div>
+															</div>
+														</div>
+															</div>
+															<div class="col-md-2">
+															<label for="id-date-picker-1">To Date</label>
+
+														<div class="row">
+															<div class="col-xs-8 col-sm-11">
+																<div class="input-group">
+																	<input class="form-control date-picker" id="id-date-picker-1" type="text" data-date-format="dd-mm-yyyy" />
+																	<span class="input-group-addon">
+																		<i class="fa fa-calendar bigger-110"></i>
+																	</span>
+																</div>
+															</div>
+														</div>
+															</div>
+														
+	
+														<button type="button" class="btn btn-sm btn-success" style="    border-width: 4px;
+    font-size: 13px;
+    padding: 4px 9px;
+    line-height: 1.38;
+    width: 150px;
+    height: 37px;
+    margin-top: 24px;">
+																Display Employees
+																<i class="ace-icon fa fa-arrow-right icon-on-right bigger-110"></i>
+															</button>	
+														
+														</form>
+														</div>
+								</div>
+							
+							<div class="row" style="padding:15px">
+								<div class="col-md-12" style="border:1px solid #ccc; padding:15px;">
+									<h3>Step-2</h3>
+										<form >
+														<div class="col-md-2">
+															<label for="form-field-select-1">Select Shift</label>
+															
+															<select class="form-control" id="form-field-select-1">
+																<option value=""></option>
+																<option value="AL">Org-1</option>
+																<option value="AK">Org-2</option>
+																
+																
+														
+															</select>
+														</div>
+														<div class="col-md-2">
+															<label for="form-field-select-1">Select Weekly Off</label>
+														
+															<select class="form-control" id="form-field-select-1">
+																<option value=""></option>
+																<option value="AL">Singasandra</option>
+																<option value="AK">RR Nagar</option>
+																<option value="AZ">Abu Dhabi</option>
+																<option value="AR">Oman</option>
+																
+														
+															</select>
+													</div>
+													
+												
+													
+															
+														
+	
+														<button type="button" class="btn btn-sm btn-success" style="    border-width: 4px;
+    font-size: 13px;
+    padding: 4px 9px;
+    line-height: 1.38;
+    width: 150px;
+    height: 37px;
+    margin-top: 24px;">
+																Assign Shift In Bulk
+																<i class="ace-icon fa fa-arrow-right icon-on-right bigger-110"></i>
+															</button>	
+														<button type="button" class="btn btn-sm btn-success" style="    border-width: 4px;
+    font-size: 13px;
+    padding: 4px 9px;
+    line-height: 1.38;
+    width: 150px;
+    height: 37px;
+    margin-top: 24px;">
+																Assign Shift
+																<i class="ace-icon fa fa-arrow-right icon-on-right bigger-110"></i>
+															</button>
+														</form>
+									</div>
+							</div>
+							<div class="row">
+								<div class="col-md-12" style="padding:100px;">
+								<div style="overflow-x:auto;">	
+									<table id="myTableOne">
+										<tr class="header">
+											<th class="center">
+												<label class="pos-rel">
+													<input type="checkbox" id="checkAll" class="ace" />
+													<span class="lbl"></span>
+												</label>
+											</th>
+											<th >Emp-Name</th>
+											<th >Department</th>
+											<th>Select Shift</th>
+											<th>Weekly Off</th>
+											<th>Shift Start Day</th>
+											<th>Shift End Day</th>
+										</tr>
+										<tr>
+											<td class="center">
+												<label class="pos-rel">
+													<input type="checkbox" class="ace" />
+													<span class="lbl"></span>
+												</label>
+											</td>
+												<td>Veena Saju</td>
+											<td>Project Management</td>
+											<td>T1</td>
+											<td>W-S-S</td>
+											<td>1/10/2017</td>
+											<td>31/12/2017</td>
+										</tr>
+										<tr>
+											<td class="center">
+												<label class="pos-rel">
+													<input type="checkbox" class="ace" />
+													<span class="lbl"></span>
+												</label>
+											</td>
+										
+											<td>Monika</td>
+											<td>Pre Sales</td>
+											<td>T1</td>
+											<td>W-S-S</td>
+											<td>1/10/2017</td>
+											<td>31/12/2017</td>
+										</tr>
+									
+									</table>
+									</div>
+								</div>	
+							</div>	
+							</div>
+								</div>
+								<div id="Request" class="tabcontent">
+							<div class="tab">
+								<button class="tablinksTwo" onclick="openCityTwo(event, 'Exit')" style="width:25%" id="defaultOpenTwo">Exit</button>
+							<button class="tablinksTwo" onclick="openCityTwo(event, 'leave')" style="width:25%">Leave</button>
+							<button class="tablinksTwo" onclick="openCityTwo(event, 'Travel')" style="width:25%">Travel</button>
+							<button class="tablinksTwo" onclick="openCityTwo(event, 'Reimbursement')" style="width:25%">Reimbursement</button>
+							
+							</div>
+							<div id="Exit" class="tabcontentTwo" active>
+							<div class="row" style="padding:15px;">
+								<div class="col-md-12" style="    border: 1px solid #ccc;
+    padding: 15px;">
+									
+										<form >
+														<div class="col-md-2">
+															<label for="form-field-select-1">Organization</label>
+															
+															<select class="form-control" id="form-field-select-1">
+																<option value=""></option>
+																<option value="AL">Org-1</option>
+																<option value="AK">Org-2</option>
+																
+																
+														
+															</select>
+														</div>
+														<div class="col-md-2">
+															<label for="form-field-select-1">Location</label>
+														
+															<select class="form-control" id="form-field-select-1">
+																<option value=""></option>
+																<option value="AL">Singasandra</option>
+																<option value="AK">RR Nagar</option>
+																<option value="AZ">Abu Dhabi</option>
+																<option value="AR">Oman</option>
+																
+														
+															</select>
+													</div>
+														<div class="col-md-2">
+															<label for="form-field-select-1">Department</label>
+														
+															<select class="form-control" id="form-field-select-1">
+																<option value=""></option>
+																<option value="AL">Singasandra</option>
+																<option value="AK">RR Nagar</option>
+																<option value="AZ">Abu Dhabi</option>
+																<option value="AR">Oman</option>
+																
+														
+															</select>
+														</div>
+												
+														
+	
+														<button type="button" class="btn btn-sm btn-success" style="    border-width: 4px;
+    font-size: 13px;
+    padding: 4px 9px;
+    line-height: 1.38;
+    width: 83px;
+    height: 37px;
+    margin-top: 24px;">
+																Submit
+																<i class="ace-icon fa fa-arrow-right icon-on-right bigger-110"></i>
+															</button>	
+														
+														</form>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-md-12" style="padding:100px">
+									<div style="overflow-x:auto;">	
+									<table id="myTableOne">
+										<tr class="tableheader">
+											
+											<th >Emp Code</th>
+											<th >Emp Name</th>
+											<th>Status</th>
+											<th>Applied Date</th>
+											<th>Reason</th>
+											<th>Last Day</th>
+											<th>Approve or Reject</th>
+											<th>Approving Authority</th>
+										</tr>
+										<tr>
+											
+												<td>000</td>
+											<td>XYZ</td>
+											<td>Resigned</td>
+											<td>20/12/17</td>
+											<td>Better Opportunity</td>
+											<td>31/12/2017</td>
+											<td id="check"><i onclick="myFunctionCheck()" class="fa fa-check" aria-hidden="true"></i><i onclick="myFunctionTimes()" class="fa fa-times" aria-hidden="true"></i></td>
+											<td>Manager</td>
+										</tr>
+										
+									
+									</table>
+									</div>
+								</div>
+							</div>	
+							</div>
+							<div  id="leave" class="tabcontentTwo">
+							<div class="row" style="padding:15px;">
+									<div class="col-md-12">
+										<button style="width:13%;color:white" disabled>Approve leave</button>
+									</div>
+								</div>
+								<div class="row" style="padding:15px;">
+								<div class="col-md-12" style="border:1px solid #ccc;padding:15px;">
+									
+									<form >
+														<div class="col-md-2">
+															<label for="form-field-select-1">Status</label>
+															
+															<select class="form-control" id="form-field-select-1">
+																<option value=""></option>
+																<option value="AL">Approved</option>
+																<option value="AK">Pending</option>
+																
+																
+														
+															</select>
+														</div>
+														
+														
+														
+												
+													
+														
+																<div class="col-md-2">
+															<label for="id-date-picker-1">From Date</label>
+
+														<div class="row">
+															<div class="col-xs-8 col-sm-11">
+																<div class="input-group">
+																	<input class="form-control date-picker" id="id-date-picker-1" type="text" data-date-format="dd-mm-yyyy" />
+																	<span class="input-group-addon">
+																		<i class="fa fa-calendar bigger-110"></i>
+																	</span>
+																</div>
+															</div>
+														</div>
+															</div>
+															<div class="col-md-2">
+															<label for="id-date-picker-1">To Date</label>
+
+														<div class="row">
+															<div class="col-xs-8 col-sm-11">
+																<div class="input-group">
+																	<input class="form-control date-picker" id="id-date-picker-1" type="text" data-date-format="dd-mm-yyyy" />
+																	<span class="input-group-addon">
+																		<i class="fa fa-calendar bigger-110"></i>
+																	</span>
+																</div>
+															</div>
+														</div>
+															</div>
+														
+	
+														<button type="button" class="btn btn-sm btn-success" style="    border-width: 4px;
+    font-size: 13px;
+    padding: 4px 9px;
+    line-height: 1.38;
+    width: 83px;
+    height: 37px;
+    margin-top: 24px;">
+																Search
+																<i class="ace-icon fa fa-arrow-right icon-on-right bigger-110"></i>
+															</button>	
+														
+														</form>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-md-12" style="padding:100px;">
+								<div style="overflow-x:auto;">	
+									<table id="myTableOne">
+										<tr class="tableheader">
+											
+											<th>Emp Code</th>
+											<th >Emp-Name</th>
+											<th >Leave Type</th>
+											<th>Applied Date</th>
+											<th>From</th>
+											<th>To</th>
+											<th>No Of Days</th>
+											<th>Reason</th>
+											<th>Approve or Reject</th>
+											
+											</tr>
+										<tr>
+											
+											<td>11</td>
+												<td>Veena Saju</td>
+											<td>CL</td>
+											<td>1/10/2017</td>
+											<td>31/12/2017</td>
+											<td>21/12/2020</td>
+											<td>1095</td>
+											<td>Personal</td>
+											<td id="checkOne"><i onclick="myFunctionCheckOne()" class="fa fa-check" aria-hidden="true"></i><i onclick="myFunctionTimesOne()" class="fa fa-times" aria-hidden="true"></i></td>
+											
+											
+										</tr>
+									
+									
+									</table>
+									</div>
+								</div>	
+							</div>	
+							</div>
+							<div  id="Travel" class="tabcontentTwo">
+								<div class="row" style="padding:15px;">
+									<div class="col-md-12">
+										<button style="width:13%;color:white" disabled>Approve leave</button>
+									</div>
+								</div>
+								<div class="row" style="padding:15px;">
+								<div class="col-md-12" style="border:1px solid #ccc;padding:15px;">
+									
+									<form >
+														<div class="col-md-2">
+															<label for="form-field-select-1">Status</label>
+															
+															<select class="form-control" id="form-field-select-1">
+																<option value=""></option>
+																<option value="AL">Approved</option>
+																<option value="AK">Pending</option>
+																
+																
+														
+															</select>
+														</div>
+														
+														
+														
+												
+													
+														
+																<div class="col-md-2">
+															<label for="id-date-picker-1">From Date</label>
+
+														<div class="row">
+															<div class="col-xs-8 col-sm-11">
+																<div class="input-group">
+																	<input class="form-control date-picker" id="id-date-picker-1" type="text" data-date-format="dd-mm-yyyy" />
+																	<span class="input-group-addon">
+																		<i class="fa fa-calendar bigger-110"></i>
+																	</span>
+																</div>
+															</div>
+														</div>
+															</div>
+															<div class="col-md-2">
+															<label for="id-date-picker-1">To Date</label>
+
+														<div class="row">
+															<div class="col-xs-8 col-sm-11">
+																<div class="input-group">
+																	<input class="form-control date-picker" id="id-date-picker-1" type="text" data-date-format="dd-mm-yyyy" />
+																	<span class="input-group-addon">
+																		<i class="fa fa-calendar bigger-110"></i>
+																	</span>
+																</div>
+															</div>
+														</div>
+															</div>
+														
+	
+														<button type="button" class="btn btn-sm btn-success" style="    border-width: 4px;
+    font-size: 13px;
+    padding: 4px 9px;
+    line-height: 1.38;
+    width: 83px;
+    height: 37px;
+    margin-top: 24px;">
+																Search
+																<i class="ace-icon fa fa-arrow-right icon-on-right bigger-110"></i>
+															</button>	
+														
+														</form>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-md-12" style="padding:100px;">
+								<div style="overflow-x:auto;">	
+									<table id="myTableOne">
+										<tr class="tableheader">
+											
+											<th>Emp Code</th>
+											<th >Emp-Name</th>
+											<th >Travel Plan</th>
+											<th>Applied Date</th>
+											<th>From</th>
+											<th>To</th>
+											<th>No Of Days</th>
+											
+											<th>Approve or Reject</th>
+											
+											</tr>
+										<tr>
+											
+											<td>11</td>
+												<td>Veena Saju</td>
+											<td>Visit To Keonics</td>
+											<td>1/10/2017</td>
+											<td>31/12/2017</td>
+											<td>21/12/2020</td>
+											<td>1095</td>
+											
+											<td id="checkTwo"><i onclick="myFunctionCheckTwo()" class="fa fa-check" aria-hidden="true"></i><i onclick="myFunctionTimesTwo()" class="fa fa-times" aria-hidden="true"></i></td>
+											
+											
+										</tr>
+									
+									
+									</table>
+									</div>
+								</div>	
+							</div>	
+							</div>
+							<div  id="Reimbursement" class="tabcontentOne">
+								
+								<div class="row" style="padding:15px;">
+								<div class="col-md-12" style="border:1px solid #ccc;padding:15px;">
+									
+									<form >
+														<div class="col-md-2">
+															<label for="form-field-select-1">PayCycle</label>
+															
+															<select class="form-control" id="form-field-select-1">
+																<option value=""></option>
+																<option value="AL">Approved</option>
+																<option value="AK">Pending</option>
+																
+																
+														
+															</select>
+														</div>
+														
+														
+														
+												
+													
+														
+																<div class="col-md-2">
+															<label for="id-date-picker-1">From Date</label>
+
+														<div class="row">
+															<div class="col-xs-8 col-sm-11">
+																<div class="input-group">
+																	<input class="form-control date-picker" id="id-date-picker-1" type="text" data-date-format="dd-mm-yyyy" />
+																	<span class="input-group-addon">
+																		<i class="fa fa-calendar bigger-110"></i>
+																	</span>
+																</div>
+															</div>
+														</div>
+															</div>
+															<div class="col-md-2">
+															<label for="id-date-picker-1">To Date</label>
+
+														<div class="row">
+															<div class="col-xs-8 col-sm-11">
+																<div class="input-group">
+																	<input class="form-control date-picker" id="id-date-picker-1" type="text" data-date-format="dd-mm-yyyy" />
+																	<span class="input-group-addon">
+																		<i class="fa fa-calendar bigger-110"></i>
+																	</span>
+																</div>
+															</div>
+														</div>
+															</div>
+														
+	
+														<button type="button" class="btn btn-sm btn-success" style="    border-width: 4px;
+    font-size: 13px;
+    padding: 4px 9px;
+    line-height: 1.38;
+    width: 83px;
+    height: 37px;
+    margin-top: 24px;">
+																Submit
+																<i class="ace-icon fa fa-arrow-right icon-on-right bigger-110"></i>
+															</button>	
+														
+														</form>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-md-12" style="padding:100px;">
+								<div style="overflow-x:auto;">	
+									<table id="myTableOne">
+										<tr class="tableheader">
+											
+											<th>Status</th>
+											<th >Reimbursement Description</th>
+											<th >Attachment</th>
+											
+											
+											
+											
+											</tr>
+										<tr>
+											
+											
+											
+											<td id="checkThree"><i onclick="myFunctionCheckThree()" class="fa fa-check" aria-hidden="true"></i><i onclick="myFunctionTimesThree()" class="fa fa-times" aria-hidden="true"></i></td>
+											<td>Admin has submitted a request for reimbursement <a data-toggle="modal" data-target="#myModal">click here<a></td>
+											<td></td>
+										</tr>
+									
+									
+									</table>
+									</div>
+								</div>	
+							</div>	
+							
+
+  <!-- Modal -->
+  <div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog">
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Modal Header</h4>
+        </div>
+        <div class="modal-body">
+         <table>
+			<tbody>
+				<tr>
+					<td>Employee</td>
+					<td>Admin</td>
+				</tr>
+				<tr>
+					<td>PayCycle</td>
+					<td>Dec 1-31</td>
+				</tr>
+				<tr>
+					<td>Applied Date</td>
+					<td>12/12/2017</td>
+				</tr>
+				<tr>
+					<td>Reimbursement Type</td>
+					<td>Travel</td>
+				</tr>
+				<tr>
+					<td>No Of Persons</td>
+					<td>1</td>
+				</tr>
+				<tr>	
+					<td>Total Amount</td>
+					<td>555</td>
+				</tr>
+			</tbody>
+		</table>		
+					
+					
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+							</div>
+							</div>
 								
 								
 
@@ -769,6 +1931,149 @@ var $document = $(document);
 })();
 
 
+function openCity(evt, cityName) {
+    var i, tabcontent, tablinks;
+    tabcontent = document.getElementsByClassName("tabcontent");
+    for (i = 0; i < tabcontent.length; i++) {
+        tabcontent[i].style.display = "none";
+    }
+    tablinks = document.getElementsByClassName("tablinks");
+    for (i = 0; i < tablinks.length; i++) {
+        tablinks[i].className = tablinks[i].className.replace(" active", "");
+    }
+    document.getElementById(cityName).style.display = "block";
+    evt.currentTarget.className += " active";
+}
+function openCityOne(evt, cityName) {
+    var i, tabcontent, tablinks;
+    tabcontent = document.getElementsByClassName("tabcontentOne");
+    for (i = 0; i < tabcontent.length; i++) {
+        tabcontent[i].style.display = "none";
+    }
+    tablinks = document.getElementsByClassName("tablinksOne");
+    for (i = 0; i < tablinks.length; i++) {
+        tablinks[i].className = tablinks[i].className.replace(" active", "");
+    }
+    document.getElementById(cityName).style.display = "block";
+    evt.currentTarget.className += " active";
+}
+function openCityTwo(evt, cityName) {
+    var i, tabcontent, tablinks;
+    tabcontent = document.getElementsByClassName("tabcontentTwo");
+    for (i = 0; i < tabcontent.length; i++) {
+        tabcontent[i].style.display = "none";
+    }
+    tablinks = document.getElementsByClassName("tablinksTwo");
+    for (i = 0; i < tablinks.length; i++) {
+        tablinks[i].className = tablinks[i].className.replace(" active", "");
+    }
+    document.getElementById(cityName).style.display = "block";
+    evt.currentTarget.className += " active";
+}
+
+document.getElementById("defaultOpen").click();
+document.getElementById("defaultOpenOne").click();
+document.getElementById("defaultOpenTwo").click();
+
+
+function myFunctionTimes() {
+   document.getElementById('check').innerHTML = '<p>Rejected</p>';
+    
+    
+}
+function myFunctionCheck() {
+   document.getElementById('check').innerHTML = '<p>Approved</p>';
+    
+    
+}
+function myFunctionTimesTwo() {
+   document.getElementById('checkTwo').innerHTML = '<p>Rejected</p>';
+    
+    
+}
+function myFunctionCheckTwo() {
+   document.getElementById('checkTwo').innerHTML = '<p>Approved</p>';
+    
+    
+}
+function myFunctionTimesThree() {
+   document.getElementById('checkThree').innerHTML = '<p>Rejected</p>';
+    
+    
+}
+function myFunctionCheckThree() {
+   document.getElementById('checkThree').innerHTML = '<p>Approved</p>';
+    
+    
+}
 </script>
+<script type="text/javascript">
+var tableToExcel = (function() {
+  var uri = 'data:application/vnd.ms-excel;base64,'
+    , template = '<html xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:x="urn:schemas-microsoft-com:office:excel" xmlns="http://www.w3.org/TR/REC-html40"><head><!--[if gte mso 9]><xml><x:ExcelWorkbook><x:ExcelWorksheets><x:ExcelWorksheet><x:Name>{worksheet}</x:Name><x:WorksheetOptions><x:DisplayGridlines/></x:WorksheetOptions></x:ExcelWorksheet></x:ExcelWorksheets></x:ExcelWorkbook></xml><![endif]--></head><body><table>{table}</table></body></html>'
+    , base64 = function(s) { return window.btoa(unescape(encodeURIComponent(s))) }
+    , format = function(s, c) { return s.replace(/{(\w+)}/g, function(m, p) { return c[p]; }) }
+  return function(table, name) {
+    if (!table.nodeType) table = document.getElementById(table)
+    var ctx = {worksheet: name || 'Worksheet', table: table.innerHTML}
+    window.location.href = uri + base64(format(template, ctx))
+  }
+})()
+var tableToExcelOne = (function() {
+  var uri = 'data:application/vnd.ms-excel;base64,'
+    , template = '<html xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:x="urn:schemas-microsoft-com:office:excel" xmlns="http://www.w3.org/TR/REC-html40"><head><!--[if gte mso 9]><xml><x:ExcelWorkbook><x:ExcelWorksheets><x:ExcelWorksheet><x:Name>{worksheet}</x:Name><x:WorksheetOptions><x:DisplayGridlines/></x:WorksheetOptions></x:ExcelWorksheet></x:ExcelWorksheets></x:ExcelWorkbook></xml><![endif]--></head><body><table>{table}</table></body></html>'
+    , base64 = function(s) { return window.btoa(unescape(encodeURIComponent(s))) }
+    , format = function(s, c) { return s.replace(/{(\w+)}/g, function(m, p) { return c[p]; }) }
+  return function(table, name) {
+    if (!table.nodeType) table = document.getElementById(table)
+    var ctx = {worksheet: name || 'Worksheet', table: table.innerHTML}
+    window.location.href = uri + base64(format(template, ctx))
+  }
+})()
+</script>
+  <script type="text/javascript">
+        $(document).ready(function() {
+
+            $("#exportpdf").click(function() {
+                var pdf = new jsPDF('p', 'pt', 'ledger');
+                // source can be HTML-formatted string, or a reference
+                // to an actual DOM element from which the text will be scraped.
+                source = $('#table')[0];
+
+                // we support special element handlers. Register them with jQuery-style 
+                // ID selector for either ID or node name. ("#iAmID", "div", "span" etc.)
+                // There is no support for any other type of selectors 
+                // (class, of compound) at this time.
+                specialElementHandlers = {
+                    // element with id of "bypass" - jQuery style selector
+                    '#bypassme' : function(element, renderer) {
+                        // true = "handled elsewhere, bypass text extraction"
+                        return true
+                    }
+                };
+                margins = {
+                    top : 80,
+                    bottom : 60,
+                    left : 60,
+                    width : 522
+                };
+                // all coords and widths are in jsPDF instance's declared units
+                // 'inches' in this case
+                pdf.fromHTML(source, // HTML string or DOM elem ref.
+                margins.left, // x coord
+                margins.top, { // y coord
+                    'width' : margins.width, // max width of content on PDF
+                    'elementHandlers' : specialElementHandlers
+                },
+
+                function(dispose) {
+                    // dispose: object with X, Y of the last line add to the PDF 
+                    //          this allow the insertion of new lines after html
+                    pdf.save('table.pdf');
+                }, margins);
+            });
+
+        });
+    </script>
 	</body>
 </html>
